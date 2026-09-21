@@ -15,6 +15,8 @@
   let statusTimer = 0;
   let done = false;
 
+  document.querySelectorAll(".hero .reveal").forEach((node) => node.classList.add("in"));
+
   if (status && !reduce) {
     statusTimer = window.setInterval(() => {
       statusIndex = (statusIndex + 1) % lines.length;
