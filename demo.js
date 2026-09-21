@@ -12,8 +12,8 @@
   const journal = root.querySelector("[data-demo-journal]");
   const occEl = root.querySelector("[data-demo-occ]");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const LOOP = 12000;
-  const STATIC_AT = 7000;
+  const LOOP = 16000;
+  const STATIC_AT = 9000;
 
   let playing = !reduce;
   let elapsed = reduce ? STATIC_AT : 0;
@@ -43,11 +43,11 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   };
 
-  const drawSilhouette = (x, y, scale, dim, sway) => {
+  const drawSilhouette = (x, y, scale, dim, sway, walk) => {
     ctx.save();
     ctx.translate(x, y + sway);
     ctx.scale(scale, scale);
-    const fill = dim ? "rgba(22, 30, 40, 0.92)" : "rgba(32, 42, 54, 0.94)";
+    const fill = dim ? "rgba(18, 26, 36, 0.93)" : "rgba(28, 38, 50, 0.95)";
     ctx.fillStyle = fill;
     ctx.beginPath();
     ctx.arc(0, 0, 15, 0, Math.PI * 2);
@@ -55,15 +55,46 @@
     ctx.beginPath();
     ctx.moveTo(-24, 22);
     ctx.quadraticCurveTo(-28, 28, -26, 44);
-    ctx.lineTo(-22, 108);
-    ctx.quadraticCurveTo(-18, 118, -8, 118);
+    ctx.lineTo(-20 + walk, 108);
+    ctx.quadraticCurveTo(-16, 118, -8, 118);
     ctx.lineTo(8, 118);
-    ctx.quadraticCurveTo(18, 118, 22, 108);
+    ctx.quadraticCurveTo(16, 118, 20 - walk, 108);
     ctx.lineTo(26, 44);
     ctx.quadraticCurveTo(28, 28, 24, 22);
     ctx.quadraticCurveTo(0, 32, -24, 22);
     ctx.fill();
     ctx.restore();
+  };
+
+  const drawCrosshair = (x, y, size, alpha) => {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = "rgba(62, 224, 180, 0.75)";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x - size - 8, y);
+    ctx.lineTo(x - size + 4, y);
+    ctx.moveTo(x + size - 4, y);
+    ctx.lineTo(x + size + 8, y);
+    ctx.moveTo(x, y - size - 8);
+    ctx.lineTo(x, y - size + 4);
+    ctx.moveTo(x, y + size - 4);
+    ctx.lineTo(x, y + size + 8);
+    ctx.stroke();
+    ctx.restore();
+  };
+
+  const drawBloom = (x, y, r, alpha) => {
+    const g = ctx.createRadialGradient(x, y, 2, x, y, r);
+    g.addColorStop(0, `rgba(62, 224, 180, ${0.28 * alpha})`);
+    g.addColorStop(1, "rgba(62, 224, 180, 0)");
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
   };
 
   const cornerBox = (x, y, w, h, color, alpha, pulse) => {
@@ -122,26 +153,29 @@
   };
 
   const stateAt = (t) => {
-    const alexA = appear(t, 700, 900);
-    const conf = lerp(0.41, 0.94, appear(t, 900, 1400));
-    const unknownA = appear(t, 4200, 1100);
-    const unknownX = lerp(width * 0.98, width * 0.72, appear(t, 4200, 1400));
-    const laptopA = appear(t, 2100, 500);
-    const chairA = appear(t, 2700, 500);
-    const pulse = (Math.sin(t / 420) + 1) * 0.5;
+    const hunt = appear(t, 180, 700);
+    const alexA = appear(t, 850, 700);
+    const lock = appear(t, 1100, 280);
+    const conf = lerp(0.41, 0.94, appear(t, 1100, 1600));
+    const unknownA = appear(t, 5200, 900);
+    const unknownX = lerp(width * 1.02, width * 0.7, appear(t, 5000, 1800));
+    const laptopA = appear(t, 2600, 420);
+    const chairA = appear(t, 3200, 420);
+    const pulse = (Math.sin(t / 380) + 1) * 0.5;
     let occupancy = 0;
-    if (alexA > 0.55) occupancy = 1;
-    if (unknownA > 0.45) occupancy = 2;
+    if (alexA > 0.6) occupancy = 1;
+    if (unknownA > 0.4) occupancy = 2;
     let line = "Searching scene · occupancy 0";
-    if (alexA > 0.7 && unknownA < 0.3) line = `Person 1 · Alex, dark hoodie · occupancy 1`;
-    if (laptopA > 0.8 && unknownA < 0.3) line = `Person 1 · Alex · laptop in view · occupancy 1`;
-    if (unknownA > 0.35) line = "Person 2 walked through · occupancy 2";
+    if (hunt > 0.4 && alexA < 0.5) line = "Face lock… occupancy 0";
+    if (alexA > 0.65 && unknownA < 0.25) line = `Person 1 · Alex · ${conf.toFixed(2)} · occupancy 1`;
+    if (laptopA > 0.85 && unknownA < 0.25) line = "Person 1 · Alex, dark hoodie · laptop in view · occupancy 1";
+    if (unknownA > 0.3) line = "Person 2 walked through · occupancy 2";
     if (unknownA > 0.85) line = `Person 2 walked through · laptop in view · occupancy ${occupancy}`;
     const rows = [];
-    if (alexA > 0.75) rows.push({ text: "Person 1 · Alex, dark hoodie", warn: false });
+    if (alexA > 0.8) rows.push({ text: "Person 1 · Alex, dark hoodie", warn: false });
     if (laptopA > 0.9) rows.push({ text: "laptop in view", warn: false });
-    if (unknownA > 0.7) rows.push({ text: "Person 2 entered · capture", warn: true });
-    return { alexA, conf, unknownA, unknownX, laptopA, chairA, pulse, occupancy, line, rows };
+    if (unknownA > 0.65) rows.push({ text: "Person 2 entered · capture", warn: true });
+    return { hunt, alexA, lock, conf, unknownA, unknownX, laptopA, chairA, pulse, occupancy, line, rows };
   };
 
   const drawFeed = (t) => {
@@ -174,28 +208,36 @@
     const alexY = h * 0.42;
     const alexScale = h / 520;
 
+    if (!reduce && s.hunt > 0.05 && s.alexA < 0.85) {
+      const hx = lerp(w * 0.72, alexX, s.hunt);
+      const hy = lerp(h * 0.28, alexY, s.hunt);
+      drawCrosshair(hx, hy, 16 + (1 - s.hunt) * 22, 0.85 - s.alexA * 0.5);
+    }
+
     if (s.alexA > 0.02) {
+      if (s.lock > 0.2) drawBloom(alexX, alexY, 54 * alexScale, s.lock * (0.55 + s.pulse * 0.45));
       ctx.globalAlpha = s.alexA;
-      drawSilhouette(alexX, alexY, alexScale, false, Math.sin(t / 640) * 1.2);
+      drawSilhouette(alexX, alexY, alexScale, false, Math.sin(t / 640) * 1.2, Math.sin(t / 280) * 3);
       ctx.globalAlpha = 1;
       const bw = 92 * alexScale * 1.15;
       const bh = 168 * alexScale * 1.05;
       const bx = alexX - bw / 2;
       const by = alexY - 22 * alexScale;
-      cornerBox(bx, by, bw, bh, "#3ee0b4", s.alexA, s.pulse * 1.4);
-      if (s.alexA > 0.45) tag(bx, by - 24, "Person 1 · Alex", true);
+      cornerBox(bx, by, bw, bh, "#3ee0b4", s.alexA, s.pulse * 1.8 * s.lock);
+      if (s.alexA > 0.4) tag(bx, by - 24, `Person 1 · Alex · ${s.conf.toFixed(2)}`, true);
     }
 
     if (s.unknownA > 0.02) {
+      const walk = Math.sin(t / 160) * 6;
       ctx.globalAlpha = s.unknownA;
-      drawSilhouette(s.unknownX, h * 0.4, alexScale * 0.92, true, 0);
+      drawSilhouette(s.unknownX, h * 0.4, alexScale * 0.92, true, 0, walk);
       ctx.globalAlpha = 1;
       const bw = 78 * alexScale * 1.15;
       const bh = 150 * alexScale * 1.05;
       const bx = s.unknownX - bw / 2;
       const by = h * 0.4 - 20 * alexScale;
       cornerBox(bx, by, bw, bh, "#7d8b9c", s.unknownA, 0);
-      if (s.unknownA > 0.4) tag(bx, by - 24, "Person 2", false);
+      if (s.unknownA > 0.35) tag(bx, by - 24, "Person 2", false);
     }
 
     if (frame) {
@@ -242,6 +284,11 @@
     ctx.fillStyle = "#8d9aab";
     ctx.fillText(s.line, 18, h - 18);
 
+    if (!reduce && t > LOOP - 520) {
+      ctx.fillStyle = `rgba(5, 6, 8, ${(t - (LOOP - 520)) / 520})`;
+      ctx.fillRect(0, 0, w, h);
+    }
+
     return s;
   };
 
@@ -259,9 +306,18 @@
       .join("");
   };
 
+  let lastOcc = -1;
   const setChrome = (t, s) => {
     if (ticker && ticker.textContent !== s.line) ticker.textContent = s.line;
-    if (occEl) occEl.textContent = String(s.occupancy);
+    if (occEl) {
+      occEl.textContent = String(s.occupancy);
+      if (s.occupancy !== lastOcc) {
+        lastOcc = s.occupancy;
+        occEl.classList.remove("is-tick");
+        void occEl.offsetWidth;
+        occEl.classList.add("is-tick");
+      }
+    }
     renderJournal(s.rows);
     if (scrubFill) scrubFill.style.width = `${((t % LOOP) / LOOP) * 100}%`;
     if (timeEl) {
