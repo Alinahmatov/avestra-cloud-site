@@ -10,6 +10,7 @@
   const maxMs = reduce ? 320 : 7000;
   const started = performance.now();
   const status = boot.querySelector("[data-boot-status]");
+  const muteBtn = boot.querySelector("[data-boot-mute]");
   const lines = ["Scanning scene", "Faces + COCO", "Local node", "Camera idle until start"];
   let statusIndex = 0;
   let statusTimer = 0;
@@ -24,6 +25,117 @@
     }, 1500);
   } else if (status && reduce) {
     status.textContent = "Avestra Cloud";
+  }
+
+  const welcomeLine = "Welcome to the Avestra Cloud intelligence.";
+  const synth = window.speechSynthesis || null;
+  let spoken = false;
+  let muted = false;
+  let gestureArmed = false;
+
+  const pickVoice = () => {
+    if (!synth || typeof synth.getVoices !== "function") return null;
+    const voices = synth.getVoices() || [];
+    return (
+      voices.find((voice) => /en(-|_)(GB|US)/i.test(voice.lang) && /Natural|Neural|Aria|Jenny|Google|Enhanced/i.test(voice.name)) ||
+      voices.find((voice) => /^en/i.test(voice.lang)) ||
+      null
+    );
+  };
+
+  const speakWelcome = () => {
+    if (spoken || muted || reduce || !synth) return;
+    spoken = true;
+    try {
+      synth.cancel();
+      const utter = new SpeechSynthesisUtterance(welcomeLine);
+      utter.lang = "en-US";
+      utter.rate = 0.92;
+      utter.pitch = 0.96;
+      utter.volume = 1;
+      const voice = pickVoice();
+      if (voice) utter.voice = voice;
+      utter.onerror = () => {};
+      synth.speak(utter);
+    } catch {
+      spoken = false;
+    }
+  };
+
+  const disarmGesture = () => {
+    document.removeEventListener("pointerdown", onFirstGesture, true);
+    document.removeEventListener("keydown", onFirstGesture, true);
+    gestureArmed = false;
+  };
+
+  const onFirstGesture = (event) => {
+    if (event.target && event.target.closest && event.target.closest("[data-boot-mute]")) return;
+    disarmGesture();
+    speakWelcome();
+  };
+
+  const armGesture = () => {
+    if (gestureArmed || spoken || muted || reduce || !synth) return;
+    gestureArmed = true;
+    document.addEventListener("pointerdown", onFirstGesture, true);
+    document.addEventListener("keydown", onFirstGesture, true);
+  };
+
+  const tryAutoplay = () => {
+    if (!synth || reduce || muted) return;
+    try {
+      synth.getVoices();
+    } catch {
+      /* ignore */
+    }
+    speakWelcome();
+    window.setTimeout(() => {
+      if (muted || reduce) return;
+      const talking = synth.speaking || synth.pending;
+      if (!talking) {
+        spoken = false;
+        armGesture();
+      }
+    }, 450);
+  };
+
+  const setMuted = (next) => {
+    muted = next;
+    if (muteBtn) {
+      muteBtn.setAttribute("aria-pressed", String(muted));
+      muteBtn.setAttribute("aria-label", muted ? "Unmute welcome voice" : "Mute welcome voice");
+      muteBtn.textContent = muted ? "Muted" : "Mute";
+    }
+    if (muted && synth) {
+      try {
+        synth.cancel();
+      } catch {
+        /* ignore */
+      }
+      disarmGesture();
+    } else if (!muted && !spoken) {
+      speakWelcome();
+    }
+  };
+
+  if (muteBtn) {
+    if (reduce || !synth) {
+      muteBtn.hidden = true;
+    } else {
+      muteBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        setMuted(!muted);
+      });
+    }
+  }
+
+  if (!reduce && synth) {
+    if (typeof synth.addEventListener === "function") {
+      synth.addEventListener("voiceschanged", () => {
+        if (!spoken && !muted && !gestureArmed) speakWelcome();
+      });
+    }
+    tryAutoplay();
   }
 
   const dismiss = (immediate) => {

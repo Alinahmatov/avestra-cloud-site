@@ -177,8 +177,15 @@ html.booted .boot {
   text-transform: uppercase;
   color: #6d7a8c;
 }
-.boot-skip {
+.boot-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   margin-top: 2px;
+}
+.boot-mute,
+.boot-skip {
+  margin-top: 0;
   padding: 6px 10px;
   border: 0;
   background: transparent;
@@ -189,7 +196,9 @@ html.booted .boot {
   text-transform: uppercase;
   cursor: pointer;
 }
+.boot-mute:hover, .boot-mute:focus-visible,
 .boot-skip:hover, .boot-skip:focus-visible { color: var(--teal); }
+.boot-mute[aria-pressed="true"] { color: var(--amber); }
 
 .glow {
   position: fixed;
@@ -1726,6 +1735,7 @@ footer p { margin: 0; }
   .scanlines { display: none; }
   .veil { display: none; }
   .boot-lid { transform: scaleY(0); }
+  .boot-mute { display: none; }
   .js .hero-copy.reveal,
   .js .hero-copy.reveal.in,
   .js .request-form.reveal,
