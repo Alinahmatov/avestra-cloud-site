@@ -451,7 +451,7 @@ html.booted .boot {
   gap: 48px 40px;
   align-items: center;
 }
-.hero-copy { max-width: 540px; }
+.hero-copy { max-width: 580px; }
 .eyebrow {
   display: inline-block;
   margin: 0 0 14px;
@@ -476,7 +476,7 @@ h1 {
   color: var(--muted);
   font-size: 17px;
   line-height: 1.55;
-  max-width: 46ch;
+  max-width: none;
 }
 .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
 .cta-row.center { justify-content: center; }
