@@ -5,226 +5,282 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Avestra Cloud — Local AI camera monitoring</title>
   <meta name="description" content="Avestra Cloud is desktop AI camera monitoring that stays on your PC: live video, people recognition, everyday actions, object names, triggers, email alerts, and a phone app.">
-  <meta name="theme-color" content="#0e1116">
+  <meta name="theme-color" content="#0b0e13">
+  <link rel="canonical" href="https://www.avestra.online/">
   <meta property="og:title" content="Avestra Cloud">
   <meta property="og:description" content="Local desktop AI camera monitoring. Live video, recognition, triggers, and alerts — on your PC.">
-  <link rel="canonical" href="https://www.avestra.online/">
   <meta property="og:url" content="https://www.avestra.online/">
-  <meta property="og:image" content="assets/avestra-icon.png">
+  <meta property="og:image" content="https://www.avestra.online/assets/avestra-icon.png">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Avestra Cloud">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" href="assets/favicon.ico">
   <link rel="apple-touch-icon" href="assets/avestra-icon.png">
-  <link rel="stylesheet" href="styles.css?v=no-demo">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
+  <link rel="stylesheet" href="styles.css?v=ui-20260921b">
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
   <div class="glow" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
 
   <header class="nav">
-    <a class="brand" href="#top">
-      <img src="assets/avestra-icon.png" width="36" height="36" alt="">
-      <span>Avestra <em>Cloud</em></span>
-    </a>
-    <nav class="links">
-      <a href="#features">Features</a>
-      <a href="#how">How it works</a>
-      <a href="#privacy">Privacy</a>
-      <a class="btn small" href="#get">Request the app</a>
-    </nav>
-    <button class="menu" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <img src="assets/avestra-icon.png" width="32" height="32" alt="">
+        <span>Avestra <em>Cloud</em></span>
+      </a>
+      <nav class="links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#privacy">Privacy</a>
+        <a class="btn small primary" href="#get">Request the app</a>
+      </nav>
+      <button class="menu" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <p class="eyebrow">Desktop AI monitoring · For Windows</p>
-      <h1>Camera intelligence that stays on your PC.</h1>
-      <p class="lede">
-        Avestra Cloud is local desktop AI camera monitoring — not a toy, not a cloud webcam.
-        Watch live video, recognize people you enroll, name everyday objects, fire triggers,
-        and send alerts. Your footage is processed on the computer in front of you.
-      </p>
-      <div class="cta-row">
-        <a class="btn primary" href="#get">Request the app zip</a>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Desktop AI monitoring · Windows</p>
+        <h1>Camera intelligence that stays on your PC.</h1>
+        <p class="lede">
+          Avestra Cloud is local desktop AI camera monitoring — not a toy, not a cloud webcam.
+          Watch live video, recognize people you enroll, name everyday objects, fire triggers,
+          and send alerts. Your footage is processed on the computer in front of you.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#get">Request the app zip</a>
+        </div>
+        <ul class="hero-meta">
+          <li>Windows desktop</li>
+          <li>Processed on this PC</li>
+          <li>Zip by request only</li>
+        </ul>
       </div>
-      <p class="win-note">The Windows app is not a public download. Request access below and Alin will email the zip.</p>
 
       <div class="stage" aria-hidden="true">
         <div class="monitor">
           <div class="monitor-bar">
-            <img src="assets/avestra-icon.png" width="18" height="18" alt="">
-            <strong>Live</strong>
-            <span class="pill on">MONITORING</span>
-            <span class="pill rec">REC</span>
+            <img src="assets/avestra-icon.png" width="16" height="16" alt="">
+            <strong>Avestra Cloud — Live</strong>
+            <span class="clock" data-clock>00:00:00</span>
+            <span class="win-btns"><i></i><i></i><i></i></span>
           </div>
           <div class="scene">
+            <div class="window-light"></div>
+            <div class="floor"></div>
             <div class="person p1">
-              <span class="box"></span>
               <span class="tag">Alex · 0.94</span>
+              <span class="box">
+                <span class="sil"><span class="head"></span><span class="torso"></span></span>
+              </span>
             </div>
             <div class="person p2">
-              <span class="box unknown"></span>
               <span class="tag unknown">Unknown</span>
+              <span class="box unknown">
+                <span class="sil dim"><span class="head"></span><span class="torso"></span></span>
+              </span>
             </div>
             <div class="obj chair"><span>chair</span></div>
             <div class="obj laptop"><span>laptop</span></div>
-            <p class="narration">Known person present. Wave detected. Laptop in view.</p>
+            <p class="narration">Known person present · Wave detected · Laptop in view</p>
           </div>
           <aside class="side">
+            <div class="side-status">
+              <span class="pill on">MONITORING</span>
+              <span class="pill rec">REC</span>
+            </div>
             <h3>Active triggers</h3>
             <ul>
-              <li>Unknown person · capture + alert</li>
-              <li>Possible fall · log + email</li>
-              <li>Wave · known people</li>
+              <li><span class="dot warn"></span>Unknown person · capture + alert</li>
+              <li><span class="dot"></span>Possible fall · log + email</li>
+              <li><span class="dot"></span>Wave · known people</li>
             </ul>
+            <p class="side-cam">Cam 0 · local capture</p>
           </aside>
         </div>
       </div>
     </section>
 
     <section id="features" class="section">
-      <p class="eyebrow">Capabilities</p>
-      <h2>Built as a real monitor, not a demo.</h2>
-      <p class="section-lead">
-        Live capture, recognition, trigger evaluation, evidence, and email alerts are wired as
-        separate services on the desktop. If one piece fails, monitoring keeps running.
-      </p>
-      <div class="grid">
-        <article>
-          <h3>Live video</h3>
-          <p>Watch the camera with a visible monitoring indicator. Bounding boxes stay on the people in frame so you can see what the system is actually tracking.</p>
-        </article>
-        <article>
-          <h3>People recognition</h3>
-          <p>Enroll faces on the PC. Known people are named; everyone else stays <strong>Unknown</strong>. Optional voice recognition is independent of face.</p>
-        </article>
-        <article>
-          <h3>Everyday actions</h3>
-          <p>Detect raised hands, waves, sitting, standing, pointing, possible falls, entering or leaving an area, and other everyday poses — then decide which ones matter.</p>
-        </article>
-        <article>
-          <h3>Object names</h3>
-          <p>Label everyday objects in the scene — chair, laptop, phone, bed, and more — so triggers can react to what is actually in the room.</p>
-        </article>
-        <article>
-          <h3>Triggers</h3>
-          <p>Combine a person, an action, a zone, and a cooldown. When it fires, capture an image or clip, write a log, and optionally send an email alert.</p>
-        </article>
-        <article>
-          <h3>Phone access</h3>
-          <p>Open live video and alerts from your phone while the desktop app is running. Android can install the companion app from the PC; iPhone can add the site to the home screen.</p>
-        </article>
+      <div class="wrap">
+        <p class="eyebrow">Capabilities</p>
+        <h2>Built as a real monitor, not a demo.</h2>
+        <p class="section-lead">
+          Live capture, recognition, trigger evaluation, evidence, and email alerts are wired as
+          separate services on the desktop. If one piece fails, monitoring keeps running.
+        </p>
+        <div class="grid">
+          <article>
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M7 6V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1"/></svg>
+            </span>
+            <h3>Live video</h3>
+            <p>Watch the camera with a visible monitoring indicator. Bounding boxes stay on the people in frame so you can see what the system is actually tracking.</p>
+          </article>
+          <article>
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.2"/><path d="M15.2 19a4.2 4.2 0 0 1 5.8-3.4"/></svg>
+            </span>
+            <h3>People recognition</h3>
+            <p>Enroll faces on the PC. Known people are named; everyone else stays <strong>Unknown</strong>. Optional voice recognition is independent of face.</p>
+          </article>
+          <article>
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="5.5" r="2.2"/><path d="M12 8v4l3 2"/><path d="M8 21c.4-3.2 2-5 4-5s3.6 1.8 4 5"/><path d="M7 12h3"/></svg>
+            </span>
+            <h3>Everyday actions</h3>
+            <p>Detect raised hands, waves, sitting, standing, pointing, possible falls, entering or leaving an area, and other everyday poses — then decide which ones matter.</p>
+          </article>
+          <article>
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6.5A4 4 0 0 1 16 6.5V8"/></svg>
+            </span>
+            <h3>Object names</h3>
+            <p>Label everyday objects in the scene — chair, laptop, phone, bed, and more — so triggers can react to what is actually in the room.</p>
+          </article>
+          <article>
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 13h6l-2 8 10-11h-6l2-8z"/></svg>
+            </span>
+            <h3>Triggers</h3>
+            <p>Combine a person, an action, a zone, and a cooldown. When it fires, capture an image or clip, write a log, and optionally send an email alert.</p>
+          </article>
+          <article>
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="7" y="3" width="10" height="18" rx="2"/><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <h3>Phone access</h3>
+            <p>Open live video and alerts from your phone while the desktop app is running. Android can install the companion app from the PC; iPhone can add the site to the home screen.</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section id="how" class="section alt">
-      <p class="eyebrow">How it works</p>
-      <h2>Set up once. Monitor on this computer.</h2>
-      <ol class="steps">
-        <li>
-          <span>1</span>
-          <div>
-            <h3>Install on Windows</h3>
-            <p>Unzip the app and run it on the PC that has the camera. Nothing is uploaded to set up monitoring.</p>
-          </div>
-        </li>
-        <li>
-          <span>2</span>
-          <div>
-            <h3>Enroll people</h3>
-            <p>Add photos for the people you want recognized. Anyone not enrolled remains Unknown.</p>
-          </div>
-        </li>
-        <li>
-          <span>3</span>
-          <div>
-            <h3>Write triggers</h3>
-            <p>Choose an action, who it applies to, and what to do: capture, log, email alert.</p>
-          </div>
-        </li>
-        <li>
-          <span>4</span>
-          <div>
-            <h3>Start monitoring</h3>
-            <p>Hit Start on the Live view. Watch from the desktop or the phone app while this PC stays on.</p>
-          </div>
-        </li>
-      </ol>
+      <div class="wrap">
+        <p class="eyebrow">How it works</p>
+        <h2>Set up once. Monitor on this computer.</h2>
+        <ol class="steps">
+          <li>
+            <span>1</span>
+            <div>
+              <h3>Install on Windows</h3>
+              <p>Unzip the app and run it on the PC that has the camera. Nothing is uploaded to set up monitoring.</p>
+            </div>
+          </li>
+          <li>
+            <span>2</span>
+            <div>
+              <h3>Enroll people</h3>
+              <p>Add photos for the people you want recognized. Anyone not enrolled remains Unknown.</p>
+            </div>
+          </li>
+          <li>
+            <span>3</span>
+            <div>
+              <h3>Write triggers</h3>
+              <p>Choose an action, who it applies to, and what to do: capture, log, email alert.</p>
+            </div>
+          </li>
+          <li>
+            <span>4</span>
+            <div>
+              <h3>Start monitoring</h3>
+              <p>Hit Start on the Live view. Watch from the desktop or the phone app while this PC stays on.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
     </section>
 
     <section id="privacy" class="section">
-      <p class="eyebrow">Privacy-forward</p>
-      <h2>The computer is the cloud.</h2>
-      <div class="privacy">
-        <div>
-          <h3>Data stays on the PC</h3>
-          <p>Video, embeddings, and event history live on the machine that runs Avestra Cloud. There is no Avestra-hosted video pipeline to send your camera to.</p>
+      <div class="wrap">
+        <p class="eyebrow">Privacy-forward</p>
+        <h2>The computer is the cloud.</h2>
+        <div class="privacy">
+          <div>
+            <h3>Data stays on the PC</h3>
+            <p>Video, embeddings, and event history live on the machine that runs Avestra Cloud. There is no Avestra-hosted video pipeline to send your camera to.</p>
+          </div>
+          <div>
+            <h3>Estimates are estimates</h3>
+            <p>Age and height, when shown, are camera estimates with confidence — not identity documents and not verified facts. Treat them as hints, never as ground truth.</p>
+          </div>
+          <div>
+            <h3>You choose what fires</h3>
+            <p>Recognition only names people you enroll. Triggers only do what you configure. Optional models stay off until you turn them on.</p>
+          </div>
         </div>
-        <div>
-          <h3>Estimates are estimates</h3>
-          <p>Age and height, when shown, are camera estimates with confidence — not identity documents and not verified facts. Treat them as hints, never as ground truth.</p>
-        </div>
-        <div>
-          <h3>You choose what fires</h3>
-          <p>Recognition only names people you enroll. Triggers only do what you configure. Optional models stay off until you turn them on.</p>
-        </div>
+        <p class="legal">You are responsible for using the software in line with local law, workplace policy, and consent requirements for camera and biometric monitoring.</p>
       </div>
-      <p class="legal">You are responsible for using the software in line with local law, workplace policy, and consent requirements for camera and biometric monitoring.</p>
     </section>
 
     <section id="get" class="section cta">
-      <img class="cta-icon" src="assets/avestra-icon.png" width="72" height="72" alt="">
-      <h2>Request the Windows app zip</h2>
-      <p>
-        Avestra Cloud is a <strong>Windows</strong> desktop app. It is <strong>not</strong> a public download —
-        there is no zip on this site. Ask for access below. Alin will review the request and email the zip
-        if it can be shared with you.
-      </p>
-      <p class="win-note">If you already have a copy, unzip it and keep every file next to the executable. Windows may warn that the app is unrecognized — choose More info → Run anyway only if you trust the copy you were given.</p>
+      <div class="wrap">
+        <img class="cta-icon" src="assets/avestra-icon.png" width="64" height="64" alt="">
+        <h2>Request the Windows app zip</h2>
+        <p>
+          Avestra Cloud is a <strong>Windows</strong> desktop app. It is <strong>not</strong> a public download —
+          there is no zip on this site. Ask for access below. Alin will review the request and email the zip
+          if it can be shared with you.
+        </p>
+        <p class="win-note">If you already have a copy, unzip it and keep every file next to the executable. Windows may warn that the app is unrecognized — choose More info → Run anyway only if you trust the copy you were given.</p>
 
-      <form class="request-form" action="https://formsubmit.co/alii.nahmatov@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Avestra Cloud zip request">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="true">
-        <input type="hidden" name="_next" value="https://www.avestra.online/thanks.html">
-        <div class="hp" aria-hidden="true">
-          <label for="company">Company</label>
-          <input id="company" type="text" name="_honey" tabindex="-1" autocomplete="off">
-        </div>
+        <form class="request-form" action="https://formsubmit.co/alii.nahmatov@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Avestra Cloud zip request">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_next" value="https://www.avestra.online/thanks.html">
+          <div class="hp" aria-hidden="true">
+            <label for="company">Company</label>
+            <input id="company" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
 
-        <div class="field">
-          <label for="name">Name</label>
-          <input id="name" type="text" name="name" autocomplete="name" maxlength="120">
-        </div>
-        <div class="field">
-          <label for="email">Email <span>(required)</span></label>
-          <input id="email" type="email" name="email" autocomplete="email" required maxlength="120">
-        </div>
-        <div class="field">
-          <label for="phone">Phone / other contact <span>(optional)</span></label>
-          <input id="phone" type="text" name="contact" autocomplete="tel" maxlength="120" placeholder="Phone, Telegram, etc.">
-        </div>
-        <div class="field">
-          <label for="reason">Why you need the app / zip <span>(required)</span></label>
-          <textarea id="reason" name="reason" required rows="5" maxlength="2000" placeholder="Who you are and why you need Avestra Cloud."></textarea>
-        </div>
+          <p class="form-kicker">Access request</p>
 
-        <button class="btn primary request-submit" type="submit">Request download</button>
-        <p class="form-note">The request is emailed to Alin. You will hear back at the address you enter — the zip is not sent automatically.</p>
-      </form>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" autocomplete="name" maxlength="120">
+          </div>
+          <div class="field">
+            <label for="email">Email <span>(required)</span></label>
+            <input id="email" type="email" name="email" autocomplete="email" required maxlength="120">
+          </div>
+          <div class="field">
+            <label for="phone">Phone / other contact <span>(optional)</span></label>
+            <input id="phone" type="text" name="contact" autocomplete="tel" maxlength="120" placeholder="Phone, Telegram, etc.">
+          </div>
+          <div class="field">
+            <label for="reason">Why you need the app / zip <span>(required)</span></label>
+            <textarea id="reason" name="reason" required rows="5" maxlength="2000" placeholder="Who you are and why you need Avestra Cloud."></textarea>
+          </div>
 
-      <p class="access-note">
-        Phone sign-in nicknames are created in <strong>Avestra Access</strong>, a separate companion.
-        This site is about Avestra Cloud — the desktop monitor.
-      </p>
+          <button class="btn primary request-submit" type="submit">Request download</button>
+          <p class="form-note">The request is emailed to Alin. You will hear back at the address you enter — the zip is not sent automatically.</p>
+        </form>
+
+        <p class="access-note">
+          Phone sign-in nicknames are created in <strong>Avestra Access</strong>, a separate companion.
+          This site is about Avestra Cloud — the desktop monitor.
+        </p>
+      </div>
     </section>
   </main>
 
   <footer>
-    <img src="assets/avestra-logo.png" alt="Avestra Cloud" height="36">
-    <p>Avestra Cloud · Local AI camera monitoring for Windows</p>
+    <div class="wrap">
+      <img src="assets/avestra-logo.png" alt="Avestra Cloud" height="32">
+      <p>Avestra Cloud · Local AI camera monitoring for Windows</p>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=ui-20260921"></script>
 </body>
 </html>
