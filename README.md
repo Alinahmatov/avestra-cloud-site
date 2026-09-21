@@ -2,8 +2,8 @@
 
 Public marketing site for **Avestra Cloud**, the Windows desktop AI camera monitor.
 
-**Working URL today:** [https://alinahmatov.github.io/avestra-cloud-site/](https://alinahmatov.github.io/avestra-cloud-site/)
+**Live site:** [https://www.avestra.online](https://www.avestra.online)
 
-Custom domain **https://avestra.online** is ready in the site files, but Spaceship DNS still points at a parking host that does not answer HTTPS. Add the GitHub Pages records at Spaceship before treating avestra.online as live.
+The apex `avestra.online` is still Spaceship parking until A records can be added outside Unbox. Use **www**. GitHub Pages is a backup of this same site.
 
-This repository is a backup of the website only. It does not include the Windows app, models, or personal configuration. The zip is not hosted here — people request access with the homepage form, and Alin emails the package.
+This repository is the website only. It does not include the Windows app, models, or personal configuration. The zip is not hosted here — people request access with the homepage form, and Alin emails the package.
