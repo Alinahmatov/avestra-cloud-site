@@ -262,7 +262,135 @@ h1 {
   background: #1c2430;
   color: var(--muted);
 }
-.pill.on { background: var(--teal-dim); color: var(--teal); }
+.pill.on {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--teal-dim);
+  color: var(--teal);
+  animation: monitor-glow 2.6s ease-in-out infinite;
+}
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 0 rgba(62, 224, 180, 0.45);
+  animation: live-dot 2s ease-out infinite;
+}
+.pill.rec { animation: rec-blink 1.9s ease-in-out infinite; }
+
+.scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40%;
+  height: 38%;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent, rgba(62, 224, 180, 0.07), transparent);
+  animation: scan-y 5.6s linear infinite;
+}
+
+.p1 .box { animation: alex-breathe 3.8s ease-in-out infinite; }
+.p2 {
+  opacity: 0;
+  animation: unknown-in 1.7s ease-out 0.85s both;
+}
+.obj.laptop {
+  opacity: 0;
+  animation: obj-in 0.7s ease-out 1.4s both;
+}
+.obj.chair {
+  opacity: 0;
+  animation: obj-in 0.7s ease-out 2s both;
+}
+.narration {
+  transition: opacity 0.32s ease;
+}
+.narration.is-swap { opacity: 0; }
+
+.side li:first-child .dot.warn { animation: warn-pulse 2.8s ease-in-out infinite; }
+
+@keyframes scan-y {
+  from { transform: translateY(0); }
+  to { transform: translateY(340%); }
+}
+@keyframes live-dot {
+  0% { box-shadow: 0 0 0 0 rgba(62, 224, 180, 0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(62, 224, 180, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(62, 224, 180, 0); }
+}
+@keyframes monitor-glow {
+  0%, 100% { box-shadow: inset 0 0 0 rgba(62, 224, 180, 0); }
+  50% { box-shadow: 0 0 14px rgba(62, 224, 180, 0.22); }
+}
+@keyframes rec-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+@keyframes alex-breathe {
+  0%, 100% { box-shadow: 0 0 16px rgba(62, 224, 180, 0.22); }
+  50% { box-shadow: 0 0 28px rgba(62, 224, 180, 0.5); }
+}
+@keyframes unknown-in {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-only {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes obj-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes warn-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.js .stage.reveal { transition-delay: 0.1s; }
+.js .donate-grid .reveal:nth-child(2) { transition-delay: 0.08s; }
+.js .grid .reveal:nth-child(2) { transition-delay: 0.06s; }
+.js .grid .reveal:nth-child(3) { transition-delay: 0.12s; }
+.js .grid .reveal:nth-child(4) { transition-delay: 0.04s; }
+.js .grid .reveal:nth-child(5) { transition-delay: 0.1s; }
+.js .grid .reveal:nth-child(6) { transition-delay: 0.16s; }
+.js .steps .reveal:nth-child(2) { transition-delay: 0.06s; }
+.js .steps .reveal:nth-child(3) { transition-delay: 0.12s; }
+.js .steps .reveal:nth-child(4) { transition-delay: 0.18s; }
+
+.js .grid article.reveal.in:hover,
+.js .donate-card.reveal.in:hover,
+.js .steps li.reveal.in:hover,
+.js .privacy > .reveal.in:hover {
+  transform: translateY(-3px);
+}
+
+.grid article,
+.donate-card,
+.steps li,
+.privacy > div {
+  transition: border-color 0.2s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+.grid article:hover,
+.donate-card:hover,
+.steps li:hover,
+.privacy > div:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+}
 .pill.rec { background: #3a1417; color: var(--danger); }
 .scene {
   position: relative;
@@ -433,9 +561,7 @@ h2 { margin: 0 0 12px; font-size: clamp(28px, 3.6vw, 38px); line-height: 1.15; }
   border-radius: var(--radius);
   padding: 20px 20px 22px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-  transition: border-color 0.15s ease;
 }
-.grid article:hover { border-color: var(--line-strong); }
 .feat-icon {
   display: grid;
   place-items: center;
@@ -735,6 +861,21 @@ footer p { margin: 0; }
   .wrap, .hero { width: min(var(--wrap), calc(100% - 32px)); }
   .nav-inner { width: min(var(--wrap), calc(100% - 24px)); }
   .request-form { padding: 18px 16px 16px; }
+  .scan { opacity: 0.4; animation-duration: 8s; }
+  .p2 { animation-name: fade-only; animation-duration: 1.2s; }
+  .p1 .box { animation-duration: 5s; }
+  .js .reveal { transform: translateY(10px); }
+  .grid article:hover,
+  .donate-card:hover,
+  .steps li:hover,
+  .privacy > div:hover,
+  .js .grid article.reveal.in:hover,
+  .js .donate-card.reveal.in:hover,
+  .js .steps li.reveal.in:hover,
+  .js .privacy > .reveal.in:hover {
+    transform: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
 }
 
 @media (max-width: 560px) {
@@ -746,5 +887,33 @@ footer p { margin: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn, .grid article { transition: none; }
+  .btn,
+  .grid article,
+  .donate-card,
+  .steps li,
+  .privacy > div,
+  .narration { transition: none; }
+  .scan,
+  .pill.on,
+  .pill.rec,
+  .live-dot,
+  .p1 .box,
+  .p2,
+  .obj.laptop,
+  .obj.chair,
+  .side li:first-child .dot.warn { animation: none !important; }
+  .scan { display: none; }
+  .p2,
+  .obj.laptop,
+  .obj.chair { opacity: 1; transform: none; }
+  .js .reveal,
+  .js .reveal.in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .grid article:hover,
+  .donate-card:hover,
+  .steps li:hover,
+  .privacy > div:hover { transform: none; }
 }

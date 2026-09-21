@@ -72,3 +72,47 @@ if (cardNote) {
     ? "Visa, Mastercard, and other cards through a Stripe Payment Link. No Stripe keys are stored on this site."
     : "Visa, Mastercard, and other cards as a guest on PayPal’s donate page. No PayPal account required for many cards.";
 }
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const ticker = document.querySelector("[data-ticker]");
+if (ticker && !reduceMotion) {
+  const lines = [
+    "Unknown walked through · laptop in view · occupancy 3",
+    "Alex present · 0.94 · occupancy 2",
+    "Unknown entered · capture · occupancy 3",
+    "Laptop in view · chair in frame · occupancy 2",
+  ];
+  let index = 0;
+  window.setInterval(() => {
+    ticker.classList.add("is-swap");
+    window.setTimeout(() => {
+      index = (index + 1) % lines.length;
+      ticker.textContent = lines[index];
+      ticker.classList.remove("is-swap");
+    }, 320);
+  }, 3800);
+}
+
+const reveal = () => {
+  document.querySelectorAll(".reveal").forEach((node) => node.classList.add("in"));
+};
+
+if (reduceMotion) {
+  reveal();
+} else if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("in");
+        io.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+  );
+  document.querySelectorAll(".reveal").forEach((node) => io.observe(node));
+  window.setTimeout(reveal, 2500);
+} else {
+  reveal();
+}

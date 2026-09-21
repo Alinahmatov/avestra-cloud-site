@@ -21,7 +21,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260921e">
+  <link rel="stylesheet" href="styles.css?v=ui-20260921f">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -49,7 +50,7 @@
 
   <main id="main">
     <section class="hero" id="top">
-      <div class="hero-copy">
+      <div class="hero-copy reveal">
         <p class="eyebrow">Indie surveillance · local AI · Windows</p>
         <h1>Watch your space. It names who walked through.</h1>
         <p class="lede">
@@ -69,7 +70,7 @@
         </ul>
       </div>
 
-      <div class="stage" aria-hidden="true">
+      <div class="stage reveal" aria-hidden="true">
         <div class="monitor">
           <div class="monitor-bar">
             <img src="assets/avestra-icon.png" width="16" height="16" alt="">
@@ -78,6 +79,7 @@
             <span class="win-btns"><i></i><i></i><i></i></span>
           </div>
           <div class="scene">
+            <div class="scan"></div>
             <div class="window-light"></div>
             <div class="floor"></div>
             <div class="person p1">
@@ -94,11 +96,11 @@
             </div>
             <div class="obj chair"><span>chair</span></div>
             <div class="obj laptop"><span>laptop</span></div>
-            <p class="narration">Unknown walked through · laptop in view · occupancy 2</p>
+            <p class="narration" data-ticker>Unknown walked through · laptop in view · occupancy 3</p>
           </div>
           <aside class="side">
             <div class="side-status">
-              <span class="pill on">MONITORING</span>
+              <span class="pill on"><span class="live-dot"></span>MONITORING</span>
               <span class="pill rec">REC</span>
             </div>
             <h3>Action journal</h3>
@@ -115,16 +117,16 @@
 
     <section id="donate" class="section donate">
       <div class="wrap">
-        <p class="eyebrow">Keep it alive</p>
-        <h2>Donate</h2>
-        <p class="section-lead">
+        <p class="eyebrow reveal">Keep it alive</p>
+        <h2 class="reveal">Donate</h2>
+        <p class="section-lead reveal">
           This is indie software. If Avestra Cloud watches your space well, you can keep it
           alive with <strong>PayPal</strong> or a <strong>credit or debit card</strong>.
           Checkout happens on PayPal (or Stripe, if a Payment Link is configured) —
           this site never takes card numbers.
         </p>
         <div class="donate-grid">
-          <article class="donate-card">
+          <article class="donate-card reveal">
             <span class="feat-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6.5 7h6.2c2.6 0 4.3 1.5 4 3.8-.3 2.2-2.2 3.4-4.5 3.4H9.2L8.2 19H5L6.5 7z"/><path d="M4 4h7.4c2.2 0 3.6 1.2 3.4 3.1"/></svg>
             </span>
@@ -132,7 +134,7 @@
             <p>Opens PayPal’s hosted donate page. Sign in with PayPal, or continue as a guest where PayPal offers it.</p>
             <a class="btn primary" data-donate-paypal href="https://www.paypal.com/donate/?business=alii.nahmatov%40gmail.com&amp;no_recurring=0&amp;item_name=Avestra%20Cloud&amp;currency_code=USD" target="_blank" rel="noopener noreferrer">Donate with PayPal</a>
           </article>
-          <article class="donate-card">
+          <article class="donate-card reveal">
             <span class="feat-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/><path d="M7 15h3"/></svg>
             </span>
@@ -147,49 +149,49 @@
 
     <section id="features" class="section">
       <div class="wrap">
-        <p class="eyebrow">What it sees</p>
-        <h2>A room, a database, a journal.</h2>
-        <p class="section-lead">
+        <p class="eyebrow reveal">What it sees</p>
+        <h2 class="reveal">A room, a database, a journal.</h2>
+        <p class="section-lead reveal">
           Local AI on Windows. It recognizes faces, names objects, writes what people did,
           counts who is in frame, and will not open without a license. No one else’s cloud.
         </p>
         <div class="grid">
-          <article>
+          <article class="reveal">
             <span class="feat-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.2"/><path d="M15.2 19a4.2 4.2 0 0 1 5.8-3.4"/></svg>
             </span>
             <h3>Face recognition</h3>
             <p>Enroll faces on this PC. Known people are named. Everyone else stays <strong>Unknown</strong> until you put them in the database. It names itself — you don’t type labels on every frame.</p>
           </article>
-          <article>
+          <article class="reveal">
             <span class="feat-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6.5A4 4 0 0 1 16 6.5V8"/></svg>
             </span>
             <h3>Object detection</h3>
             <p>The scene is not empty space. Chair. Laptop. Phone. Bed. Everyday objects get names so the room is readable — and triggers can fire on what is actually there.</p>
           </article>
-          <article>
+          <article class="reveal">
             <span class="feat-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="5.5" r="2.2"/><path d="M12 8v4l3 2"/><path d="M8 21c.4-3.2 2-5 4-5s3.6 1.8 4 5"/><path d="M7 12h3"/></svg>
             </span>
             <h3>Action journal</h3>
             <p>Who entered. Who left. Wave, sit, stand, possible fall. The journal is the log of what happened in your space — searchable, not a vibe, not a slideshow.</p>
           </article>
-          <article>
+          <article class="reveal">
             <span class="feat-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg>
             </span>
             <h3>People database</h3>
             <p>Its own local store. Enrolled faces, unnamed tracks, history. The database lives next to the app, not in a vendor account you don’t control.</p>
           </article>
-          <article>
+          <article class="reveal">
             <span class="feat-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="9" r="2.2"/><circle cx="16" cy="9" r="2.2"/><path d="M4.5 18a4 4 0 0 1 7 0M12.5 18a4 4 0 0 1 7 0"/></svg>
             </span>
             <h3>Occupancy</h3>
             <p>How many people are in frame right now. Peak and unique counts for the day. Watch your space without guessing from a silent thumbnail.</p>
           </article>
-          <article>
+          <article class="reveal">
             <span class="feat-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
             </span>
@@ -202,31 +204,31 @@
 
     <section id="how" class="section alt">
       <div class="wrap">
-        <p class="eyebrow">How it works</p>
-        <h2>Unzip it. Point it. Read who walked through.</h2>
+        <p class="eyebrow reveal">How it works</p>
+        <h2 class="reveal">Unzip it. Point it. Read who walked through.</h2>
         <ol class="steps">
-          <li>
+          <li class="reveal">
             <span>1</span>
             <div>
               <h3>Run it on Windows</h3>
               <p>The camera is on this PC. The models are on this PC. Nothing is uploaded to “set up monitoring.”</p>
             </div>
           </li>
-          <li>
+          <li class="reveal">
             <span>2</span>
             <div>
               <h3>Fill the people database</h3>
               <p>Add faces for the people you want named. Anyone else stays Unknown — still tracked, still journaled.</p>
             </div>
           </li>
-          <li>
+          <li class="reveal">
             <span>3</span>
             <div>
               <h3>Decide what matters</h3>
               <p>Unknown walked through. A known person waved. Capture, log, email — you write the rules.</p>
             </div>
           </li>
-          <li>
+          <li class="reveal">
             <span>4</span>
             <div>
               <h3>Start watching</h3>
@@ -239,18 +241,18 @@
 
     <section id="privacy" class="section">
       <div class="wrap">
-        <p class="eyebrow">On this PC</p>
-        <h2>The computer is the cloud.</h2>
+        <p class="eyebrow reveal">On this PC</p>
+        <h2 class="reveal">The computer is the cloud.</h2>
         <div class="privacy">
-          <div>
+          <div class="reveal">
             <h3>Footage stays here</h3>
             <p>Video, embeddings, the people database, the journal — on the machine that runs Avestra Cloud. There is no Avestra-hosted video pipe. Watch your space without shipping it out.</p>
           </div>
-          <div>
+          <div class="reveal">
             <h3>Estimates are estimates</h3>
             <p>Age and height, when shown, are camera guesses with confidence — not papers, not facts. Treat them as hints. Never as identity.</p>
           </div>
-          <div>
+          <div class="reveal">
             <h3>You name who it names</h3>
             <p>Recognition only speaks names you enrolled. Triggers only do what you configure. Optional models stay dark until you turn them on.</p>
           </div>
@@ -261,8 +263,8 @@
 
     <section id="get" class="section cta">
       <div class="wrap">
-        <img class="cta-icon" src="assets/avestra-icon.png" width="64" height="64" alt="">
-        <h2>Request the Windows zip</h2>
+        <img class="cta-icon reveal" src="assets/avestra-icon.png" width="64" height="64" alt="">
+        <h2 class="reveal">Request the Windows zip</h2>
         <p>
           Avestra Cloud is a <strong>Windows</strong> desktop app. It is <strong>not</strong> a public download —
           there is no zip on this site. Ask below. Alin reviews the request and emails the package
@@ -270,7 +272,7 @@
         </p>
         <p class="win-note">If you already have a copy, unzip it and keep every file next to the executable. Windows may warn that the app is unrecognized — choose More info → Run anyway only if you trust the copy you were given.</p>
 
-        <form class="request-form" action="https://formsubmit.co/alii.nahmatov@gmail.com" method="POST">
+        <form class="request-form reveal" action="https://formsubmit.co/alii.nahmatov@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="Avestra Cloud zip request">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="true">
@@ -318,7 +320,7 @@
     </div>
   </footer>
 
-  <script src="donate-config.js?v=ui-20260921e"></script>
-  <script src="script.js?v=ui-20260921e"></script>
+  <script src="donate-config.js?v=ui-20260921f"></script>
+  <script src="script.js?v=ui-20260921f"></script>
 </body>
 </html>
