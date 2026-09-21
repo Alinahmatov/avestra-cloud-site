@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260921k">
+  <link rel="stylesheet" href="styles.css?v=ui-20260921u">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -68,7 +68,7 @@
         <ul class="hero-meta">
           <li>Faces · objects · actions</li>
           <li>People database on this PC</li>
-          <li>Windows Setup.exe · license to sign in</li>
+          <li>Windows Setup.exe · Android secondary app</li>
         </ul>
       </div>
 
@@ -233,6 +233,13 @@
               <p>Hit Start. Live view, occupancy, action journal. The PC stays on. The cloud is this machine.</p>
             </div>
           </li>
+          <li class="reveal">
+            <span>5</span>
+            <div>
+              <h3>Phone is a second app</h3>
+              <p>The Android app is not a webcam for this PC. It signs in with the same Access URL, nickname, password, and license, then watches with the phone camera and names faces and COCO objects on the device. Install the APK from Avestra Cloud on Windows (Settings → Create Android app) — it is not published on this site.</p>
+            </div>
+          </li>
         </ol>
       </div>
     </section>
@@ -276,6 +283,29 @@
           <p>Inno Setup installer. After it finishes, open Avestra Cloud and sign in with credentials Alin issued — not a guest login, not a self-signup.</p>
           <a class="btn primary" href="https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe" rel="noopener">Download / Install AvestraCloud-Setup.exe</a>
           <p class="win-note">Windows may warn that the app is unrecognized. Choose More info → Run anyway only if you trust this official download. The installer is hosted on GitHub Releases, not on this Pages site.</p>
+        </div>
+
+        <div class="download-box reveal" id="uninstall">
+          <h3>Uninstall</h3>
+          <p>There is no separate uninstall download. After Avestra Cloud is installed, remove it on that PC:</p>
+          <ul>
+            <li>Windows Settings → Apps → <strong>Avestra Cloud</strong> → Uninstall</li>
+            <li>Start Menu → Avestra Cloud → <strong>Uninstall Avestra Cloud</strong></li>
+            <li>Or run <strong>Uninstall.exe</strong> in the install folder (<span class="path">%LOCALAPPDATA%\Programs\Avestra Cloud</span>)</li>
+          </ul>
+          <p class="win-note">Program files are removed. People, logs, and other local data stay unless you check “Also remove local data” in the uninstaller.</p>
+        </div>
+
+        <div class="download-box reveal">
+          <h3>Android (secondary app)</h3>
+          <p>
+            Avestra on the phone is its own monitor: the phone camera, on-device faces and COCO objects,
+            people and a journal for that license. Sign in with the same Access URL, nickname, password,
+            and license as Windows. It does not connect to the PC as a webcam, and the Windows Cloud app
+            does not need to stay running. Avestra Access must be reachable to sign in.
+            Sideload the APK from Avestra Cloud on Windows (Settings → Create Android app).
+            The APK is not published on this site.
+          </p>
         </div>
 
         <p class="form-split">Need a license?</p>
@@ -332,8 +362,8 @@
     </div>
   </footer>
 
-  <script src="donate-config.js?v=ui-20260921k"></script>
-  <script src="script.js?v=ui-20260921k"></script>
-  <script src="demo.js?v=ui-20260921k"></script>
+  <script src="donate-config.js?v=ui-20260921u"></script>
+  <script src="script.js?v=ui-20260921u"></script>
+  <script src="demo.js?v=ui-20260921u"></script>
 </body>
 </html>
