@@ -1,3 +1,57 @@
+(() => {
+  const boot = document.querySelector("[data-boot]");
+  if (!boot) {
+    document.documentElement.classList.remove("booting");
+    return;
+  }
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const minMs = reduce ? 280 : 2200;
+  const maxMs = reduce ? 500 : 3200;
+  const started = performance.now();
+  const status = boot.querySelector("[data-boot-status]");
+  const lines = ["Scanning scene", "Faces + COCO", "Local node", "Camera idle until start"];
+  let statusIndex = 0;
+  let statusTimer = 0;
+  let done = false;
+
+  if (status && !reduce) {
+    statusTimer = window.setInterval(() => {
+      statusIndex = (statusIndex + 1) % lines.length;
+      status.textContent = lines[statusIndex];
+    }, 520);
+  } else if (status && reduce) {
+    status.textContent = "Avestra Cloud";
+  }
+
+  const dismiss = (immediate) => {
+    if (done) return;
+    done = true;
+    if (statusTimer) window.clearInterval(statusTimer);
+    const wait = immediate ? 0 : Math.max(0, minMs - (performance.now() - started));
+    window.setTimeout(() => {
+      document.querySelectorAll(".hero .reveal").forEach((node) => node.classList.add("in"));
+      document.documentElement.classList.remove("booting");
+      document.documentElement.classList.add("booted");
+      boot.setAttribute("aria-hidden", "true");
+      window.setTimeout(() => boot.remove(), 800);
+    }, wait);
+  };
+
+  const skip = boot.querySelector("[data-boot-skip]");
+  if (skip) skip.addEventListener("click", () => dismiss(true));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") dismiss(true);
+  });
+
+  if (document.readyState === "complete") {
+    dismiss();
+  } else {
+    window.addEventListener("load", dismiss, { once: true });
+  }
+  window.setTimeout(dismiss, maxMs);
+})();
+
 const nav = document.querySelector(".nav");
 const menu = document.querySelector(".menu");
 
@@ -26,14 +80,17 @@ if (nav) {
 }
 
 const clock = document.querySelector("[data-clock]");
-if (clock) {
+const navClock = document.querySelector("[data-nav-clock]");
+if (clock || navClock) {
   const tick = () => {
-    clock.textContent = new Date().toLocaleTimeString([], {
+    const text = new Date().toLocaleTimeString([], {
       hour12: false,
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
     });
+    if (clock) clock.textContent = text;
+    if (navClock) navClock.textContent = text;
   };
   tick();
   window.setInterval(tick, 1000);

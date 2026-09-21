@@ -4,30 +4,62 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Avestra Cloud — Watch your space. It names who walked through.</title>
-  <meta name="description" content="Indie local-AI surveillance for Windows. Face recognition, object detection, action journal, people database, occupancy. Download the Setup.exe — sign-in still needs a license from Alin.">
-  <meta name="theme-color" content="#0b0e13">
+  <meta name="description" content="Indie local-AI surveillance for Windows. Faces, COCO objects, action journal, people on this PC. Camera off when idle. Download Setup.exe — sign-in still needs a license from Alin.">
+  <meta name="theme-color" content="#07090d">
   <link rel="canonical" href="https://www.avestra.online/">
   <meta property="og:title" content="Avestra Cloud — Watch your space. It names who walked through.">
-  <meta property="og:description" content="Indie local-AI surveillance. Faces, objects, action journal, people database — on this PC, not a cloud webcam.">
+  <meta property="og:description" content="Indie local-AI surveillance. Faces, COCO objects, action journal — on this PC. Camera off when not monitoring. License from Alin.">
   <meta property="og:url" content="https://www.avestra.online/">
   <meta property="og:image" content="https://www.avestra.online/assets/avestra-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Avestra Cloud">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Avestra Cloud — Watch your space. It names who walked through.">
-  <meta name="twitter:description" content="Indie local-AI surveillance. Faces, objects, action journal, people database — on this PC.">
+  <meta name="twitter:description" content="Indie local-AI surveillance for Windows. Faces, objects, journal — on this PC, not a cloud webcam.">
   <link rel="icon" href="assets/favicon.ico">
   <link rel="apple-touch-icon" href="assets/avestra-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260921u">
-  <script>document.documentElement.classList.add("js");</script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
+  <link rel="stylesheet" href="styles.css?v=ui-20260921y">
+  <style>
+    html.booting, html.booting body { background: #000; overflow: hidden; }
+    .boot { display: none; }
+    html.booting .boot {
+      display: grid;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: #000;
+      place-items: center;
+    }
+  </style>
+  <script>document.documentElement.classList.add("js", "booting");</script>
 </head>
 <body>
+  <div class="boot" data-boot role="dialog" aria-modal="true" aria-label="Scanning">
+    <div class="boot-stage">
+      <div class="boot-beam" aria-hidden="true"></div>
+      <div class="boot-eyes" aria-hidden="true">
+        <span class="boot-eye"><span class="boot-lid"></span><span class="boot-iris"><i></i></span></span>
+        <span class="boot-eye"><span class="boot-lid"></span><span class="boot-iris"><i></i></span></span>
+      </div>
+      <p class="boot-word">AVESTRA</p>
+      <p class="boot-status" data-boot-status>Scanning scene</p>
+      <button type="button" class="boot-skip" data-boot-skip>Skip</button>
+    </div>
+  </div>
   <a class="skip" href="#main">Skip to content</a>
   <div class="glow" aria-hidden="true"></div>
   <div class="grid-bg" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <div class="tape" aria-hidden="true">
+    <div class="tape-track">
+      <span>LOCAL NODE</span><span>CAMERA OFF WHEN NOT MONITORING</span><span>FACES + COCO OBJECTS</span><span>LICENSE FROM ALIN</span><span>NO SELF-SIGNUP</span><span>DATA STAYS ON THIS PC</span><span>PERSON N · NAME</span><span>WINDOWS APP</span>
+      <span>LOCAL NODE</span><span>CAMERA OFF WHEN NOT MONITORING</span><span>FACES + COCO OBJECTS</span><span>LICENSE FROM ALIN</span><span>NO SELF-SIGNUP</span><span>DATA STAYS ON THIS PC</span><span>PERSON N · NAME</span><span>WINDOWS APP</span>
+    </div>
+  </div>
 
   <header class="nav">
     <div class="nav-inner">
@@ -36,13 +68,16 @@
         <span>Avestra <em>Cloud</em></span>
       </a>
       <nav class="links">
-        <a href="#watch">See it</a>
-        <a href="#features">What it sees</a>
-        <a href="#how">How it works</a>
-        <a href="#privacy">On this PC</a>
+        <a href="#watch">Live</a>
+        <a href="#how">How</a>
+        <a href="#access">Access</a>
+        <a href="#clients">Windows / Android</a>
+        <a href="#faq">FAQ</a>
+        <a href="#uninstall">Uninstall</a>
         <a href="#donate">Donate</a>
         <a class="btn small primary" href="#get">Download / Install</a>
       </nav>
+      <span class="nav-clock" data-nav-clock>00:00:00</span>
       <button class="menu" type="button" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span>
       </button>
@@ -55,25 +90,25 @@
         <p class="eyebrow">Indie surveillance · local AI · Windows</p>
         <h1>Watch your space. It names who walked through.</h1>
         <p class="lede">
-          Avestra Cloud is desktop surveillance that runs on the machine in front of you —
-          not a SaaS camera, not a toy demo. Faces hit a people database. Objects get names.
-          Actions land in a journal. Occupancy is counted. Licenses keep copies honest.
-          Footage stays here.
+          Avestra Cloud is a Windows app that watches with <strong>this PC’s camera</strong>.
+          Faces hit a people database. Everyday objects get COCO names. Actions land in a journal.
+          The camera is <strong>off</strong> when you are not monitoring. Footage stays here —
+          not a SaaS webcam, not a toy demo.
         </p>
         <div class="cta-row">
           <a class="btn primary" href="#get">Download / Install</a>
-          <a class="btn" href="#donate">Donate</a>
+          <a class="btn" href="#access">How licenses work</a>
         </div>
-        <p class="hero-license">The Windows installer is on this page. Installing it does not create an account — sign-in still needs a valid active license issued by Alin in Avestra Access.</p>
+        <p class="hero-license">Installing does <strong>not</strong> create an account. Sign-in still needs Access URL, nickname, password, and a valid unexpired license issued by Alin.</p>
         <ul class="hero-meta">
-          <li>Faces · objects · actions</li>
-          <li>People database on this PC</li>
-          <li>Windows Setup.exe · Android secondary app</li>
+          <li>Person N · Name on Live</li>
+          <li>Camera off when idle</li>
+          <li>Setup.exe · no self-signup</li>
         </ul>
       </div>
 
       <div class="stage reveal" id="watch">
-        <p class="player-kicker">See it in action</p>
+        <p class="player-kicker">Illustrated Live · fictional room · no real faces</p>
         <div class="player" data-demo>
           <div class="monitor">
             <div class="monitor-bar">
@@ -83,7 +118,7 @@
               <span class="win-btns"><i></i><i></i><i></i></span>
             </div>
             <div class="player-feed">
-              <canvas data-demo-canvas width="960" height="540" aria-label="Illustrated Avestra Cloud live view. Fictional silhouettes labeled Alex and Unknown. No real faces."></canvas>
+              <canvas data-demo-canvas width="960" height="540" aria-label="Illustrated Avestra Cloud live view. Fictional silhouettes labeled Person 1 · Alex and Person 2. No real faces."></canvas>
               <div class="player-grain" aria-hidden="true"></div>
             </div>
             <aside class="side">
@@ -109,6 +144,315 @@
             </div>
           </div>
           <p class="player-caption" data-demo-ticker>Searching scene · occupancy 0</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="live-legend" class="section legend">
+      <div class="wrap">
+        <p class="eyebrow reveal">What Live actually draws</p>
+        <h2 class="reveal">Person N · Name. Clothing in the description. Objects from COCO only.</h2>
+        <p class="section-lead reveal">
+          The mock above is illustrated, but the labels match the real overlay. Unnamed people stay
+          <strong>Person 1</strong>, <strong>Person 2</strong>, and so on. Enrolled names append as
+          <strong>Person N · Name</strong>. Clothing is a short outfit phrase in the description —
+          not a COCO class, not a second person. Everyday objects are named from the COCO set only
+          (chair, laptop, phone, bed, bottle…).
+        </p>
+        <div class="legend-grid">
+          <article class="reveal">
+            <span class="hud-kicker">01 · Face / body</span>
+            <h3>Person N · Name</h3>
+            <p>Live boxes say who is in frame. Unmatched tracks are Person N. Once you enroll them, the same number keeps, with the saved name after the dot. Never a random object class on a person.</p>
+          </article>
+          <article class="reveal">
+            <span class="hud-kicker">02 · Outfit</span>
+            <h3>Clothing in the line</h3>
+            <p>Journal and captions can read like <strong>Person 1 · Alex, dark hoodie</strong>. That clothing phrase is a torso color read. It is not a name and not a COCO object.</p>
+          </article>
+          <article class="reveal">
+            <span class="hud-kicker">03 · Scene</span>
+            <h3>COCO objects only</h3>
+            <p>Dashed boxes are everyday objects the model actually knows: chair, laptop, phone, bed, bottle, and the rest of COCO. It does not invent brands or custom furniture names.</p>
+          </article>
+          <article class="reveal">
+            <span class="hud-kicker">04 · Idle</span>
+            <h3>Camera off when idle</h3>
+            <p>Not monitoring means the camera is off. Start monitoring to open the lens. Stop monitoring and it goes dark again. Occupancy and Live only run while you are watching.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="wrap">
+        <p class="eyebrow reveal">What it sees</p>
+        <h2 class="reveal">A room, a database, a journal.</h2>
+        <p class="section-lead reveal">
+          Local AI on Windows. It recognizes faces you enrolled, names COCO objects, writes what
+          people did, counts who is in frame, and will not sign in without a license from Alin.
+        </p>
+        <div class="grid">
+          <article class="reveal">
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.2"/><path d="M15.2 19a4.2 4.2 0 0 1 5.8-3.4"/></svg>
+            </span>
+            <h3>Face recognition</h3>
+            <p>Enroll faces on this PC. Known people show as <strong>Person N · Name</strong>. Everyone else stays Person N until you put them in the database. You don’t type labels on every frame.</p>
+          </article>
+          <article class="reveal">
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6.5A4 4 0 0 1 16 6.5V8"/></svg>
+            </span>
+            <h3>COCO object detection</h3>
+            <p>Chair. Laptop. Phone. Bed. Bottle. Everyday objects get names from COCO so the room is readable — and triggers can fire on what is actually there. Not a shopping catalog.</p>
+          </article>
+          <article class="reveal">
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="5.5" r="2.2"/><path d="M12 8v4l3 2"/><path d="M8 21c.4-3.2 2-5 4-5s3.6 1.8 4 5"/><path d="M7 12h3"/></svg>
+            </span>
+            <h3>Action journal</h3>
+            <p>Who entered. Who left. Wave, sit, stand, possible fall. Lines use Person N · Name, with clothing in the description when the torso read is good. Searchable, not a vibe.</p>
+          </article>
+          <article class="reveal">
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg>
+            </span>
+            <h3>People database</h3>
+            <p>Its own local store on this PC. Enrolled faces, unnamed Person N tracks, history. The database lives next to the app, not in a vendor account you don’t control.</p>
+          </article>
+          <article class="reveal">
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="9" r="2.2"/><circle cx="16" cy="9" r="2.2"/><path d="M4.5 18a4 4 0 0 1 7 0M12.5 18a4 4 0 0 1 7 0"/></svg>
+            </span>
+            <h3>Occupancy</h3>
+            <p>How many people are in frame right now while monitoring. Peak and unique counts for the day on People. Watch your space without guessing from a silent thumbnail.</p>
+          </article>
+          <article class="reveal">
+            <span class="feat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            </span>
+            <h3>Licenses from Alin</h3>
+            <p>You can install from this site. Sign-in still needs a <strong>valid unexpired license</strong> Alin issued in Avestra Access — plus Access URL, nickname, and password. No self-signup. Expired keys cannot sign in.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section alt">
+      <div class="wrap">
+        <p class="eyebrow reveal">How it works</p>
+        <h2 class="reveal">Install it. Point it. Read who walked through.</h2>
+        <ol class="steps timeline">
+          <li class="reveal">
+            <span>1</span>
+            <div>
+              <h3>Download Setup.exe</h3>
+              <p>Get AvestraCloud-Setup.exe from this page (GitHub Releases). Run it. Installing does not create an account and does not include Avestra Access.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span>2</span>
+            <div>
+              <h3>Sign in with four things</h3>
+              <p>Access URL + nickname + password + license from Alin. You cannot invent any of them. Expired licenses are refused.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span>3</span>
+            <div>
+              <h3>Pick the camera, enroll people</h3>
+              <p>Settings → this PC’s camera. People → add faces you want named. Anyone else stays Person N — still tracked, still journaled.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span>4</span>
+            <div>
+              <h3>Start monitoring</h3>
+              <p>Live → Start. Boxes, occupancy, action journal. Stop monitoring and the camera goes off. The PC stays the cloud.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span>5</span>
+            <div>
+              <h3>Phone is a second app</h3>
+              <p>Android is not a webcam for this PC. Same Access login, phone camera, on-device faces and COCO objects. Sideload from Cloud Settings — not this site.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="access" class="section">
+      <div class="wrap">
+        <p class="eyebrow reveal">Avestra Access</p>
+        <h2 class="reveal">Four fields. One issuer. No self-signup.</h2>
+        <p class="section-lead reveal">
+          Avestra Access is a separate app on Alin’s machine. The Windows Setup.exe is Avestra Cloud only —
+          Access is not inside it. Alin issues a nickname, password, and license, then sends you an Access URL.
+          Keep Access open on the owner’s PC so Kick and activity work.
+        </p>
+        <div class="cred-grid">
+          <article class="cred reveal">
+            <span class="hud-kicker">Field 01</span>
+            <h3>Access URL</h3>
+            <p>Paste the public HTTPS address from Avestra Access (<span class="mono">https://….trycloudflare.com</span>). That public URL works from anywhere — same Wi‑Fi is <strong>not</strong> required. A LAN URL is same-Wi‑Fi only.</p>
+          </article>
+          <article class="cred reveal">
+            <span class="hud-kicker">Field 02</span>
+            <h3>Nickname</h3>
+            <p>Issued in Access. There is no create-account screen in Cloud. You cannot invent a nickname.</p>
+          </article>
+          <article class="cred reveal">
+            <span class="hud-kicker">Field 03</span>
+            <h3>Password</h3>
+            <p>The password that goes with that nickname. Wrong password, no session.</p>
+          </article>
+          <article class="cred reveal">
+            <span class="hud-kicker">Field 04</span>
+            <h3>License</h3>
+            <p>A key Alin issued (looks like <span class="mono">AVESTRA-…</span>). Must be valid and <strong>unexpired</strong>. Expired licenses cannot sign in. Installing the exe does not mint one.</p>
+          </article>
+        </div>
+        <div class="spec-plate reveal">
+          <p class="spec-title">Sign-in plate</p>
+          <dl>
+            <div><dt>Issuer</dt><dd>Alin, in Avestra Access</dd></div>
+            <div><dt>Self-signup</dt><dd>None. Form on this site emails Alin; it does not mail a key automatically.</dd></div>
+            <div><dt>Expiry</dt><dd>Expired keys are refused at login. Ask Alin if yours lapsed.</dd></div>
+            <div><dt>Public URL</dt><dd>trycloudflare (or a named host). Works off your home Wi‑Fi.</dd></div>
+            <div><dt>LAN URL</dt><dd>Same Wi‑Fi only. Testers in another country cannot use 192.168…</dd></div>
+            <div><dt>Kick</dt><dd>Owner can sign a tester out everywhere from Access Profiles.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="clients" class="section alt">
+      <div class="wrap">
+        <p class="eyebrow reveal">Two apps</p>
+        <h2 class="reveal">Windows is the product. Android is a second lens.</h2>
+        <p class="section-lead reveal">The phone does not “connect to your PC.” It is a standalone client with its own camera and on-device detect.</p>
+        <div class="compare">
+          <article class="reveal">
+            <p class="hud-kicker">Primary</p>
+            <h3>Windows — Avestra Cloud</h3>
+            <ul class="ticks">
+              <li>This PC’s camera (off when not monitoring)</li>
+              <li>Faces + COCO objects on the machine</li>
+              <li>People database and action journal on this PC</li>
+              <li>Live occupancy, triggers, capture, optional email</li>
+              <li>Install from this site: AvestraCloud-Setup.exe</li>
+              <li>Sign-in: Access URL + nickname + password + license</li>
+              <li>Uninstall from Settings → Apps, Start Menu, or Uninstall.exe</li>
+            </ul>
+          </article>
+          <article class="reveal">
+            <p class="hud-kicker">Secondary</p>
+            <h3>Android — standalone client</h3>
+            <ul class="ticks">
+              <li>Phone camera, not a webcam for the PC</li>
+              <li>On-device faces + COCO objects</li>
+              <li>People and journal for that license on the phone</li>
+              <li>Windows Cloud does not need to stay running after login</li>
+              <li>Avestra Access must still be reachable to sign in</li>
+              <li>Sideload from Cloud Settings → Create Android app</li>
+              <li>APK is <strong>not</strong> published on this site</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy" class="section">
+      <div class="wrap">
+        <p class="eyebrow reveal">On this PC</p>
+        <h2 class="reveal">The computer is the cloud.</h2>
+        <div class="privacy">
+          <div class="reveal">
+            <h3>Footage stays here</h3>
+            <p>Video, embeddings, the people database, the journal — on the machine that runs Avestra Cloud. There is no Avestra-hosted video pipe. Exceptions: optional household people sync, opt-in Cloudflare R2 backup you turn on yourself, and this marketing site.</p>
+          </div>
+          <div class="reveal">
+            <h3>Camera off when idle</h3>
+            <p>Not monitoring means the camera is off. Live, occupancy, and recording only run after Start monitoring. Stop, and the lens goes dark.</p>
+          </div>
+          <div class="reveal">
+            <h3>Estimates are estimates</h3>
+            <p>Age and height, when shown, are camera guesses with confidence — not papers, not facts. Treat them as hints. Never as identity.</p>
+          </div>
+          <div class="reveal">
+            <h3>You name who it names</h3>
+            <p>Recognition only speaks names you enrolled. Triggers only do what you configure. Optional models stay dark until you turn them on. Nationality and ethnicity are not inferred by default.</p>
+          </div>
+        </div>
+        <p class="legal">You are responsible for using the software in line with local law, workplace policy, and consent requirements for camera and biometric monitoring.</p>
+      </div>
+    </section>
+
+    <section id="testers" class="section testers">
+      <div class="wrap">
+        <p class="eyebrow reveal">For testers</p>
+        <h2 class="reveal">You can install today. You cannot sign in without Alin.</h2>
+        <div class="tester-card reveal">
+          <ol>
+            <li>Request a license on this page (or already have one from Alin).</li>
+            <li>Download <strong>AvestraCloud-Setup.exe</strong>. Installing does not create an account.</li>
+            <li>Wait for Alin to send Access URL, nickname, password, and a <strong>valid unexpired license</strong>.</li>
+            <li>Paste the <strong>public</strong> Access URL if you are not on Alin’s Wi‑Fi. Same Wi‑Fi is only required for a LAN URL.</li>
+            <li>Keep Avestra Access open on the owner’s PC. Kick is “Sign out everywhere.”</li>
+            <li>Android testers: sideload from Cloud Settings on Windows. Do not look for an APK here.</li>
+          </ol>
+          <p class="tester-note">The Setup.exe is Avestra Cloud only. Avestra Access is not inside it. License keys are never published on this page.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section alt">
+      <div class="wrap">
+        <p class="eyebrow reveal">FAQ</p>
+        <h2 class="reveal">Straight answers. No SaaS fog.</h2>
+        <div class="faq">
+          <details class="reveal">
+            <summary>Does installing create an account?</summary>
+            <p>No. Setup.exe puts Avestra Cloud on the PC. Sign-in still needs Access URL, nickname, password, and a valid unexpired license from Alin. There is no self-signup.</p>
+          </details>
+          <details class="reveal">
+            <summary>How do I get a license?</summary>
+            <p>Ask Alin with the form on this page. The form emails the request. It does not generate a key and does not mail one automatically. Expired licenses cannot sign in — ask Alin if yours lapsed.</p>
+          </details>
+          <details class="reveal">
+            <summary>Do I need to be on the same Wi‑Fi?</summary>
+            <p>Not if you use the public Access URL (trycloudflare, or a named host from Access). A LAN address is same-Wi‑Fi only. Testers in another country cannot use a 192.168… URL.</p>
+          </details>
+          <details class="reveal">
+            <summary>Does the phone app connect to my PC?</summary>
+            <p>No. Android is a standalone second client: phone camera, on-device faces and COCO objects, its own people list and journal for that license. Windows Cloud does not need to stay running after you sign in. Access still must be reachable for login.</p>
+          </details>
+          <details class="reveal">
+            <summary>Where is the Android APK?</summary>
+            <p>Not on this site. On Windows Avestra Cloud: Settings → Create Android app, then Start phone access and open /install on the phone.</p>
+          </details>
+          <details class="reveal">
+            <summary>What does Live show on people and objects?</summary>
+            <p>People: Person N, or Person N · Name once enrolled. Clothing can appear in the description (for example Person 1 · Alex, dark hoodie). Objects: COCO classes only — chair, laptop, phone, bed, and so on. Not brands, not made-up furniture names.</p>
+          </details>
+          <details class="reveal">
+            <summary>Is the camera always on?</summary>
+            <p>No. When you are not monitoring, the camera is off. Start monitoring to open it. Stop monitoring to shut it.</p>
+          </details>
+          <details class="reveal">
+            <summary>Where does my data go?</summary>
+            <p>On the PC that runs the app, by default. It leaves that machine only for optional household people sync, opt-in Cloudflare R2 backup you turn on, or this public marketing site (which does not host your footage).</p>
+          </details>
+          <details class="reveal">
+            <summary>How do I uninstall?</summary>
+            <p>There is no second huge uninstall download. On that PC: Windows Settings → Apps → Avestra Cloud → Uninstall. Or Start Menu → Avestra Cloud → Uninstall Avestra Cloud. Or run <span class="path">%LOCALAPPDATA%\Programs\Avestra Cloud\Uninstall.exe</span>. Program files go away. People and logs stay unless you check “Also remove local data.”</p>
+          </details>
+          <details class="reveal">
+            <summary>Windows says the app is unrecognized.</summary>
+            <p>SmartScreen may warn on unsigned indie software. Choose More info → Run anyway only if you trust this official download from GitHub Releases linked on this site.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -145,127 +489,6 @@
       </div>
     </section>
 
-    <section id="features" class="section">
-      <div class="wrap">
-        <p class="eyebrow reveal">What it sees</p>
-        <h2 class="reveal">A room, a database, a journal.</h2>
-        <p class="section-lead reveal">
-          Local AI on Windows. It recognizes faces, names objects, writes what people did,
-          counts who is in frame, and will not open without a license. No one else’s cloud.
-        </p>
-        <div class="grid">
-          <article class="reveal">
-            <span class="feat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.2"/><path d="M15.2 19a4.2 4.2 0 0 1 5.8-3.4"/></svg>
-            </span>
-            <h3>Face recognition</h3>
-            <p>Enroll faces on this PC. Known people are named. Everyone else stays <strong>Unknown</strong> until you put them in the database. It names itself — you don’t type labels on every frame.</p>
-          </article>
-          <article class="reveal">
-            <span class="feat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6.5A4 4 0 0 1 16 6.5V8"/></svg>
-            </span>
-            <h3>Object detection</h3>
-            <p>The scene is not empty space. Chair. Laptop. Phone. Bed. Everyday objects get names so the room is readable — and triggers can fire on what is actually there.</p>
-          </article>
-          <article class="reveal">
-            <span class="feat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="5.5" r="2.2"/><path d="M12 8v4l3 2"/><path d="M8 21c.4-3.2 2-5 4-5s3.6 1.8 4 5"/><path d="M7 12h3"/></svg>
-            </span>
-            <h3>Action journal</h3>
-            <p>Who entered. Who left. Wave, sit, stand, possible fall. The journal is the log of what happened in your space — searchable, not a vibe, not a slideshow.</p>
-          </article>
-          <article class="reveal">
-            <span class="feat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg>
-            </span>
-            <h3>People database</h3>
-            <p>Its own local store. Enrolled faces, unnamed tracks, history. The database lives next to the app, not in a vendor account you don’t control.</p>
-          </article>
-          <article class="reveal">
-            <span class="feat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="9" r="2.2"/><circle cx="16" cy="9" r="2.2"/><path d="M4.5 18a4 4 0 0 1 7 0M12.5 18a4 4 0 0 1 7 0"/></svg>
-            </span>
-            <h3>Occupancy</h3>
-            <p>How many people are in frame right now. Peak and unique counts for the day. Watch your space without guessing from a silent thumbnail.</p>
-          </article>
-          <article class="reveal">
-            <span class="feat-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-            </span>
-            <h3>Licenses</h3>
-            <p>You can install the app from this site. Sign-in still needs a valid active license issued by Alin in Avestra Access — Access URL, nickname, password, and key. Installing the exe does not create an account. Expired licenses cannot sign in.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="how" class="section alt">
-      <div class="wrap">
-        <p class="eyebrow reveal">How it works</p>
-        <h2 class="reveal">Install it. Point it. Read who walked through.</h2>
-        <ol class="steps">
-          <li class="reveal">
-            <span>1</span>
-            <div>
-              <h3>Install on Windows</h3>
-              <p>Download AvestraCloud-Setup.exe, run it, then sign in. The camera and models stay on this PC. Installing does not create an account.</p>
-            </div>
-          </li>
-          <li class="reveal">
-            <span>2</span>
-            <div>
-              <h3>Fill the people database</h3>
-              <p>Add faces for the people you want named. Anyone else stays Unknown — still tracked, still journaled.</p>
-            </div>
-          </li>
-          <li class="reveal">
-            <span>3</span>
-            <div>
-              <h3>Decide what matters</h3>
-              <p>Unknown walked through. A known person waved. Capture, log, email — you write the rules.</p>
-            </div>
-          </li>
-          <li class="reveal">
-            <span>4</span>
-            <div>
-              <h3>Start watching</h3>
-              <p>Hit Start. Live view, occupancy, action journal. The PC stays on. The cloud is this machine.</p>
-            </div>
-          </li>
-          <li class="reveal">
-            <span>5</span>
-            <div>
-              <h3>Phone is a second app</h3>
-              <p>The Android app is not a webcam for this PC. It signs in with the same Access URL, nickname, password, and license, then watches with the phone camera and names faces and COCO objects on the device. Install the APK from Avestra Cloud on Windows (Settings → Create Android app) — it is not published on this site.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="privacy" class="section">
-      <div class="wrap">
-        <p class="eyebrow reveal">On this PC</p>
-        <h2 class="reveal">The computer is the cloud.</h2>
-        <div class="privacy">
-          <div class="reveal">
-            <h3>Footage stays here</h3>
-            <p>Video, embeddings, the people database, the journal — on the machine that runs Avestra Cloud. There is no Avestra-hosted video pipe. Watch your space without shipping it out.</p>
-          </div>
-          <div class="reveal">
-            <h3>Estimates are estimates</h3>
-            <p>Age and height, when shown, are camera guesses with confidence — not papers, not facts. Treat them as hints. Never as identity.</p>
-          </div>
-          <div class="reveal">
-            <h3>You name who it names</h3>
-            <p>Recognition only speaks names you enrolled. Triggers only do what you configure. Optional models stay dark until you turn them on.</p>
-          </div>
-        </div>
-        <p class="legal">You are responsible for using the software in line with local law, workplace policy, and consent requirements for camera and biometric monitoring.</p>
-      </div>
-    </section>
-
     <section id="get" class="section cta">
       <div class="wrap">
         <img class="cta-icon reveal" src="assets/avestra-icon.png" width="64" height="64" alt="">
@@ -274,7 +497,7 @@
           Avestra Cloud is a <strong>Windows</strong> desktop app. Click below to download
           <strong>AvestraCloud-Setup.exe</strong> and install it. Installing does
           <strong>not</strong> create an account. You still cannot sign in without a
-          <strong>valid active license</strong> issued by Alin in Avestra Access
+          <strong>valid unexpired license</strong> issued by Alin in Avestra Access
           (Access URL, nickname, password, and license key). Expired licenses cannot sign in.
         </p>
 
@@ -291,7 +514,7 @@
           <ul>
             <li>Windows Settings → Apps → <strong>Avestra Cloud</strong> → Uninstall</li>
             <li>Start Menu → Avestra Cloud → <strong>Uninstall Avestra Cloud</strong></li>
-            <li>Or run <strong>Uninstall.exe</strong> in the install folder (<span class="path">%LOCALAPPDATA%\Programs\Avestra Cloud</span>)</li>
+            <li>Or run <strong>Uninstall.exe</strong> at <span class="path">%LOCALAPPDATA%\Programs\Avestra Cloud\Uninstall.exe</span></li>
           </ul>
           <p class="win-note">Program files are removed. People, logs, and other local data stay unless you check “Also remove local data” in the uninstaller.</p>
         </div>
@@ -358,12 +581,13 @@
   <footer>
     <div class="wrap">
       <img src="assets/avestra-logo.png" alt="Avestra Cloud" height="32">
-      <p>Avestra Cloud · Indie local-AI surveillance for Windows · <a href="#donate">Donate</a></p>
+      <p>Avestra Cloud · Indie local-AI surveillance for Windows · camera off when idle · <a href="#donate">Donate</a></p>
+      <p class="foot-meta">www.avestra.online · local node · no self-signup</p>
     </div>
   </footer>
 
-  <script src="donate-config.js?v=ui-20260921u"></script>
-  <script src="script.js?v=ui-20260921u"></script>
-  <script src="demo.js?v=ui-20260921u"></script>
+  <script src="donate-config.js?v=ui-20260921y"></script>
+  <script src="script.js?v=ui-20260921y"></script>
+  <script src="demo.js?v=ui-20260921y"></script>
 </body>
 </html>

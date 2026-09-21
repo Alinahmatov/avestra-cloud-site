@@ -133,14 +133,14 @@
     if (alexA > 0.55) occupancy = 1;
     if (unknownA > 0.45) occupancy = 2;
     let line = "Searching scene · occupancy 0";
-    if (alexA > 0.7 && unknownA < 0.3) line = `Alex present · ${conf.toFixed(2)} · occupancy 1`;
-    if (laptopA > 0.8 && unknownA < 0.3) line = `Alex present · laptop in view · occupancy 1`;
-    if (unknownA > 0.35) line = "Unknown walked through · occupancy 2";
-    if (unknownA > 0.85) line = `Unknown walked through · laptop in view · occupancy ${occupancy}`;
+    if (alexA > 0.7 && unknownA < 0.3) line = `Person 1 · Alex, dark hoodie · occupancy 1`;
+    if (laptopA > 0.8 && unknownA < 0.3) line = `Person 1 · Alex · laptop in view · occupancy 1`;
+    if (unknownA > 0.35) line = "Person 2 walked through · occupancy 2";
+    if (unknownA > 0.85) line = `Person 2 walked through · laptop in view · occupancy ${occupancy}`;
     const rows = [];
-    if (alexA > 0.75) rows.push({ text: "Alex present · named", warn: false });
-    if (laptopA > 0.9) rows.push({ text: "Laptop in view", warn: false });
-    if (unknownA > 0.7) rows.push({ text: "Unknown entered · capture", warn: true });
+    if (alexA > 0.75) rows.push({ text: "Person 1 · Alex, dark hoodie", warn: false });
+    if (laptopA > 0.9) rows.push({ text: "laptop in view", warn: false });
+    if (unknownA > 0.7) rows.push({ text: "Person 2 entered · capture", warn: true });
     return { alexA, conf, unknownA, unknownX, laptopA, chairA, pulse, occupancy, line, rows };
   };
 
@@ -183,7 +183,7 @@
       const bx = alexX - bw / 2;
       const by = alexY - 22 * alexScale;
       cornerBox(bx, by, bw, bh, "#3ee0b4", s.alexA, s.pulse * 1.4);
-      if (s.alexA > 0.45) tag(bx, by - 24, `Alex · ${s.conf.toFixed(2)}`, true);
+      if (s.alexA > 0.45) tag(bx, by - 24, "Person 1 · Alex", true);
     }
 
     if (s.unknownA > 0.02) {
@@ -195,7 +195,7 @@
       const bx = s.unknownX - bw / 2;
       const by = h * 0.4 - 20 * alexScale;
       cornerBox(bx, by, bw, bh, "#7d8b9c", s.unknownA, 0);
-      if (s.unknownA > 0.4) tag(bx, by - 24, "Unknown", false);
+      if (s.unknownA > 0.4) tag(bx, by - 24, "Person 2", false);
     }
 
     if (frame) {
@@ -211,6 +211,12 @@
       dashBox(laptop.x, laptop.y, laptop.w, laptop.h, "laptop", s.laptopA);
       dashBox(chair.x, chair.y, chair.w, chair.h, "chair", s.chairA);
     }
+
+    ctx.font = "500 10px IBM Plex Mono, Cascadia Mono, ui-monospace, monospace";
+    ctx.fillStyle = "rgba(62, 224, 180, 0.72)";
+    ctx.fillText("CAM 0 · LOCAL", 12, 16);
+    ctx.fillStyle = "rgba(141, 154, 171, 0.8)";
+    ctx.fillText("FACES + COCO", Math.max(12, w - 92), 16);
 
     if (!reduce) {
       const scanY = ((t / 18) % (h + 80)) - 40;
