@@ -1,12 +1,24 @@
 # Avestra Cloud
 
-Public marketing site for **Avestra Cloud** — indie local-AI surveillance for Windows. Faces, objects, action journal, people database. Zip by request.
+Public marketing site for **Avestra Cloud** — indie local-AI surveillance for Windows. Faces, objects, action journal, people database.
 
 **Live site:** [https://www.avestra.online](https://www.avestra.online)
 
-The apex `avestra.online` is still Spaceship parking until A records can be added outside Unbox. Use **www**. GitHub Pages is a backup of this same site.
+The apex `avestra.online` is still Spaceship parking until A records can be added outside Unbox. Use **www**. GitHub Pages hosts this site.
 
-This repository is the website only. It does not include the Windows app, models, or personal configuration. The zip is not hosted here — people request access with the homepage form, and Alin emails the package.
+This repository is the website only. It does not include the Windows app, models, secrets, or personal configuration.
+
+## Download / Install
+
+The homepage has a **Download / Install** button for `AvestraCloud-Setup.exe`. The binary is a GitHub Release asset (too large for Pages). Latest:
+
+[https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe](https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe)
+
+Installing the exe does **not** create an account. Sign-in still needs a valid active license issued by Alin in Avestra Access (Access URL, nickname, password, license key). Expired licenses cannot sign in.
+
+Do not commit the Setup.exe into this Pages repo.
+
+The contact form remains for people who need a license or another copy. It does not email keys automatically.
 
 ## Donate
 
