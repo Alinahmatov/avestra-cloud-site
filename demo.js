@@ -152,11 +152,18 @@
     ctx.fillRect(0, 0, w, h);
 
     const sway = reduce ? 0 : Math.sin(t / 1800) * 3;
+    let frame = null;
     if (room.complete && room.naturalWidth) {
       const scale = Math.max(w / room.naturalWidth, h / room.naturalHeight) * 1.04;
       const rw = room.naturalWidth * scale;
       const rh = room.naturalHeight * scale;
-      ctx.drawImage(room, (w - rw) / 2 + sway * 0.4, (h - rh) / 2, rw, rh);
+      frame = {
+        x: (w - rw) / 2 + sway * 0.4,
+        y: (h - rh) / 2,
+        rw,
+        rh,
+      };
+      ctx.drawImage(room, frame.x, frame.y, rw, rh);
     }
 
     ctx.fillStyle = "rgba(4, 8, 12, 0.22)";
@@ -191,8 +198,19 @@
       if (s.unknownA > 0.4) tag(bx, by - 24, "Unknown", false);
     }
 
-    dashBox(w * 0.455, h * 0.545, w * 0.07, h * 0.045, "laptop", s.laptopA);
-    dashBox(w * 0.33, h * 0.48, w * 0.1, h * 0.22, "chair", s.chairA);
+    if (frame) {
+      // Pixel boxes on room.jpg (1280×720), then mapped through the same cover draw.
+      const fromPhoto = (px, py, pw, ph) => ({
+        x: frame.x + (px / 1280) * frame.rw,
+        y: frame.y + (py / 720) * frame.rh,
+        w: (pw / 1280) * frame.rw,
+        h: (ph / 720) * frame.rh,
+      });
+      const laptop = fromPhoto(656, 480, 88, 32);
+      const chair = fromPhoto(390, 326, 150, 250);
+      dashBox(laptop.x, laptop.y, laptop.w, laptop.h, "laptop", s.laptopA);
+      dashBox(chair.x, chair.y, chair.w, chair.h, "chair", s.chairA);
+    }
 
     if (!reduce) {
       const scanY = ((t / 18) % (h + 80)) - 40;
