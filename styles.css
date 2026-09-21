@@ -816,6 +816,14 @@ h2 { margin: 0 0 12px; font-size: clamp(28px, 3.6vw, 38px); line-height: 1.15; }
 .download-box p { margin: 0 0 14px; max-width: none; }
 .download-box .btn { width: 100%; }
 .download-box .win-note { margin: 12px 0 0; max-width: none; }
+.download-box + .download-box { margin-top: 16px; }
+.download-box ul {
+  margin: 0 0 4px;
+  padding-left: 1.2em;
+  color: var(--muted);
+}
+.download-box li { margin: 0 0 8px; }
+.download-box .path { word-break: break-all; }
 .form-split {
   max-width: 520px;
   margin: 36px auto 0;
