@@ -248,6 +248,74 @@ html.booted .boot {
   background-repeat: no-repeat;
   animation: veil-scan 16s linear infinite;
 }
+.watch-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse 54% 50% at 50% 42%, transparent 36%, #000 74%);
+  mask-image: radial-gradient(ellipse 54% 50% at 50% 42%, transparent 36%, #000 74%);
+}
+.watch-eye {
+  position: absolute;
+  width: var(--s, 88px);
+  height: var(--s, 88px);
+  left: var(--x);
+  top: var(--y);
+  border-radius: 50%;
+  opacity: var(--op, 0.24);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 46%, #141c22 0 42%, #07090c 70%, #020304 100%);
+  box-shadow:
+    0 0 0 1px rgba(62, 224, 180, 0.22),
+    0 0 26px rgba(62, 224, 180, 0.1);
+  animation: watch-drift var(--drift, 16s) var(--d, 0s) ease-in-out infinite alternate;
+}
+.watch-eye.e1 { --x: 2%; --y: 12%; --s: 118px; --op: 0.32; --drift: 7s; --d: 0s; --dx: 52px; --dy: 36px; --look: 9s; --ld: 0s; }
+.watch-eye.e2 { --x: 86%; --y: 8%; --s: 96px; --op: 0.28; --drift: 8s; --d: -2s; --dx: -46px; --dy: 40px; --look: 11s; --ld: -3s; }
+.watch-eye.e3 { --x: 1%; --y: 46%; --s: 78px; --op: 0.24; --drift: 6.5s; --d: -1s; --dx: 44px; --dy: -30px; --look: 8s; --ld: -1s; }
+.watch-eye.e4 { --x: 90%; --y: 44%; --s: 128px; --op: 0.3; --drift: 9s; --d: -3s; --dx: -56px; --dy: 28px; --look: 12s; --ld: -5s; }
+.watch-eye.e5 { --x: 5%; --y: 78%; --s: 90px; --op: 0.26; --drift: 7.5s; --d: -1s; --dx: 38px; --dy: -40px; --look: 10s; --ld: -2s; }
+.watch-eye.e6 { --x: 82%; --y: 76%; --s: 72px; --op: 0.24; --drift: 6s; --d: -4s; --dx: -34px; --dy: -32px; --look: 7.5s; --ld: -4s; }
+.watch-eye.e7 { --x: 44%; --y: 86%; --s: 64px; --op: 0.2; --drift: 8.5s; --d: -2s; --dx: 30px; --dy: -22px; --look: 13s; --ld: -6s; }
+.watch-iris {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46%;
+  height: 46%;
+  margin: -23% 0 0 -23%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 30%, #c8ffe8 0 6%, transparent 7%),
+    repeating-conic-gradient(from 0deg, #1a3d34 0 6deg, #3ee0b4 6deg 7deg, #0a1f1a 7deg 14deg),
+    radial-gradient(circle at 50% 50%, #03140f 0 28%, #0d3d32 32%, #3ee0b4 58%, #06241c 78%);
+  box-shadow: 0 0 16px rgba(62, 224, 180, 0.35);
+  animation: watch-look var(--look, 11s) var(--ld, 0s) ease-in-out infinite;
+}
+.watch-iris i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28%;
+  height: 28%;
+  margin: -14% 0 0 -14%;
+  border-radius: 50%;
+  background: #010203;
+  box-shadow: 0 0 0 2px rgba(62, 224, 180, 0.3), inset 0 0 8px #000;
+}
+.watch-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18%;
+  background: linear-gradient(180deg, transparent, rgba(62, 224, 180, 0.32), transparent);
+  animation: boot-scan 3.1s linear infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
 .tape {
   position: relative;
   z-index: 21;
@@ -668,6 +736,18 @@ h1 {
 @keyframes scan-shift {
   from { background-position: 0 0; }
   to { background-position: 0 12px; }
+}
+@keyframes watch-drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(var(--dx, 32px), var(--dy, -20px)); }
+}
+@keyframes watch-look {
+  0%, 10% { transform: translate(0, 0); }
+  18%, 30% { transform: translate(-30%, 12%); }
+  38%, 50% { transform: translate(28%, -10%); }
+  58%, 70% { transform: translate(-12%, 22%); }
+  78%, 90% { transform: translate(20%, 8%); }
+  100% { transform: translate(0, 0); }
 }
 @keyframes veil-scan {
   from { background-position: 0 -40%; }
@@ -1488,6 +1568,9 @@ footer p { margin: 0; }
 .js .faq .reveal:nth-child(even) { transition-delay: 0.05s; }
 
 @media (max-width: 960px) {
+  .watch-eye.e3,
+  .watch-eye.e6,
+  .watch-eye.e7 { display: none; }
   .hero {
     grid-template-columns: 1fr;
     gap: 36px;
@@ -1601,7 +1684,11 @@ footer p { margin: 0; }
   .boot-lid,
   .boot-scan,
   .boot-ticks,
-  .boot-grid { animation: none !important; }
+  .boot-grid,
+  .watch-eye,
+  .watch-iris,
+  .watch-scan { animation: none !important; }
+  .watch-field { display: none; }
   .scan { display: none; }
   .player-grain { display: none; }
   .scanlines { display: none; }
