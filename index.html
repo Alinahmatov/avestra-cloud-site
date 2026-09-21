@@ -26,7 +26,7 @@
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
       <a href="#privacy">Privacy</a>
-      <a class="btn small" href="#get">Get the app</a>
+      <a class="btn small" href="#get">Request the app</a>
     </nav>
     <button class="menu" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span>
@@ -43,10 +43,10 @@
         and send alerts. Your footage is processed on the computer in front of you.
       </p>
       <div class="cta-row">
-        <a class="btn primary" href="#get">Get Avestra Cloud</a>
+        <a class="btn primary" href="#get">Request the app zip</a>
         <a class="btn ghost" href="#features">See what it does</a>
       </div>
-      <p class="win-note">Windows desktop app. Phone access is included once the PC is running.</p>
+      <p class="win-note">The Windows app is not a public download. Request access below and Alin will email the zip.</p>
 
       <div class="stage" aria-hidden="true">
         <div class="monitor">
@@ -173,13 +173,40 @@
 
     <section id="get" class="section cta">
       <img class="cta-icon" src="assets/avestra-icon.png" width="72" height="72" alt="">
-      <h2>Run it where the camera is.</h2>
+      <h2>Request the Windows app zip</h2>
       <p>
-        Avestra Cloud is a <strong>Windows</strong> desktop app, shared as a zip you unzip and run.
-        The installer is not hosted on this site. If someone sent you Avestra Cloud, use that package —
-        keep every file next to the executable, then start monitoring on that PC.
+        Avestra Cloud is a <strong>Windows</strong> desktop app. It is <strong>not</strong> a public download —
+        there is no zip on this site. Ask for access below. Alin will review the request and email the zip
+        if it can be shared with you.
       </p>
-      <p class="win-note">Windows may warn that the app is unrecognized. Choose More info → Run anyway if you trust the copy you were given.</p>
+      <p class="win-note">If you already have a copy, unzip it and keep every file next to the executable. Windows may warn that the app is unrecognized — choose More info → Run anyway only if you trust the copy you were given.</p>
+
+      <form class="request-form" action="https://formsubmit.co/alii.nahmatov@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Avestra Cloud zip request">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" value="https://alinahmatov.github.io/avestra-cloud-site/thanks.html">
+
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" autocomplete="name" maxlength="120">
+
+        <label for="email">Email <span>(required)</span></label>
+        <input id="email" type="email" name="email" autocomplete="email" required maxlength="120">
+
+        <label for="phone">Phone / other contact <span>(optional)</span></label>
+        <input id="phone" type="text" name="contact" autocomplete="tel" maxlength="120" placeholder="Phone, Telegram, etc.">
+
+        <label for="reason">Why you need the app / zip <span>(required)</span></label>
+        <textarea id="reason" name="reason" required rows="5" maxlength="2000" placeholder="Who you are and why you need Avestra Cloud."></textarea>
+
+        <button class="btn primary" type="submit">Request download</button>
+        <p class="form-note">The request is emailed to Alin. You will hear back at the address you enter — the zip is not sent automatically.</p>
+        <div class="hp" aria-hidden="true">
+          <label for="company">Company</label>
+          <input id="company" type="text" name="_honey" tabindex="-1" autocomplete="off">
+        </div>
+      </form>
+
       <p class="access-note">
         Phone sign-in nicknames are created in <strong>Avestra Access</strong>, a separate companion.
         This site is about Avestra Cloud — the desktop monitor.
