@@ -1,3 +1,8 @@
+if (location.hostname === "alinahmatov.github.io") {
+  const path = location.pathname.replace(/^\/avestra-cloud-site\/?/, "/");
+  location.replace("https://avestra.online" + path + location.search + location.hash);
+}
+
 const nav = document.querySelector(".nav");
 const menu = document.querySelector(".menu");
 
