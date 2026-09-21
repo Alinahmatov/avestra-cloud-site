@@ -259,24 +259,6 @@ h1 {
 h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 40px); }
 .section-lead { max-width: 620px; color: var(--muted); margin: 0 0 36px; }
 
-.section.demo {
-  padding-top: 48px;
-}
-.demo-player {
-  margin: 0 auto;
-  max-width: 960px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  overflow: hidden;
-  background: #05070a;
-  box-shadow: var(--shadow);
-}
-.demo-player video {
-  display: block;
-  width: 100%;
-  height: auto;
-  background: #05070a;
-}
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
