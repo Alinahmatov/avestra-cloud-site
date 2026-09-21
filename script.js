@@ -6,8 +6,8 @@
   }
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const minMs = reduce ? 280 : 2200;
-  const maxMs = reduce ? 500 : 3200;
+  const minMs = reduce ? 200 : 3000;
+  const maxMs = reduce ? 320 : 3100;
   const started = performance.now();
   const status = boot.querySelector("[data-boot-status]");
   const lines = ["Scanning scene", "Faces + COCO", "Local node", "Camera idle until start"];
@@ -21,7 +21,7 @@
     statusTimer = window.setInterval(() => {
       statusIndex = (statusIndex + 1) % lines.length;
       status.textContent = lines[statusIndex];
-    }, 520);
+    }, 700);
   } else if (status && reduce) {
     status.textContent = "Avestra Cloud";
   }

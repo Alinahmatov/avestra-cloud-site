@@ -56,86 +56,112 @@ button, input, textarea { font: inherit; }
   z-index: 200;
   display: none;
   place-items: center;
-  background: #000;
+  background: #050608;
   color: var(--teal);
+  overflow: hidden;
 }
 html.booting .boot { display: grid; }
 html.booted .boot {
-  animation: boot-out 0.7s ease forwards;
+  animation: boot-out 0.4s ease forwards;
+  pointer-events: none;
+}
+.boot-grid {
+  position: absolute;
+  inset: -20%;
+  background-image:
+    linear-gradient(rgba(62, 224, 180, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 224, 180, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at 50% 46%, #000 12%, transparent 62%);
+  animation: boot-grid 8s linear infinite;
   pointer-events: none;
 }
 .boot-stage {
   position: relative;
+  z-index: 1;
   display: grid;
   justify-items: center;
-  gap: 22px;
+  gap: 18px;
   padding: 24px;
 }
-.boot-beam {
-  position: absolute;
-  top: 18%;
-  left: -20%;
-  width: 28%;
-  height: 44%;
-  pointer-events: none;
-  background: linear-gradient(90deg, transparent, rgba(62, 224, 180, 0.16), transparent);
-  filter: blur(2px);
-  animation: boot-beam 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
-}
-.boot-eyes {
-  display: flex;
-  gap: 28px;
-  align-items: center;
-}
 .boot-eye {
+  --eye: min(72vw, 280px);
   position: relative;
-  width: 92px;
-  height: 52px;
-  border-radius: 50% 50% 48% 48%;
+  width: var(--eye);
+  height: var(--eye);
+  border-radius: 50%;
   background:
-    radial-gradient(ellipse at 50% 42%, #1a242c 0%, #050608 72%);
+    radial-gradient(circle at 50% 46%, #141c22 0 42%, #07090c 70%, #020304 100%);
   box-shadow:
-    0 0 0 1px rgba(62, 224, 180, 0.35),
-    0 0 28px rgba(62, 224, 180, 0.18),
-    inset 0 0 18px rgba(0, 0, 0, 0.85);
-  overflow: hidden;
+    0 0 0 1px rgba(62, 224, 180, 0.28),
+    0 0 48px rgba(62, 224, 180, 0.16),
+    inset 0 0 40px rgba(0, 0, 0, 0.7);
 }
-.boot-lid {
+.boot-ticks {
   position: absolute;
-  inset: 0;
-  z-index: 3;
-  background: #000;
-  transform-origin: top;
-  transform: scaleY(1);
-  animation: boot-blink 2.4s ease-in-out infinite;
+  inset: -10px;
+  border-radius: 50%;
+  border: 1px dashed rgba(62, 224, 180, 0.22);
+  animation: boot-spin 18s linear infinite;
+  pointer-events: none;
+}
+.boot-sclera {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 50%, #0c1216 0 55%, #05070a 100%);
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.85);
 }
 .boot-iris {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 28px;
-  height: 28px;
-  margin: -14px 0 0 -14px;
+  width: 46%;
+  height: 46%;
+  margin: -23% 0 0 -23%;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 35% 32%, #8cffdd 0 8%, transparent 9%),
-    radial-gradient(circle at 50% 50%, #06241c 0 28%, #3ee0b4 29% 46%, #0a1612 47%);
-  box-shadow: 0 0 12px rgba(62, 224, 180, 0.55);
-  animation: boot-look 2.4s ease-in-out infinite;
+    radial-gradient(circle at 34% 30%, #c8ffe8 0 6%, transparent 7%),
+    repeating-conic-gradient(from 0deg, #1a3d34 0 6deg, #3ee0b4 6deg 7deg, #0a1f1a 7deg 14deg),
+    radial-gradient(circle at 50% 50%, #03140f 0 28%, #0d3d32 32%, #3ee0b4 58%, #06241c 78%);
+  box-shadow: 0 0 28px rgba(62, 224, 180, 0.45);
+  animation: boot-look 3s ease-in-out 1 both;
 }
 .boot-iris i {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 10px;
-  height: 10px;
-  margin: -5px 0 0 -5px;
+  width: 28%;
+  height: 28%;
+  margin: -14% 0 0 -14%;
   border-radius: 50%;
-  background: #020304;
-  box-shadow: 0 0 0 1px rgba(62, 224, 180, 0.35);
+  background: #010203;
+  box-shadow: 0 0 0 2px rgba(62, 224, 180, 0.35), inset 0 0 8px #000;
+}
+.boot-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18%;
+  background: linear-gradient(180deg, transparent, rgba(62, 224, 180, 0.38), transparent);
+  animation: boot-scan 3s linear 1 both;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.boot-lid {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 50%;
+  background: #050608;
+  transform-origin: top;
+  transform: scaleY(0);
+  animation: boot-blink 3s ease-in-out 1 both;
 }
 .boot-word {
-  margin: 4px 0 0;
+  margin: 6px 0 0;
   font-family: var(--hud);
   font-size: 13px;
   font-weight: 600;
@@ -152,7 +178,7 @@ html.booted .boot {
   color: #6d7a8c;
 }
 .boot-skip {
-  margin-top: 4px;
+  margin-top: 2px;
   padding: 6px 10px;
   border: 0;
   background: transparent;
@@ -176,6 +202,14 @@ html.booted .boot {
   z-index: 0;
   animation: glow-drift 16s ease-in-out infinite alternate;
 }
+.glow-2 {
+  inset: auto -8% -6% auto;
+  left: auto;
+  width: 46vw;
+  height: 40vh;
+  background: radial-gradient(ellipse, rgba(232, 192, 122, 0.07), transparent 68%);
+  animation: glow-drift-2 22s ease-in-out infinite alternate;
+}
 .grid-bg {
   position: fixed;
   inset: 0;
@@ -186,13 +220,14 @@ html.booted .boot {
     linear-gradient(90deg, rgba(238, 243, 247, 0.028) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse at 50% 0%, #000 20%, transparent 72%);
+  animation: grid-drift 48s linear infinite;
 }
 .scanlines {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 30;
-  opacity: 0.07;
+  z-index: 0;
+  opacity: 0.08;
   background: repeating-linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.35) 0,
@@ -201,6 +236,17 @@ html.booted .boot {
     transparent 3px
   );
   mix-blend-mode: overlay;
+  animation: scan-shift 9s linear infinite;
+}
+.veil {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(62, 224, 180, 0.045) 50%, transparent 100%);
+  background-size: 100% 42%;
+  background-repeat: no-repeat;
+  animation: veil-scan 16s linear infinite;
 }
 .tape {
   position: relative;
@@ -611,32 +657,54 @@ h1 {
   from { transform: translateX(-50%) translateY(0); opacity: 1; }
   to { transform: translateX(-44%) translateY(18px); opacity: 0.65; }
 }
+@keyframes glow-drift-2 {
+  from { transform: translate(-8%, 0); opacity: 0.85; }
+  to { transform: translate(10%, -16px); opacity: 0.45; }
+}
+@keyframes grid-drift {
+  from { background-position: 0 0; }
+  to { background-position: 64px 64px; }
+}
+@keyframes scan-shift {
+  from { background-position: 0 0; }
+  to { background-position: 0 12px; }
+}
+@keyframes veil-scan {
+  from { background-position: 0 -40%; }
+  to { background-position: 0 140%; }
+}
 @keyframes tape-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 @keyframes boot-look {
-  0%, 8% { transform: translate(0, 0); }
-  18% { transform: translate(-11px, 1px); }
-  30% { transform: translate(-13px, -3px); }
-  46% { transform: translate(12px, 2px); }
-  60% { transform: translate(14px, -2px); }
-  74% { transform: translate(-5px, 7px); }
-  86% { transform: translate(4px, -5px); }
+  0%, 6% { transform: translate(0, 0); }
+  16% { transform: translate(-22%, 6%); }
+  28% { transform: translate(-26%, -10%); }
+  44% { transform: translate(24%, 8%); }
+  58% { transform: translate(28%, -6%); }
+  72% { transform: translate(-8%, 18%); }
+  86% { transform: translate(6%, -12%); }
   100% { transform: translate(0, 0); }
 }
 @keyframes boot-blink {
-  0% { transform: scaleY(1); }
-  14% { transform: scaleY(0); }
-  68% { transform: scaleY(0); }
-  72% { transform: scaleY(1); }
-  76% { transform: scaleY(0); }
+  0%, 58% { transform: scaleY(0); }
+  62% { transform: scaleY(1); }
+  66% { transform: scaleY(0); }
   100% { transform: scaleY(0); }
 }
-@keyframes boot-beam {
-  0% { transform: translateX(0); opacity: 0; }
+@keyframes boot-scan {
+  0% { top: -18%; opacity: 0; }
   12% { opacity: 1; }
-  100% { transform: translateX(420%); opacity: 0.2; }
+  100% { top: 100%; opacity: 0.25; }
+}
+@keyframes boot-grid {
+  from { transform: translate(0, 0); }
+  to { transform: translate(48px, 48px); }
+}
+@keyframes boot-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 @keyframes boot-out {
   to { opacity: 0; visibility: hidden; }
@@ -1525,13 +1593,19 @@ footer p { margin: 0; }
   .obj.chair,
   .side li:first-child .dot.warn,
   .glow,
+  .glow-2,
+  .grid-bg,
+  .veil,
   .tape-track,
   .boot-iris,
   .boot-lid,
-  .boot-beam { animation: none !important; }
+  .boot-scan,
+  .boot-ticks,
+  .boot-grid { animation: none !important; }
   .scan { display: none; }
   .player-grain { display: none; }
   .scanlines { display: none; }
+  .veil { display: none; }
   .boot-lid { transform: scaleY(0); }
   .js .hero-copy.reveal,
   .js .hero-copy.reveal.in,
