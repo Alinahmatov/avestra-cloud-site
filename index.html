@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/favicon.ico">
   <link rel="apple-touch-icon" href="assets/avestra-icon.png">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=form3">
 </head>
 <body>
   <div class="glow" aria-hidden="true"></div>
@@ -186,25 +186,30 @@
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="true">
         <input type="hidden" name="_next" value="https://alinahmatov.github.io/avestra-cloud-site/thanks.html">
-
-        <label for="name">Name</label>
-        <input id="name" type="text" name="name" autocomplete="name" maxlength="120">
-
-        <label for="email">Email <span>(required)</span></label>
-        <input id="email" type="email" name="email" autocomplete="email" required maxlength="120">
-
-        <label for="phone">Phone / other contact <span>(optional)</span></label>
-        <input id="phone" type="text" name="contact" autocomplete="tel" maxlength="120" placeholder="Phone, Telegram, etc.">
-
-        <label for="reason">Why you need the app / zip <span>(required)</span></label>
-        <textarea id="reason" name="reason" required rows="5" maxlength="2000" placeholder="Who you are and why you need Avestra Cloud."></textarea>
-
-        <button class="btn primary" type="submit">Request download</button>
-        <p class="form-note">The request is emailed to Alin. You will hear back at the address you enter — the zip is not sent automatically.</p>
         <div class="hp" aria-hidden="true">
           <label for="company">Company</label>
           <input id="company" type="text" name="_honey" tabindex="-1" autocomplete="off">
         </div>
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" name="name" autocomplete="name" maxlength="120">
+        </div>
+        <div class="field">
+          <label for="email">Email <span>(required)</span></label>
+          <input id="email" type="email" name="email" autocomplete="email" required maxlength="120">
+        </div>
+        <div class="field">
+          <label for="phone">Phone / other contact <span>(optional)</span></label>
+          <input id="phone" type="text" name="contact" autocomplete="tel" maxlength="120" placeholder="Phone, Telegram, etc.">
+        </div>
+        <div class="field">
+          <label for="reason">Why you need the app / zip <span>(required)</span></label>
+          <textarea id="reason" name="reason" required rows="5" maxlength="2000" placeholder="Who you are and why you need Avestra Cloud."></textarea>
+        </div>
+
+        <button class="btn primary request-submit" type="submit">Request download</button>
+        <p class="form-note">The request is emailed to Alin. You will hear back at the address you enter — the zip is not sent automatically.</p>
       </form>
 
       <p class="access-note">

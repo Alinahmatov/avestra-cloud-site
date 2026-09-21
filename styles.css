@@ -317,7 +317,8 @@ h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 40px); }
 .cta p { max-width: 620px; margin: 0 auto 12px; color: var(--muted); }
 .cta .win-note { margin-top: 8px; }
 .access-note {
-  margin-top: 20px !important;
+  max-width: 600px;
+  margin: 20px auto 0 !important;
   padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -326,62 +327,97 @@ h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 40px); }
 }
 
 .request-form {
-  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 100%;
+  max-width: 600px;
   margin: 32px auto 0;
-  padding: 24px 22px 22px;
+  padding: 28px 24px 24px;
   text-align: left;
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: 16px;
   box-shadow: var(--shadow);
 }
-.request-form label {
+.request-form .field {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+}
+.request-form .field label {
   display: block;
-  margin: 14px 0 6px;
+  margin: 0;
   font-size: 14px;
   font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
 }
-.request-form label:first-of-type { margin-top: 0; }
-.request-form label span {
+.request-form .field label span {
   color: var(--muted);
   font-weight: 500;
 }
-.request-form input,
-.request-form textarea {
+.request-form .field input,
+.request-form .field textarea {
+  display: block;
   width: 100%;
-  padding: 11px 12px;
+  max-width: 100%;
+  margin: 0;
+  padding: 12px 14px;
   border-radius: 10px;
   border: 1px solid var(--line-strong);
   background: #161b22;
   color: var(--text);
   font: inherit;
 }
-.request-form textarea { resize: vertical; min-height: 120px; }
-.request-form input:focus,
-.request-form textarea:focus {
+.request-form .field textarea {
+  resize: vertical;
+  min-height: 128px;
+}
+.request-form .field input:focus,
+.request-form .field textarea:focus {
   outline: 2px solid var(--teal);
   outline-offset: 1px;
   border-color: var(--teal);
 }
-.request-form .btn {
+.request-form .request-submit {
+  display: flex;
   width: 100%;
-  margin-top: 18px;
+  margin: 4px 0 0;
   cursor: pointer;
 }
-.form-note {
-  margin: 12px 0 0 !important;
+.request-form .form-note {
+  margin: 0 !important;
+  max-width: none !important;
   font-size: 13px;
   color: var(--muted);
 }
-.hp {
-  position: absolute;
-  left: -10000px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+.request-form .hp {
+  position: absolute !important;
+  left: -9999px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+.request-form .hp input {
+  width: 1px !important;
+  height: 1px !important;
 }
 .thanks-card {
-  max-width: 520px;
+  max-width: 600px;
   margin: 28px auto 0;
   padding: 22px;
   border: 1px solid var(--line);
@@ -422,4 +458,5 @@ footer img { display: block; margin: 0 auto 12px; height: 36px; width: auto; }
   .grid, .privacy { grid-template-columns: 1fr; }
   .hero { padding-top: 48px; }
   .section { padding: 64px 20px; }
+  .request-form { padding: 22px 16px 18px; }
 }
