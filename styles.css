@@ -62,7 +62,7 @@ button, input, textarea { font: inherit; }
 }
 html.booting .boot { display: grid; }
 html.booted .boot {
-  animation: boot-out 0.4s ease forwards;
+  animation: boot-out 0.55s ease forwards;
   pointer-events: none;
 }
 .boot-grid {
@@ -127,7 +127,7 @@ html.booted .boot {
     repeating-conic-gradient(from 0deg, #1a3d34 0 6deg, #3ee0b4 6deg 7deg, #0a1f1a 7deg 14deg),
     radial-gradient(circle at 50% 50%, #03140f 0 28%, #0d3d32 32%, #3ee0b4 58%, #06241c 78%);
   box-shadow: 0 0 28px rgba(62, 224, 180, 0.45);
-  animation: boot-look 3s ease-in-out 1 both;
+  animation: boot-look 6.5s ease-in-out 1 both;
 }
 .boot-iris i {
   position: absolute;
@@ -146,7 +146,7 @@ html.booted .boot {
   right: 0;
   height: 18%;
   background: linear-gradient(180deg, transparent, rgba(62, 224, 180, 0.38), transparent);
-  animation: boot-scan 3s linear 1 both;
+  animation: boot-scan 2.4s linear infinite;
   pointer-events: none;
   mix-blend-mode: screen;
 }
@@ -158,7 +158,7 @@ html.booted .boot {
   background: #050608;
   transform-origin: top;
   transform: scaleY(0);
-  animation: boot-blink 3s ease-in-out 1 both;
+  animation: boot-blink 6.5s ease-in-out 1 both;
 }
 .boot-word {
   margin: 6px 0 0;
@@ -678,25 +678,25 @@ h1 {
   to { transform: translateX(-50%); }
 }
 @keyframes boot-look {
-  0%, 6% { transform: translate(0, 0); }
-  16% { transform: translate(-22%, 6%); }
-  28% { transform: translate(-26%, -10%); }
-  44% { transform: translate(24%, 8%); }
-  58% { transform: translate(28%, -6%); }
-  72% { transform: translate(-8%, 18%); }
-  86% { transform: translate(6%, -12%); }
-  100% { transform: translate(0, 0); }
+  0%, 10% { transform: translate(0, 0); }
+  16%, 26% { transform: translate(-24%, 8%); }
+  32%, 42% { transform: translate(26%, -8%); }
+  48%, 58% { transform: translate(-10%, 20%); }
+  64%, 74% { transform: translate(22%, 10%); }
+  82%, 100% { transform: translate(0, 0); }
 }
 @keyframes boot-blink {
-  0%, 58% { transform: scaleY(0); }
-  62% { transform: scaleY(1); }
-  66% { transform: scaleY(0); }
-  100% { transform: scaleY(0); }
+  0%, 36% { transform: scaleY(0); }
+  39% { transform: scaleY(1); }
+  42%, 78% { transform: scaleY(0); }
+  81% { transform: scaleY(1); }
+  84%, 100% { transform: scaleY(0); }
 }
 @keyframes boot-scan {
   0% { top: -18%; opacity: 0; }
-  12% { opacity: 1; }
-  100% { top: 100%; opacity: 0.25; }
+  10% { opacity: 1; }
+  90% { opacity: 0.7; }
+  100% { top: 108%; opacity: 0; }
 }
 @keyframes boot-grid {
   from { transform: translate(0, 0); }

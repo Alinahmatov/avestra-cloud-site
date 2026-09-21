@@ -6,8 +6,8 @@
   }
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const minMs = reduce ? 200 : 3000;
-  const maxMs = reduce ? 320 : 3100;
+  const minMs = reduce ? 200 : 6500;
+  const maxMs = reduce ? 320 : 7000;
   const started = performance.now();
   const status = boot.querySelector("[data-boot-status]");
   const lines = ["Scanning scene", "Faces + COCO", "Local node", "Camera idle until start"];
@@ -21,7 +21,7 @@
     statusTimer = window.setInterval(() => {
       statusIndex = (statusIndex + 1) % lines.length;
       status.textContent = lines[statusIndex];
-    }, 700);
+    }, 1500);
   } else if (status && reduce) {
     status.textContent = "Avestra Cloud";
   }
@@ -30,13 +30,13 @@
     if (done) return;
     done = true;
     if (statusTimer) window.clearInterval(statusTimer);
-    const wait = immediate ? 0 : Math.max(0, minMs - (performance.now() - started));
+    const wait = immediate === true ? 0 : Math.max(0, minMs - (performance.now() - started));
     window.setTimeout(() => {
       document.querySelectorAll(".hero .reveal").forEach((node) => node.classList.add("in"));
       document.documentElement.classList.remove("booting");
       document.documentElement.classList.add("booted");
       boot.setAttribute("aria-hidden", "true");
-      window.setTimeout(() => boot.remove(), 800);
+      window.setTimeout(() => boot.remove(), 700);
     }, wait);
   };
 
@@ -49,7 +49,7 @@
   if (document.readyState === "complete") {
     dismiss();
   } else {
-    window.addEventListener("load", dismiss, { once: true });
+    window.addEventListener("load", () => dismiss(), { once: true });
   }
   window.setTimeout(dismiss, maxMs);
 })();
