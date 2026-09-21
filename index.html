@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260921f">
+  <link rel="stylesheet" href="styles.css?v=ui-20260921g">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -36,6 +36,7 @@
         <span>Avestra <em>Cloud</em></span>
       </a>
       <nav class="links">
+        <a href="#watch">See it</a>
         <a href="#features">What it sees</a>
         <a href="#how">How it works</a>
         <a href="#privacy">On this PC</a>
@@ -70,47 +71,43 @@
         </ul>
       </div>
 
-      <div class="stage reveal" aria-hidden="true">
-        <div class="monitor">
-          <div class="monitor-bar">
-            <img src="assets/avestra-icon.png" width="16" height="16" alt="">
-            <strong>Avestra Cloud — Live</strong>
-            <span class="clock" data-clock>00:00:00</span>
-            <span class="win-btns"><i></i><i></i><i></i></span>
-          </div>
-          <div class="scene">
-            <div class="scan"></div>
-            <div class="window-light"></div>
-            <div class="floor"></div>
-            <div class="person p1">
-              <span class="tag">Alex · 0.94</span>
-              <span class="box">
-                <span class="sil"><span class="head"></span><span class="torso"></span></span>
-              </span>
+      <div class="stage reveal" id="watch">
+        <p class="player-kicker">See it in action</p>
+        <div class="player" data-demo>
+          <div class="monitor">
+            <div class="monitor-bar">
+              <img src="assets/avestra-icon.png" width="16" height="16" alt="">
+              <strong>Avestra Cloud — Live</strong>
+              <span class="clock" data-clock>00:00:00</span>
+              <span class="win-btns"><i></i><i></i><i></i></span>
             </div>
-            <div class="person p2">
-              <span class="tag unknown">Unknown</span>
-              <span class="box unknown">
-                <span class="sil dim"><span class="head"></span><span class="torso"></span></span>
-              </span>
+            <div class="player-feed">
+              <canvas data-demo-canvas width="960" height="540" aria-label="Illustrated Avestra Cloud live view. Fictional silhouettes labeled Alex and Unknown. No real faces."></canvas>
+              <div class="player-grain" aria-hidden="true"></div>
             </div>
-            <div class="obj chair"><span>chair</span></div>
-            <div class="obj laptop"><span>laptop</span></div>
-            <p class="narration" data-ticker>Unknown walked through · laptop in view · occupancy 3</p>
-          </div>
-          <aside class="side">
-            <div class="side-status">
-              <span class="pill on"><span class="live-dot"></span>MONITORING</span>
+            <aside class="side">
+              <div class="side-status">
+                <span class="pill on"><span class="live-dot"></span>MONITORING</span>
+                <span class="pill rec">REC</span>
+              </div>
+              <p class="occ-line">Occupancy <strong data-demo-occ>0</strong></p>
+              <h3>Action journal</h3>
+              <ul data-demo-journal>
+                <li>Waiting for the room…</li>
+              </ul>
+              <p class="side-cam">Cam 0 · this PC · local store</p>
+            </aside>
+            <div class="player-ctrl">
+              <button type="button" class="play" data-demo-play data-playing="1" aria-label="Pause demo">
+                <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/></svg>
+                <svg class="icon-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11L14 8 4 2.5z"/></svg>
+              </button>
+              <div class="scrub" data-demo-scrub role="slider" aria-label="Demo timeline"><span></span></div>
+              <span class="demo-time" data-demo-time>0:00</span>
               <span class="pill rec">REC</span>
             </div>
-            <h3>Action journal</h3>
-            <ul>
-              <li><span class="dot warn"></span>Unknown entered · capture</li>
-              <li><span class="dot"></span>Alex present · named</li>
-              <li><span class="dot"></span>Wave · known person</li>
-            </ul>
-            <p class="side-cam">Cam 0 · this PC · local store</p>
-          </aside>
+          </div>
+          <p class="player-caption" data-demo-ticker>Searching scene · occupancy 0</p>
         </div>
       </div>
     </section>
@@ -320,7 +317,8 @@
     </div>
   </footer>
 
-  <script src="donate-config.js?v=ui-20260921f"></script>
-  <script src="script.js?v=ui-20260921f"></script>
+  <script src="donate-config.js?v=ui-20260921g"></script>
+  <script src="script.js?v=ui-20260921g"></script>
+  <script src="demo.js?v=ui-20260921g"></script>
 </body>
 </html>
