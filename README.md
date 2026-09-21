@@ -16,9 +16,13 @@ The homepage has a **Download / Install** button for `AvestraCloud-Setup.exe`. T
 
 Installing the exe does **not** create an account. Sign-in still needs a valid active license issued by Alin in Avestra Access (Access URL, nickname, password, license key). Expired licenses cannot sign in.
 
+**Uninstall:** There is no separate uninstall download (do not upload another ~338MB file). After install, people remove it from Windows Settings → Apps → Avestra Cloud, or Start Menu → Avestra Cloud → Uninstall Avestra Cloud, or `Uninstall.exe` in the install folder. Program files go away. Local people/logs stay unless they check “Also remove local data”. Do not put `%USERPROFILE%\.aegis_monitor` on GitHub.
+
 Do not commit the Setup.exe into this Pages repo.
 
 The contact form remains for people who need a license or another copy. It does not email keys automatically.
+
+The Android app is a **secondary standalone client** (phone camera, on-device detection). It is sideloaded from Avestra Cloud on Windows, not from this Pages site. Do not commit APKs here.
 
 ## Donate
 
