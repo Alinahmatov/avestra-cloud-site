@@ -478,6 +478,28 @@ h1 {
   line-height: 1.55;
   max-width: none;
 }
+.lede-stack {
+  display: grid;
+  gap: 14px;
+  margin: 0 0 22px;
+}
+.lede-stack .lede { margin: 0; font-size: 16px; }
+.hero-end {
+  margin: 2px 0 0;
+  color: var(--text);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  font-size: 18px;
+  line-height: 1.28;
+}
+.hero-remember {
+  margin: 0;
+  color: var(--teal);
+  font-family: var(--hud);
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
 .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
 .cta-row.center { justify-content: center; }
 .hero-license {
@@ -1557,7 +1579,8 @@ footer p { margin: 0; }
 .faq details[open] {
   border-color: rgba(62, 224, 180, 0.22);
 }
-.lede strong, .hero-license strong { color: var(--text); font-weight: 600; }
+.lede strong, .hero-license strong, .hero-end { color: var(--text); font-weight: 600; }
+.hero-end { font-weight: 650; }
 .js .legend-grid .reveal:nth-child(2) { transition-delay: 0.06s; }
 .js .legend-grid .reveal:nth-child(3) { transition-delay: 0.12s; }
 .js .legend-grid .reveal:nth-child(4) { transition-delay: 0.16s; }
