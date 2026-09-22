@@ -43,7 +43,7 @@
         img.src = jpg.replace(/\.jpg(\?.*)?$/i, ".png");
       }
     });
-    img.src = `${jpg}${jpg.includes("?") ? "&" : "?"}v=feed1`;
+    img.src = `${jpg}${jpg.includes("?") ? "&" : "?"}v=restrict1`;
     return img;
   };
   const room = load("demo-room.jpg");
@@ -83,17 +83,18 @@
   };
 
   const boxes = {
-    laptop: [0.478, 0.552, 0.082, 0.04],
-    chair: [0.338, 0.5, 0.128, 0.43],
-    alexBody: [0.072, 0.175, 0.275, 0.69],
-    alexFace: [0.148, 0.15, 0.095, 0.175],
-    alexClothes: [0.1, 0.32, 0.22, 0.36],
-    p2EnterBody: [0.618, 0.175, 0.155, 0.63],
-    p2EnterFace: [0.652, 0.15, 0.072, 0.135],
-    p2EnterClothes: [0.63, 0.28, 0.13, 0.28],
-    p2BothBody: [0.548, 0.15, 0.215, 0.73],
-    p2BothFace: [0.585, 0.125, 0.088, 0.155],
-    p2BothClothes: [0.57, 0.26, 0.16, 0.32],
+    laptop: [0.493, 0.616, 0.108, 0.048],
+    chair: [0.382, 0.498, 0.128, 0.42],
+    alexBody: [0.068, 0.16, 0.30, 0.68],
+    alexFace: [0.155, 0.175, 0.10, 0.175],
+    alexClothes: [0.112, 0.325, 0.22, 0.30],
+    p2EnterBody: [0.668, 0.152, 0.188, 0.64],
+    p2EnterFace: [0.732, 0.152, 0.078, 0.138],
+    p2EnterClothes: [0.688, 0.255, 0.15, 0.265],
+    p2BothBody: [0.62, 0.13, 0.195, 0.66],
+    p2BothFace: [0.668, 0.13, 0.075, 0.15],
+    p2BothClothes: [0.632, 0.26, 0.14, 0.26],
+    restrict: [0.648, 0.86, 0.708, 0.48],
   };
   const COL = {
     known: "rgb(120, 214, 86)",
@@ -102,6 +103,8 @@
     laptop: "rgb(255, 190, 90)",
     chair: "rgb(255, 196, 64)",
     hunt: "rgb(180, 224, 255)",
+    restrict: "rgb(255, 90, 40)",
+    restrictHot: "rgb(255, 36, 36)",
     pillBg: "rgb(24, 18, 16)",
     pillFg: "rgb(248, 246, 245)",
   };
@@ -115,18 +118,24 @@
     let lockAlex = 0;
     let lockP2 = 0;
     let objects = 0;
+    let restrictionHot = 0;
     let tickerKey = "demo.hunt";
     const lines = [];
 
-    if (u < 1600) {
-      const p = u / 1600;
-      hunt = [0.08 + p * 0.55, 0.18 + Math.sin(p * 6.2) * 0.12, 0.22, 0.28];
+    if (u < 1800) {
+      const p = u / 1800;
+      objects = ease((u - 250) / 650);
+      if (objects < 0.55) {
+        hunt = [0.08 + p * 0.55, 0.18 + Math.sin(p * 6.2) * 0.12, 0.22, 0.28];
+      }
       tickerKey = "demo.hunt";
-    } else if (u < 2800) {
-      const p = ease((u - 1600) / 1200);
+      if (objects > 0.4) lines.push("demo.j3");
+    } else if (u < 3400) {
+      const p = ease((u - 1800) / 1200);
       frame = "alex";
       mix = p;
       occupancy = p > 0.35 ? 1 : 0;
+      objects = 1;
       hunt = [
         lerp(0.42, boxes.alexBody[0], p),
         lerp(0.22, boxes.alexBody[1], p),
@@ -134,44 +143,47 @@
         lerp(0.26, boxes.alexBody[3], p),
       ];
       tickerKey = "demo.lock";
+      lines.push("demo.j3");
       if (occupancy) lines.push("demo.j1");
     } else if (u < 5200) {
       frame = "alex";
       mix = 1;
       occupancy = 1;
-      lockAlex = ease((u - 2800) / 500);
-      objects = ease((u - 3400) / 700);
+      lockAlex = ease((u - 3400) / 500);
+      objects = 1;
       tickerKey = "demo.named";
-      lines.push("demo.j1", "demo.j2");
-      if (objects > 0.4) lines.push("demo.j3");
+      lines.push("demo.j3", "demo.j1", "demo.j2");
     } else if (u < 7200) {
       const p = ease((u - 5200) / 1400);
       frame = "enter";
       mix = p;
-      occupancy = 1;
+      occupancy = p > 0.28 ? 2 : 1;
       lockAlex = 1;
       objects = 1;
       hunt = [
-        lerp(0.72, boxes.p2EnterBody[0], p),
-        lerp(0.2, boxes.p2EnterBody[1], p),
+        lerp(0.78, boxes.p2EnterBody[0], p),
+        lerp(0.18, boxes.p2EnterBody[1], p),
         lerp(0.16, boxes.p2EnterBody[2], p),
         lerp(0.28, boxes.p2EnterBody[3], p),
       ];
       tickerKey = "demo.motion";
-      lines.push("demo.j1", "demo.j2", "demo.j3");
+      lines.push("demo.j3", "demo.j1", "demo.j2");
+      if (p > 0.4) lines.push("demo.j4");
     } else {
       const p = ease((u - 7200) / 700);
       frame = "both";
       mix = p;
       occupancy = 2;
       lockAlex = 1;
-      lockP2 = ease((u - 7600) / 500);
+      lockP2 = ease((u - 7400) / 450);
       objects = 1;
-      tickerKey = "demo.two";
-      lines.push("demo.j1", "demo.j2", "demo.j3", "demo.j4");
+      restrictionHot = ease((u - 7350) / 380);
+      tickerKey = restrictionHot > 0.45 ? "demo.trespass" : "demo.two";
+      lines.push("demo.j3", "demo.j1", "demo.j2", "demo.j4");
+      if (restrictionHot > 0.45) lines.push("demo.j5");
     }
 
-    return { u, frame, mix, occupancy, hunt, lockAlex, lockP2, objects, tickerKey, lines };
+    return { u, frame, mix, occupancy, hunt, lockAlex, lockP2, objects, restrictionHot, tickerKey, lines };
   };
 
   const roundRect = (x, y, w, h, r) => {
@@ -203,6 +215,65 @@
       ctx.lineTo(cx, cy);
       ctx.stroke();
     });
+  };
+
+  const drawRestriction = (frame, hot) => {
+    if (!frame) return;
+    const [x1, y1, x2, y2] = boxes.restrict;
+    const a = { x: frame.x + x1 * frame.w, y: frame.y + y1 * frame.h };
+    const b = { x: frame.x + x2 * frame.w, y: frame.y + y2 * frame.h };
+    const occupied = hot > 0.45;
+    const color = occupied ? COL.restrictHot : COL.restrict;
+    const thick = occupied ? 4.2 : 2.2;
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    if (occupied) {
+      ctx.strokeStyle = "rgba(255, 36, 36, 0.2)";
+      ctx.lineWidth = 16;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.stroke();
+    }
+    ctx.strokeStyle = "rgb(8, 10, 12)";
+    ctx.lineWidth = thick + 3;
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.stroke();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = thick;
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.stroke();
+    ctx.fillStyle = color;
+    [a, b].forEach((pt) => {
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, occupied ? 6 : 5, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    const label = "Restriction area 1";
+    ctx.font = "600 12px Manrope, system-ui, sans-serif";
+    const tw = ctx.measureText(label).width;
+    const pillW = tw + 16;
+    const pillH = 18;
+    let px = (a.x + b.x) / 2 + 8;
+    let py = (a.y + b.y) / 2 - 22;
+    if (px + pillW > width - 4) px = Math.max(4, width - pillW - 4);
+    if (py < 4) py = 4;
+    roundRect(px, py, pillW, pillH, 6);
+    ctx.fillStyle = COL.pillBg;
+    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.fillStyle = color;
+    ctx.fillRect(px, py + 3, 3, pillH - 6);
+    ctx.fillStyle = COL.pillFg;
+    ctx.fillText(label, px + 8, py + 13);
+    ctx.restore();
   };
 
   const labeledBox = (box, label, color, opts = {}) => {
@@ -292,8 +363,9 @@
     }
 
     drawScan(w, h, tms);
+    drawRestriction(frame, state.restrictionHot || 0);
 
-    if (state.hunt && state.lockAlex < 0.8) {
+    if (state.hunt && state.lockAlex < 0.8 && state.lockP2 < 0.4) {
       labeledBox(fromNorm(frame, state.hunt[0], state.hunt[1], state.hunt[2], state.hunt[3]), t("demo.hunting", "hunting…"), COL.hunt, { dashed: true });
     }
     if (state.lockAlex > 0.05) {
