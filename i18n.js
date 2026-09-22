@@ -290,7 +290,7 @@
       },
       footer: {
         line: "Avistra Cloud · Indie local-AI surveillance for Windows · USB · CCTV · PTZ · GoPro · phone · camera off when idle",
-        meta: "www.avestra.online · local node · no self-signup",
+        meta: "Avistra Cloud · website www.avestra.online · local node · no self-signup",
         top: "Back to top",
       },
       thanks: {
@@ -602,7 +602,7 @@
       },
       footer: {
         line: "Avistra Cloud · Windows üçün indie lokal-AI müşahidə · USB · CCTV · PTZ · GoPro · telefon · boş olanda kamera sönülü",
-        meta: "www.avestra.online · lokal qovşaq · öz-özünə qeydiyyat yox",
+        meta: "Avistra Cloud · vebsayt www.avestra.online · lokal qovşaq · öz-özünə qeydiyyat yox",
         top: "Yuxarı",
       },
       thanks: {
@@ -914,7 +914,7 @@
       },
       footer: {
         line: "Avistra Cloud · Indie локальный AI-надзор для Windows · USB · CCTV · PTZ · GoPro · телефон · камера выключена без мониторинга",
-        meta: "www.avestra.online · локальный узел · без саморегистрации",
+        meta: "Avistra Cloud · сайт www.avestra.online · локальный узел · без саморегистрации",
         top: "Наверх",
       },
       thanks: {

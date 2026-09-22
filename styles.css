@@ -101,7 +101,7 @@ button, input, textarea, select { font: inherit; }
 .brand img {
   width: 36px;
   height: 36px;
-  border-radius: 50%;
+  border-radius: 10px;
   object-fit: cover;
 }
 .brand em { color: var(--blue); font-style: normal; }
@@ -310,10 +310,14 @@ html[data-theme="dark"] .icon-moon { display: none; }
 }
 .hero-banner {
   display: block;
-  max-height: 56px;
-  width: auto;
-  margin: 0 auto 18px;
+  width: min(680px, 100%);
+  max-height: none;
+  height: auto;
+  margin: 0 auto 28px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
 }
+.hero-banner.is-on { display: block; }
 .hero .kicker {
   margin: 0 0 18px;
   color: var(--blue);
