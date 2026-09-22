@@ -203,10 +203,9 @@
     const path = String(cfg.requestPath || "/license-request").trim() || "/license-request";
     return raw + (path.startsWith("/") ? path : `/${path}`);
   };
-  const requestUrl = () => {
-    const worker = requestEndpoint(cfg.workerUrl || "https://avestra-access.alinahmatov.workers.dev");
-    const access = requestEndpoint(cfg.accessUrl || "");
-    return worker || access;
+  const targets = () => {
+    const url = requestEndpoint(cfg.workerUrl || "https://avestra-access.alinahmatov.workers.dev");
+    return url ? [url] : [];
   };
   const payload = () => {
     const reason = (form.querySelector("[name=reason]") || {}).value || "";
@@ -259,16 +258,27 @@
       setStatus("error", t("get.formLimit", "Too many license requests. Try again in 10 minutes."));
       return;
     }
-    const url = requestUrl();
-    if (!url) {
+    const urls = targets();
+    if (!urls.length) {
       setStatus("error", t("get.formMissing", "The license queue is not configured yet."));
       return;
     }
     const btn = form.querySelector("[type=submit]");
     if (btn) btn.disabled = true;
     setStatus("", t("get.formSending", "Sending…"));
-    try {
-      await postJson(url, payload());
+    const body = payload();
+    let queued = false;
+    let lastErr = "";
+    for (const url of urls) {
+      try {
+        await postJson(url, body);
+        queued = true;
+        break;
+      } catch (err) {
+        lastErr = err && err.message ? err.message : "request failed";
+      }
+    }
+    if (queued) {
       hits.push(Date.now());
       try {
         localStorage.setItem(hitsKey, JSON.stringify(hits.slice(-limit)));
@@ -278,12 +288,15 @@
         "ok",
         t(
           "get.formSuccess",
-          "Request received. Watch this inbox — if the Developer approves, you get Access URL and license key from noreply@avestra.online."
+          "Request received. Stay on this page — Access has the row under License requests. A license is emailed only after approval."
         )
       );
-    } catch (err) {
-      const lastErr = err && err.message ? err.message : "request failed";
-      setStatus("error", t("get.formError", "Could not reach the license queue.") + (lastErr ? " " + lastErr : ""));
+    } else {
+      setStatus(
+        "error",
+        t("get.formError", "Could not reach the license queue.") +
+          (lastErr ? " " + lastErr : "")
+      );
     }
     if (btn) btn.disabled = false;
   });

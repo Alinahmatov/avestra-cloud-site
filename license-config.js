@@ -3,7 +3,7 @@
  *
  * The homepage POSTs JSON to workerUrl + /license-request (our Cloudflare Worker).
  * Stay on this site — success and errors show under the form.
- * Do not use FormSubmit, Formspree, Google Forms, or trycloudflare hostnames here.
+ * This origin is our Worker only (no third-party form hosts, no trycloudflare).
  */
 window.AVESTRA_LICENSE = {
   workerUrl: "https://avestra-access.alinahmatov.workers.dev",
