@@ -1,30 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Not found — Avestra Cloud</title>
-  <meta name="theme-color" content="#07090d">
+  <meta name="theme-color" content="#4044ee">
   <link rel="canonical" href="https://www.avestra.online/">
   <link rel="icon" href="assets/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260921silent">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css?v=ui-20260922clean">
+  <script>
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search).get("lang");
+        var l = (q && /^(en|az|ru)$/.test(q)) ? q : (localStorage.getItem("avestra-lang") || "en");
+        if (!/^(en|az|ru)$/.test(l)) l = "en";
+        document.documentElement.lang = l;
+        document.documentElement.dataset.lang = l;
+        var th = localStorage.getItem("avestra-theme");
+        document.documentElement.dataset.theme = (th === "dark" || th === "light") ? th : "light";
+      } catch (e) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
 </head>
 <body>
-  <div class="glow" aria-hidden="true"></div>
-  <div class="watch-field" aria-hidden="true">
-    <span class="watch-eye e1"><span class="watch-iris"><i></i></span><span class="watch-scan"></span></span>
-    <span class="watch-eye e2"><span class="watch-iris"><i></i></span><span class="watch-scan"></span></span>
-    <span class="watch-eye e4"><span class="watch-iris"><i></i></span><span class="watch-scan"></span></span>
-    <span class="watch-eye e5"><span class="watch-iris"><i></i></span><span class="watch-scan"></span></span>
-  </div>
-  <main class="hero page">
+  <main class="page wrap">
     <img class="cta-icon" src="assets/avestra-icon.png" width="64" height="64" alt="">
-    <h1>Nothing to watch here.</h1>
-    <p class="lede">This path is empty. The Avestra Cloud site is one page.</p>
-    <a class="btn primary" href="./">Avestra Cloud</a>
+    <h1 data-i18n="notfound.h1">Nothing to watch here.</h1>
+    <p class="lede" data-i18n="notfound.lede">This path is empty. The Avestra Cloud site is one page.</p>
+    <a class="btn primary" href="./" data-i18n="notfound.back">Avestra Cloud</a>
   </main>
+  <script src="i18n.js?v=ui-20260922clean"></script>
 </body>
 </html>

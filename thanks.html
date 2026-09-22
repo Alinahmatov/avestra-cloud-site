@@ -1,46 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Request sent — Avestra Cloud</title>
-  <meta name="description" content="Your Avestra Cloud request was sent. Alin will reply by email. Installing the Setup.exe still needs a license to sign in.">
-  <meta name="theme-color" content="#07090d">
+  <meta name="description" content="Your Avestra Cloud request was sent. The Developer will reply by email. Installing the Setup.exe still needs a license to sign in.">
+  <meta name="theme-color" content="#4044ee">
   <meta name="robots" content="noindex">
   <link rel="canonical" href="https://www.avestra.online/thanks.html">
   <link rel="icon" href="assets/favicon.ico">
   <link rel="apple-touch-icon" href="assets/avestra-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260921silent">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css?v=ui-20260922clean">
+  <script>
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search).get("lang");
+        var l = (q && /^(en|az|ru)$/.test(q)) ? q : (localStorage.getItem("avestra-lang") || "en");
+        if (!/^(en|az|ru)$/.test(l)) l = "en";
+        document.documentElement.lang = l;
+        document.documentElement.dataset.lang = l;
+        var th = localStorage.getItem("avestra-theme");
+        document.documentElement.dataset.theme = (th === "dark" || th === "light") ? th : "light";
+      } catch (e) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
 </head>
 <body>
-  <div class="glow" aria-hidden="true"></div>
-  <div class="watch-field" aria-hidden="true">
-    <span class="watch-eye e1"><span class="watch-iris"><i></i></span><span class="watch-scan"></span></span>
-    <span class="watch-eye e2"><span class="watch-iris"><i></i></span><span class="watch-scan"></span></span>
-    <span class="watch-eye e4"><span class="watch-iris"><i></i></span><span class="watch-scan"></span></span>
-    <span class="watch-eye e5"><span class="watch-iris"><i></i></span><span class="watch-scan"></span></span>
-  </div>
-  <main class="hero page">
+  <main class="page wrap">
     <img class="cta-icon" src="assets/avestra-icon.png" width="64" height="64" alt="">
-    <p class="eyebrow">Request received</p>
-    <h1>Request is in. A license is not automatic.</h1>
-    <p class="lede">
-      Alin has what you submitted. If a license can be issued, it arrives by email
-      at the address you entered. You can already download the Windows installer —
-      installing it does not create an account, and you still cannot sign in without
-      a valid active license from Avestra Access.
+    <p class="kicker" data-i18n="thanks.kicker">Request received</p>
+    <h1 data-i18n="thanks.h1">Request is in. A license is not automatic.</h1>
+    <p class="lede" data-i18n="thanks.lede">
+      The request is in Avestra Access. If it is approved, email arrives with Access URL and license key. Then pick nickname and password in Cloud. Installing the Windows installer does not create an account.
     </p>
     <div class="thanks-card">
-      <p><strong>What happens next</strong></p>
-      <p>Watch your inbox (and spam). Use a mailbox you can actually receive mail on. Licensed copies still need Avestra Access — Access URL, nickname, password, and license key.</p>
+      <p><strong data-i18n="thanks.next">What happens next</strong></p>
+      <p data-i18n="thanks.nextP">Watch your inbox (and spam). Use a mailbox you can actually receive mail on. Licensed copies still need Avestra Access — Access URL, nickname, password, and license key.</p>
     </div>
-    <div class="cta-row center" style="margin-top:28px">
-      <a class="btn primary" href="https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe" rel="noopener">Download AvestraCloud-Setup.exe</a>
-      <a class="btn" href="./">Back to Avestra Cloud</a>
+    <div class="cta-row" style="margin-top:28px;justify-content:center">
+      <a class="btn primary" href="https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe" rel="noopener" data-i18n="thanks.dl">Download AvestraCloud-Setup.exe</a>
+      <a class="btn" href="./" data-i18n="thanks.back">Back to Avestra Cloud</a>
     </div>
   </main>
+  <script src="i18n.js?v=ui-20260922clean"></script>
 </body>
 </html>

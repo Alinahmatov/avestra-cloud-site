@@ -6,6 +6,8 @@ Public marketing site for **Avestra Cloud** — indie local-AI surveillance for 
 
 Typing **avestra.online** in a browser does not work until Spaceship Advanced DNS has GitHub Pages **A** records on the apex. `www` already works. This repo’s Pages `CNAME` file is `www.avestra.online` (canonical). GitHub only allows one name in that file; after the apex A records exist, GitHub issues HTTPS for **both** names and 301s `https://avestra.online` → `https://www.avestra.online`.
 
+Languages on the site: **English** (default), **Azerbaijani** (`?lang=az`), **Russian** (`?lang=ru`). The nav language switcher stores the choice in `localStorage`.
+
 This repository is the website only. It does not include the Windows app, models, secrets, or personal configuration.
 
 ## DNS (Spaceship Advanced DNS — do this so `avestra.online` works)
@@ -56,13 +58,13 @@ The homepage has a **Download / Install** button for `AvestraCloud-Setup.exe`. T
 
 [https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe](https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe)
 
-Installing the exe does **not** create an account. Sign-in still needs a valid active license issued by Alin in Avestra Access (Access URL, nickname, password, license key). Expired licenses cannot sign in.
+Installing the exe does **not** skip the license gate. Sign-in needs a public Access URL **and** a valid unexpired license from Avestra Access. Testers choose their own nickname and password; first use of a license registers that name on Access. Expired licenses cannot sign in.
 
 **Uninstall:** There is no separate uninstall download (do not upload another ~338MB file). After install, people remove it from Windows Settings → Apps → Avestra Cloud, or Start Menu → Avestra Cloud → Uninstall Avestra Cloud, or `Uninstall.exe` in the install folder. Program files go away. Local people/logs stay unless they check “Also remove local data”. Do not put `%USERPROFILE%\.aegis_monitor` on GitHub.
 
 Do not commit the Setup.exe into this Pages repo.
 
-The contact form remains for people who need a license or another copy. It does not email keys automatically.
+The contact form posts into Avestra Access (`POST /license-request`), preferably through the Cloudflare Worker origin in `license-config.js` (`workerUrl`). Until that Worker is deployed, set `accessUrl` to the current Access HTTPS origin (trycloudflare hostnames change). If both are empty, the form still uses FormSubmit as a fallback. A license is emailed only after Access approval. Do not put SMTP passwords or Worker tokens in this repo.
 
 The Android app is a **secondary standalone client** (phone camera, on-device detection). It is sideloaded from Avestra Cloud on Windows, not from this Pages site. Do not commit APKs here.
 
