@@ -2,11 +2,53 @@
 
 Public marketing site for **Avestra Cloud** — indie local-AI surveillance for Windows. Faces, objects, action journal, people database.
 
-**Live site:** [https://www.avestra.online](https://www.avestra.online)
+**Live site:** [https://www.avestra.online](https://www.avestra.online) (GitHub Pages)
 
-The apex `avestra.online` is still Spaceship parking until A records can be added outside Unbox. Use **www**. GitHub Pages hosts this site.
+Typing **avestra.online** in a browser does not work until Spaceship Advanced DNS has GitHub Pages **A** records on the apex. `www` already works. This repo’s Pages `CNAME` file is `www.avestra.online` (canonical). GitHub only allows one name in that file; after the apex A records exist, GitHub issues HTTPS for **both** names and 301s `https://avestra.online` → `https://www.avestra.online`.
 
 This repository is the website only. It does not include the Windows app, models, secrets, or personal configuration.
+
+## DNS (Spaceship Advanced DNS — do this so `avestra.online` works)
+
+Do **not** use Spaceship Unbox for the root host. Unbox rejected `@`. Use the same **Advanced DNS** screen that already has the `www` CNAME.
+
+Nameservers are `launch1.spaceship.net` / `launch2.spaceship.net`. GitHub Pages official apex targets (confirmed from GitHub docs): `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
+
+### Delete if present
+
+Any apex **A** / **AAAA** / URL-redirect / parking rows whose value is **not** a GitHub IP below. Old parking was `34.216.117.25` and `54.149.79.189` (HTTPS timeout). Do **not** add a **CNAME** on the apex.
+
+### Add (apex / root) — four A records
+
+Host is the root. In Advanced DNS that is **`@`**. If the Host box will not save `@`, leave Host **empty**. Do **not** type `avestra.online` in Host (that creates `avestra.online.avestra.online`).
+
+| Host | Type | Value (Answer / Points to) | TTL |
+| --- | --- | --- | --- |
+| `@` (or blank) | A | `185.199.108.153` | Auto or 1800 |
+| `@` (or blank) | A | `185.199.109.153` | Auto or 1800 |
+| `@` (or blank) | A | `185.199.110.153` | Auto or 1800 |
+| `@` (or blank) | A | `185.199.111.153` | Auto or 1800 |
+
+### Optional AAAA (IPv6, same GitHub anycast)
+
+| Host | Type | Value |
+| --- | --- | --- |
+| `@` (or blank) | AAAA | `2606:50c0:8000::153` |
+| `@` (or blank) | AAAA | `2606:50c0:8001::153` |
+| `@` (or blank) | AAAA | `2606:50c0:8002::153` |
+| `@` (or blank) | AAAA | `2606:50c0:8003::153` |
+
+### Keep (already live)
+
+| Host | Type | Value |
+| --- | --- | --- |
+| `www` | CNAME | `alinahmatov.github.io` |
+
+If Advanced DNS offers **ALIAS** / **ANAME** on `@` → `alinahmatov.github.io`, that can replace the four A records. Prefer the four **A** rows (GitHub’s documented layout). Do not use a registrar “URL redirect” for the apex — that is the parking HTTPS failure.
+
+### After save
+
+Wait for DNS (often minutes; TTL was 1800s). `nslookup avestra.online` should show those four `185.199…` addresses, not NXDOMAIN and not the old parking IPs. Then `http://avestra.online` and `https://avestra.online` should reach this site (GitHub 301 to www). If apex HTTPS is still wrong after a few hours, GitHub repo **Settings → Pages**: save custom domain `www.avestra.online` again with **Enforce HTTPS** on. Do not clear the custom domain.
 
 ## Download / Install
 
