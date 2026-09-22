@@ -135,13 +135,14 @@
   }
 
   const form = document.querySelector("[data-gate-form]");
-  if (!form || isLocked()) return;
+  if (!form) return;
 
   const status = form.querySelector("[data-gate-status]");
   const panel = document.querySelector("[data-gate-download]");
   const link = document.querySelector("[data-gate-link]");
   const field = form.querySelector("[name=password], [data-gate-password]");
   const cfg = () => window.AVESTRA_LICENSE || {};
+  const normalize = (raw) => String(raw || "").replace(/^\uFEFF/, "").trim();
 
   const failState = () => {
     const row = readStore(FAIL_KEY) || {};
@@ -165,12 +166,9 @@
   };
 
   const origins = () => {
-    const list = [];
-    const worker = String(cfg().workerUrl || "").trim().replace(/\/+$/, "");
-    const access = String(cfg().accessUrl || "").trim().replace(/\/+$/, "");
-    if (worker) list.push(worker);
-    if (access && access !== worker) list.push(access);
-    return list;
+    // This page is SHA-256 only. Calling Worker /unlock-access would 401/429
+    // (missing secret or IP lock) and look like a wrong password.
+    return [];
   };
 
   const postUnlock = async (origin, password) => {
@@ -193,12 +191,12 @@
     const list = origins();
     for (const origin of list) {
       try {
-        const { status, data } = await postUnlock(origin, password);
+        const { data } = await postUnlock(origin, password);
         if (data && data.ok) {
           return { ok: true, download: String(data.download || zip) };
         }
-        if (status === 401 || status === 403) return { ok: false };
-        if (data && data.ok === false && status !== 503 && status !== 404) return { ok: false };
+        // 401/403/429/503/404: fall through to local SHA. A dead Worker or
+        // IP lock must not present as "wrong password".
       } catch (_) {}
     }
     const expected = String(cfg().accessInstallSha256 || DEFAULT_SHA256).trim().toLowerCase();
@@ -232,11 +230,7 @@
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if (isLocked()) {
-      applyLock();
-      return;
-    }
-    const password = String((field && field.value) || "");
+    const password = normalize((field && field.value) || "");
     const btn = form.querySelector("[type=submit]");
     if (btn) btn.disabled = true;
     note(t("gate.checking", "Checking…"));
@@ -251,12 +245,22 @@
     }
     if (ok) {
       dropStore(FAIL_KEY);
+      dropStore(LOCK_KEY);
+      document.documentElement.classList.remove("is-kicked");
+      const overlay = document.querySelector("[data-site-lock]");
+      if (overlay) overlay.hidden = true;
+      document.body.removeAttribute("aria-hidden");
       try {
         sessionStorage.setItem(UNLOCK_KEY, url);
       } catch (_) {}
       note(t("gate.ready", "Password accepted."));
       showDownload(url);
       window.open(url, "_self");
+      if (btn) btn.disabled = false;
+      return;
+    }
+    if (isLocked()) {
+      applyLock();
       if (btn) btn.disabled = false;
       return;
     }
