@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260922avistra3">
+  <link rel="stylesheet" href="styles.css?v=ui-20260922faces">
   <script>
     (function () {
       try {
@@ -50,7 +50,6 @@
         <span>Avistra <em>Cloud</em></span>
       </a>
       <nav class="links">
-        <a href="#watch" data-i18n="nav.see">See it</a>
         <a href="#how" data-i18n="nav.how">How it works</a>
         <a href="#uses" data-i18n="nav.uses">Where it’s used</a>
         <a href="#access" data-i18n="nav.access">Access</a>
@@ -97,7 +96,6 @@
         <p class="lede" data-i18n="hero.lede">Your cameras, occupancy, and journal — analysed on this PC.</p>
         <div class="cta-row">
           <a class="btn primary" href="#get" data-i18n="hero.cta">Download / Install</a>
-          <a class="btn" href="#watch" data-i18n="hero.see">See it in action</a>
           <a class="btn" href="#form" data-i18n="hero.cta2">Request a license</a>
         </div>
       </div>
@@ -136,54 +134,7 @@
       </div>
     </section>
 
-    <section class="section alt" id="watch">
-      <div class="wrap">
-        <p class="kicker reveal" data-i18n="demo.kicker">See it in action</p>
-        <h2 class="reveal">
-          <span class="accent" data-i18n="demo.titleAccent">Live,</span>
-          <span data-i18n="demo.titleRest">as the node names who walked through.</span>
-        </h2>
-        <p class="section-lead reveal" data-i18n="demo.lead">
-          Illustrated clip — invented faces, not a webcam, not anyone in this household. Hunt, lock <strong>Person 1 · Alex</strong>, then Person 2 walks through. Occupancy 0 → 1 → 2.
-        </p>
-        <div class="player reveal" data-demo>
-          <div class="monitor">
-            <div class="monitor-bar">
-              <img data-brand-icon src="assets/avistra-icon.png" width="16" height="16" alt="">
-              <strong data-i18n="demo.app">Avistra Cloud</strong>
-              <span class="live-dot" data-i18n="demo.live">Live</span>
-              <span class="rec" data-demo-rec data-on="1">REC</span>
-            </div>
-            <div class="player-body">
-              <div class="player-feed">
-                <canvas data-demo-canvas width="960" height="600" aria-label="Illustrated Avistra Live demo"></canvas>
-              </div>
-              <aside class="side">
-                <span class="pill on" data-i18n="demo.monitoring">MONITORING</span>
-                <p class="occ-line"><span data-i18n="demo.occupancy">Occupancy</span> <strong data-demo-occ>0</strong></p>
-                <p class="ticker" data-demo-ticker></p>
-                <h3 data-i18n="demo.journal">ACTION JOURNAL</h3>
-                <ul data-demo-journal></ul>
-                <p class="cam-line" data-i18n="demo.cam">Cam 0 · this PC · local store</p>
-              </aside>
-            </div>
-            <div class="player-controls">
-              <button type="button" class="play" data-demo-play data-playing="1" data-i18n-aria="demo.pause" aria-label="Pause demo">
-                <svg class="ico-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
-                <svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l12-7z"/></svg>
-              </button>
-              <button type="button" class="scrub" data-demo-scrub aria-label="Scrub demo">
-                <span></span>
-              </button>
-              <span class="clock" data-demo-time>0:00 / 0:12</span>
-            </div>
-          </div>
-        </div>
-        <p class="demo-note reveal" data-i18n="demo.note">Fictional generated people. Not a live camera. Not stock photos of real individuals.</p>
-      </div>
-    </section>
-
-    <section id="features" class="section">
+    <section id="features" class="section alt">
       <div class="wrap">
         <p class="kicker reveal" data-i18n="features.kicker">What it sees</p>
         <h2 class="reveal">
@@ -228,7 +179,7 @@
       </div>
     </section>
 
-    <section id="uses" class="section">
+    <section id="uses" class="section alt">
       <div class="wrap">
         <p class="kicker reveal" data-i18n="uses.kicker">Where Avistra is used</p>
         <h2 class="reveal">
@@ -263,7 +214,7 @@
       </div>
     </section>
 
-    <section id="how" class="section alt">
+    <section id="how" class="section">
       <div class="wrap">
         <p class="kicker reveal" data-i18n="how.kicker">How it works</p>
         <h2 class="reveal">
@@ -271,7 +222,7 @@
           <span data-i18n="how.titleRest">Point it. Read who walked through.</span>
         </h2>
         <ol class="steps">
-          <li class="reveal"><span>1</span><h3 data-i18n="how.s1t">Download Setup.exe</h3><p data-i18n="how.s1">Get AvestraCloud-Setup.exe from this page (GitHub Releases). Run it. Installing does not create an account and does not include Avistra Access.</p></li>
+          <li class="reveal"><span>1</span><h3 data-i18n="how.s1t">Download Setup.exe</h3><p data-i18n="how.s1">Get AvistraCloud-Setup.exe from this page (GitHub Releases). Run it. Installing does not create an account and does not include Avistra Access.</p></li>
           <li class="reveal"><span>2</span><h3 data-i18n="how.s2t">Sign in with four things</h3><p data-i18n="how.s2">Access URL + nickname + password + license from the Developer. You cannot invent any of them. Expired licenses are refused.</p></li>
           <li class="reveal"><span>3</span><h3 data-i18n="how.s3t">Pick the cameras, enroll people</h3><p data-i18n="how.s3">Settings → add and switch sources: this PC’s USB camera, CCTV / PTZ / Wi‑Fi over RTSP, GoPro (USB, Wi‑Fi, or RTMP onto this PC), or a phone camera over Wi‑Fi. People → add faces you want named. Anyone else stays Person N — still tracked, still journaled.</p></li>
           <li class="reveal"><span>4</span><h3 data-i18n="how.s4t">Start monitoring</h3><p data-i18n="how.s4">Live → Start. Boxes, occupancy, action journal — scanned on this PC (or your Access host). Stop monitoring and the ingest goes dark. The PC stays the cloud.</p></li>
@@ -344,7 +295,7 @@
               <li data-i18n="clients.w3">People database and action journal on this PC</li>
               <li data-i18n="clients.w4">Ingest off when not monitoring</li>
               <li data-i18n="clients.w5">Live occupancy, triggers, capture, optional email</li>
-              <li data-i18n="clients.w6">Install from this site: AvestraCloud-Setup.exe</li>
+              <li data-i18n="clients.w6">Install from this site: AvistraCloud-Setup.exe</li>
               <li data-i18n="clients.w7">Sign-in: Access URL + nickname + password + license</li>
               <li data-i18n="clients.w8">Uninstall from Settings → Apps, Start Menu, or Uninstall.exe</li>
             </ul>
@@ -405,7 +356,7 @@
         <div class="tester-card reveal">
           <ol>
             <li data-i18n="testers.l1">Request a license on this page (or already have one from the Developer).</li>
-            <li data-i18n="testers.l2">Download <strong>AvestraCloud-Setup.exe</strong>. Installing does not create an account.</li>
+            <li data-i18n="testers.l2">Download <strong>AvistraCloud-Setup.exe</strong>. Installing does not create an account.</li>
             <li data-i18n="testers.l3">Wait for Access approval. You get Access URL and a <strong>valid unexpired license</strong> by email, then pick nickname and password in Cloud.</li>
             <li data-i18n="testers.l4">Paste the <strong>public</strong> Access URL if you are not on the Developer’s Wi‑Fi. Same Wi‑Fi is only required for a LAN URL.</li>
             <li data-i18n="testers.l5">Keep Avistra Access open on the owner’s PC. Kick is “Sign out everywhere.”</li>
@@ -470,13 +421,13 @@
           <span data-i18n="get.titleRest">and install</span>
         </h2>
         <p data-i18n="get.p">
-          Avistra Cloud is a <strong>Windows</strong> desktop app. Click below to download <strong>AvestraCloud-Setup.exe</strong> and install it. Installing does <strong>not</strong> create an account. You still cannot sign in without a <strong>valid unexpired license</strong> issued by the Developer in Avistra Access (Access URL, nickname, password, and license key). Expired licenses cannot sign in.
+          Avistra Cloud is a <strong>Windows</strong> desktop app. Click below to download <strong>AvistraCloud-Setup.exe</strong> and install it. Installing does <strong>not</strong> create an account. You still cannot sign in without a <strong>valid unexpired license</strong> issued by the Developer in Avistra Access (Access URL, nickname, password, and license key). Expired licenses cannot sign in.
         </p>
 
         <div class="download-box reveal">
           <h3 data-i18n="get.setupTitle">Windows Setup.exe</h3>
           <p data-i18n="get.setupP">Inno Setup installer. After it finishes, open Avistra Cloud and sign in with credentials the Developer issued — not a guest login, not a self-signup.</p>
-          <a class="btn primary" href="https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe" rel="noopener" data-i18n="get.setupBtn">Download / Install AvestraCloud-Setup.exe</a>
+          <a class="btn primary" href="https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvistraCloud-Setup.exe" rel="noopener" data-i18n="get.setupBtn">Download / Install AvistraCloud-Setup.exe</a>
           <p class="win-note" data-i18n="get.winNote">Windows may warn that the app is unrecognized. Choose More info → Run anyway only if you trust this official download. The installer is hosted on GitHub Releases, not on this Pages site.</p>
         </div>
 
@@ -541,7 +492,7 @@
     <div class="wrap">
       <img data-brand-logo src="assets/avistra-logo.png" alt="Avistra Cloud" height="32">
       <p><span data-i18n="footer.line">Avistra Cloud · Indie local-AI surveillance for Windows · USB · CCTV · PTZ · GoPro · phone · camera off when idle</span> · <a href="#donate" data-i18n="nav.donate">Donate</a></p>
-      <p class="foot-meta" data-i18n="footer.meta">www.avestra.online · local node · no self-signup</p>
+      <p class="foot-meta" data-i18n="footer.meta">Avistra Cloud · website www.avestra.online · local node · no self-signup</p>
     </div>
   </footer>
 
@@ -549,9 +500,9 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg>
   </button>
 
-  <script src="donate-config.js?v=ui-20260922avistra3"></script>
-  <script src="license-config.js?v=ui-20260922avistra3"></script>
-  <script src="i18n.js?v=ui-20260922avistra3"></script>
-  <script src="script.js?v=ui-20260922avistra3"></script>
+  <script src="donate-config.js?v=ui-20260922avistra4"></script>
+  <script src="license-config.js?v=ui-20260922avistra4"></script>
+  <script src="i18n.js?v=ui-20260922avistra4"></script>
+  <script src="script.js?v=ui-20260922avistra4"></script>
 </body>
 </html>
