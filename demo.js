@@ -26,22 +26,30 @@
   let lastTicker = "";
   let lastOcc = -1;
 
-  const load = (src) => {
+  const assetUrl = (file) => {
+    try {
+      return new URL(`assets/${file}`, document.baseURI).href;
+    } catch (_) {
+      return `assets/${file}`;
+    }
+  };
+  const load = (file) => {
     const img = new Image();
     img.decoding = "async";
+    const jpg = assetUrl(file);
     img.addEventListener("error", () => {
-      if (src.endsWith(".jpg") && !img.dataset.triedPng) {
+      if (!img.dataset.triedPng) {
         img.dataset.triedPng = "1";
-        img.src = src.replace(/\.jpg$/i, ".png");
+        img.src = jpg.replace(/\.jpg(\?.*)?$/i, ".png");
       }
     });
-    img.src = src;
+    img.src = `${jpg}${jpg.includes("?") ? "&" : "?"}v=feed1`;
     return img;
   };
-  const room = load("assets/demo-room.jpg");
-  const alex = load("assets/demo-alex.jpg");
-  const enter = load("assets/demo-enter.jpg");
-  const both = load("assets/demo-both.jpg");
+  const room = load("demo-room.jpg");
+  const alex = load("demo-alex.jpg");
+  const enter = load("demo-enter.jpg");
+  const both = load("demo-both.jpg");
 
   const t = (key, fallback) => {
     const i18n = window.AvistraI18n;
@@ -79,10 +87,23 @@
     chair: [0.338, 0.5, 0.128, 0.43],
     alexBody: [0.072, 0.175, 0.275, 0.69],
     alexFace: [0.148, 0.15, 0.095, 0.175],
+    alexClothes: [0.1, 0.32, 0.22, 0.36],
     p2EnterBody: [0.618, 0.175, 0.155, 0.63],
     p2EnterFace: [0.652, 0.15, 0.072, 0.135],
+    p2EnterClothes: [0.63, 0.28, 0.13, 0.28],
     p2BothBody: [0.548, 0.15, 0.215, 0.73],
     p2BothFace: [0.585, 0.125, 0.088, 0.155],
+    p2BothClothes: [0.57, 0.26, 0.16, 0.32],
+  };
+  const COL = {
+    known: "rgb(120, 214, 86)",
+    unknown: "rgb(248, 168, 46)",
+    clothes: "rgb(255, 70, 210)",
+    laptop: "rgb(255, 190, 90)",
+    chair: "rgb(255, 196, 64)",
+    hunt: "rgb(180, 224, 255)",
+    pillBg: "rgb(24, 18, 16)",
+    pillFg: "rgb(248, 246, 245)",
   };
 
   const stateAt = (ms) => {
@@ -153,33 +174,70 @@
     return { u, frame, mix, occupancy, hunt, lockAlex, lockP2, objects, tickerKey, lines };
   };
 
-  const dashBox = (box, label, color, conf, pulse) => {
+  const roundRect = (x, y, w, h, r) => {
+    const rr = Math.min(r, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + rr, y);
+    ctx.arcTo(x + w, y, x + w, y + h, rr);
+    ctx.arcTo(x + w, y + h, x, y + h, rr);
+    ctx.arcTo(x, y + h, x, y, rr);
+    ctx.arcTo(x, y, x + w, y, rr);
+    ctx.closePath();
+  };
+
+  const cornerTicks = (x, y, w, h, color) => {
+    const len = Math.max(10, Math.min(18, w * 0.22, h * 0.22));
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.4;
+    ctx.lineCap = "square";
+    const ticks = [
+      [x, y, x + len, y, x, y + len],
+      [x + w, y, x + w - len, y, x + w, y + len],
+      [x, y + h, x + len, y + h, x, y + h - len],
+      [x + w, y + h, x + w - len, y + h, x + w, y + h - len],
+    ];
+    ticks.forEach(([ax, ay, bx, by, cx, cy]) => {
+      ctx.beginPath();
+      ctx.moveTo(bx, by);
+      ctx.lineTo(ax, ay);
+      ctx.lineTo(cx, cy);
+      ctx.stroke();
+    });
+  };
+
+  const labeledBox = (box, label, color, opts = {}) => {
     if (!box) return;
     const { x, y, w, h } = box;
+    const dashed = !!opts.dashed;
+    const conf = opts.confidence;
+    const corners = !!opts.corners;
     ctx.save();
     ctx.strokeStyle = color;
-    ctx.lineWidth = 1.6;
-    ctx.setLineDash([5, 4]);
-    ctx.strokeRect(x, y, w, h);
+    ctx.lineWidth = 2;
+    if (dashed) ctx.setLineDash([10, 6]);
+    roundRect(x, y, w, h, Math.min(8, w / 8, h / 8));
+    ctx.stroke();
     ctx.setLineDash([]);
-    const text = conf != null ? `${label}  ${conf}` : label;
-    ctx.font = "600 11px Manrope, system-ui, sans-serif";
-    const pad = 5;
+    if (corners) cornerTicks(x, y, w, h, color);
+    const text = conf != null ? `${label}  ${Math.round(Number(conf) * 100)}%` : label;
+    ctx.font = "600 12px Manrope, system-ui, sans-serif";
     const tw = ctx.measureText(text).width;
-    const bx = x;
-    const by = Math.max(2, y - 18);
+    const pillW = tw + 16;
+    const pillH = 18;
+    let px = x;
+    let py = y - pillH - 4;
+    if (py < 2) py = y + 6;
+    if (px + pillW > width - 2) px = Math.max(2, width - pillW - 2);
+    roundRect(px, py, pillW, pillH, 6);
+    ctx.fillStyle = COL.pillBg;
+    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
+    ctx.stroke();
     ctx.fillStyle = color;
-    ctx.globalAlpha = 0.92;
-    ctx.fillRect(bx, by, tw + pad * 2, 16);
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = "#081018";
-    ctx.fillText(text, bx + pad, by + 12);
-    if (pulse) {
-      ctx.strokeStyle = color;
-      ctx.globalAlpha = 0.28;
-      ctx.strokeRect(x - 4, y - 4, w + 8, h + 8);
-      ctx.globalAlpha = 1;
-    }
+    ctx.fillRect(px, py + 3, 3, pillH - 6);
+    ctx.fillStyle = COL.pillFg;
+    ctx.fillText(text, px + 8, py + 13);
     ctx.restore();
   };
 
@@ -236,36 +294,29 @@
     drawScan(w, h, tms);
 
     if (state.hunt && state.lockAlex < 0.8) {
-      const hb = fromNorm(frame, state.hunt[0], state.hunt[1], state.hunt[2], state.hunt[3]);
-      dashBox(hb, t("demo.hunting", "hunting…"), "#8ec8ff", null, true);
+      labeledBox(fromNorm(frame, state.hunt[0], state.hunt[1], state.hunt[2], state.hunt[3]), t("demo.hunting", "hunting…"), COL.hunt, { dashed: true });
     }
     if (state.lockAlex > 0.05) {
       ctx.globalAlpha = state.lockAlex;
-      dashBox(
-        fromNorm(frame, ...boxes.alexBody),
-        "Person 1 · Alex",
-        "#3ee0b4",
-        "0.94",
-        state.lockAlex < 1
-      );
-      dashBox(fromNorm(frame, ...boxes.alexFace), t("demo.face", "face"), "#3ee0b4", "0.96");
+      labeledBox(fromNorm(frame, ...boxes.alexClothes), "dark hoodie", COL.clothes, { dashed: true });
+      labeledBox(fromNorm(frame, ...boxes.alexFace), "Person 1 · Alex", COL.known, { corners: true, confidence: 0.94 });
       ctx.globalAlpha = 1;
     }
     if (state.objects > 0.05) {
       ctx.globalAlpha = state.objects;
-      dashBox(fromNorm(frame, ...boxes.laptop), "laptop", "#c9d4e8", "0.91");
-      dashBox(fromNorm(frame, ...boxes.chair), "chair", "#c9d4e8", "0.88");
+      labeledBox(fromNorm(frame, ...boxes.laptop), "laptop", COL.laptop, { dashed: true, confidence: 0.91 });
+      labeledBox(fromNorm(frame, ...boxes.chair), "chair", COL.chair, { dashed: true, confidence: 0.88 });
       ctx.globalAlpha = 1;
     }
     if (state.frame === "enter" && state.lockP2 < 0.4 && state.mix > 0.35) {
-      dashBox(fromNorm(frame, ...boxes.p2EnterBody), "Person 2", "#f0c14b", null, true);
+      labeledBox(fromNorm(frame, ...boxes.p2EnterFace), "Person 2", COL.unknown, { dashed: true });
     }
     if (state.lockP2 > 0.05) {
       ctx.globalAlpha = state.lockP2;
-      const body = state.mix > 0.6 ? boxes.p2BothBody : boxes.p2EnterBody;
+      const clothes = state.mix > 0.6 ? boxes.p2BothClothes : boxes.p2EnterClothes;
       const face = state.mix > 0.6 ? boxes.p2BothFace : boxes.p2EnterFace;
-      dashBox(fromNorm(frame, ...body), "Person 2", "#f0c14b", "0.87", state.lockP2 < 1);
-      dashBox(fromNorm(frame, ...face), t("demo.face", "face"), "#f0c14b", "0.90");
+      labeledBox(fromNorm(frame, ...clothes), "olive jacket", COL.clothes, { dashed: true });
+      labeledBox(fromNorm(frame, ...face), "Person 2", COL.unknown, { corners: true, confidence: 0.87 });
       ctx.globalAlpha = 1;
     }
 
