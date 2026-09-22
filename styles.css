@@ -726,6 +726,15 @@ html[data-theme="dark"] .card { box-shadow: none; }
 .field textarea { min-height: 128px; resize: vertical; }
 .request-submit { width: 100%; margin-top: 4px; }
 .form-note { margin: 0; font-size: 13px; color: var(--muted); }
+.form-status {
+  margin: 8px 0 0;
+  min-height: 1.35em;
+  font-size: 14px;
+  font-weight: 600;
+}
+.form-status.is-ok { color: #0f7b4c; }
+.form-status.is-error,
+.form-status.is-err { color: #b42318; }
 .hp {
   position: absolute !important;
   left: -9999px !important;
@@ -850,7 +859,7 @@ footer a { color: var(--blue); }
   max-width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: #07090c;
+  background: #07090c url("assets/demo-alex.jpg") center / cover no-repeat;
   border-right: 1px solid var(--mon-line);
   z-index: 0;
 }
@@ -1038,3 +1047,43 @@ footer a { color: var(--blue); }
   }
   .rec[data-on="1"] { animation: none; }
 }
+
+html.is-kicked,
+html.is-kicked body {
+  overflow: hidden;
+}
+.site-lock {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: var(--page);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  text-align: center;
+}
+.site-lock[hidden] { display: none !important; }
+.site-lock-card { max-width: 36rem; }
+.site-lock-card img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+.site-lock-card h1 {
+  margin: 16px 0 8px;
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -0.04em;
+}
+.site-lock-hint {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.gate-page .gate-main { padding-top: 120px; }
+.gate-form {
+  max-width: 26rem;
+  margin: 28px auto 0;
+  text-align: left;
+}
+.gate-download { margin-top: 28px; }

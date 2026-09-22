@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260922plain">
+  <link rel="stylesheet" href="styles.css?v=ui-20260922req">
   <script>
     (function () {
       try {
@@ -499,11 +499,7 @@
         <p class="form-split" id="form" data-i18n="get.need">Need a license?</p>
         <p data-i18n="get.needP">Ask below if you need the Developer to issue a license in Avistra Access. The form does not create an account. A license is emailed only after Access approval.</p>
 
-        <form class="request-form reveal" data-license-form action="https://formsubmit.co/alii.nahmatov@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="Avistra Cloud license request">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="true">
-          <input type="hidden" name="_next" value="https://www.avestra.online/thanks.html">
+        <form class="request-form reveal" data-license-form method="post" action="https://www.avestra.online/#form">
           <div class="hp" aria-hidden="true">
             <label for="company" data-i18n="get.company">Company</label>
             <input id="company" type="text" name="_honey" tabindex="-1" autocomplete="off">
@@ -526,7 +522,8 @@
             <textarea id="reason" name="reason" required rows="5" maxlength="2000" data-i18n-placeholder="get.reasonPh" placeholder="Who you are and why you need Avistra Cloud."></textarea>
           </div>
           <button class="btn primary request-submit" type="submit" data-i18n="get.submit">Request a license</button>
-          <p class="form-note" data-license-status data-i18n="get.formNote">The request goes to Avistra Access. After approval you get email with Access URL and license key, then pick nickname and password in Cloud. Installing the exe does not create an account.</p>
+          <p class="form-note" data-form-help data-i18n="get.formNote">The request goes to the Avistra license queue. After the Developer approves it in Access, email arrives with Access URL and license key, then pick nickname and password in Cloud. Installing the exe does not create an account.</p>
+          <p class="form-status" data-license-status role="status" aria-live="polite"></p>
         </form>
         <p class="access-note reveal" data-i18n="get.accessNote">
           Licenses and sign-in nicknames are issued in <strong>Avistra Access</strong> by the Developer. This site is Avistra Cloud — the desktop surveillance app. The installer is not a login.
@@ -547,10 +544,11 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg>
   </button>
 
-  <script src="donate-config.js?v=ui-20260922plain"></script>
-  <script src="license-config.js?v=ui-20260922plain"></script>
-  <script src="i18n.js?v=ui-20260922plain"></script>
-  <script src="script.js?v=ui-20260922plain"></script>
-  <script src="demo.js?v=ui-20260922plain"></script>
+  <script src="donate-config.js?v=ui-20260922cfw"></script>
+  <script src="license-config.js?v=ui-20260922cfw"></script>
+  <script src="i18n.js?v=ui-20260922cfw"></script>
+  <script src="script.js?v=ui-20260922cfw"></script>
+  <script src="gate.js?v=ui-20260922cfw"></script>
+  <script src="demo.js?v=ui-20260922feed"></script>
 </body>
 </html>

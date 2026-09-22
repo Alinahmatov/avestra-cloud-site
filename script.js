@@ -189,24 +189,43 @@
     const value = fn ? fn(key) : "";
     return value || fallback;
   };
-  const origins = () => {
-    const list = [];
-    const worker = String(cfg.workerUrl || "").trim().replace(/\/+$/, "");
-    const access = String(cfg.accessUrl || "").trim().replace(/\/+$/, "");
-    if (worker) list.push(worker);
-    if (access && access !== worker) list.push(access);
-    return list;
+  const setStatus = (kind, text) => {
+    if (!status) return;
+    status.textContent = text || "";
+    status.classList.remove("is-ok", "is-error", "is-err");
+    if (kind === "ok") status.classList.add("is-ok");
+    if (kind === "error") status.classList.add("is-error");
   };
-  const payload = () => ({
-    name: (form.querySelector("[name=name]") || {}).value || "",
-    email: (form.querySelector("[name=email]") || {}).value || "",
-    contact: (form.querySelector("[name=contact]") || {}).value || "",
-    reason: (form.querySelector("[name=reason]") || {}).value || "",
-    _honey: (form.querySelector("[name=_honey]") || {}).value || "",
-  });
-  const postJson = async (origin, body) => {
-    const resp = await fetch(origin + "/license-request", {
+  const requestEndpoint = (origin) => {
+    let raw = String(origin || "").trim().replace(/\/+$/, "");
+    if (!raw) return "";
+    if (/\/v1\/license-request$/i.test(raw) || /\/license-request$/i.test(raw)) return raw;
+    const path = String(cfg.requestPath || "/license-request").trim() || "/license-request";
+    return raw + (path.startsWith("/") ? path : `/${path}`);
+  };
+  const requestUrl = () => {
+    const worker = requestEndpoint(cfg.workerUrl || "https://avestra-access.alinahmatov.workers.dev");
+    const access = requestEndpoint(cfg.accessUrl || "");
+    return worker || access;
+  };
+  const payload = () => {
+    const reason = (form.querySelector("[name=reason]") || {}).value || "";
+    return {
+      name: (form.querySelector("[name=name]") || {}).value || "",
+      email: (form.querySelector("[name=email]") || {}).value || "",
+      contact: (form.querySelector("[name=contact]") || {}).value || "",
+      reason,
+      note: reason,
+      message: reason,
+      timestamp: new Date().toISOString(),
+      origin: location.origin,
+      _honey: (form.querySelector("[name=_honey]") || {}).value || "",
+    };
+  };
+  const postJson = async (url, body) => {
+    const resp = await fetch(url, {
       method: "POST",
+      mode: "cors",
       headers: { "Content-Type": "application/json; charset=utf-8", Accept: "application/json" },
       body: JSON.stringify(body),
     });
@@ -223,28 +242,50 @@
   };
 
   form.addEventListener("submit", async (event) => {
-    const targets = origins();
-    if (!targets.length) return;
     event.preventDefault();
+    const hitsKey = "avestra-license-posts";
+    const windowMs = 10 * 60 * 1000;
+    const limit = 5;
+    const loadHits = () => {
+      try {
+        const raw = JSON.parse(localStorage.getItem(hitsKey) || "[]");
+        return Array.isArray(raw) ? raw.map(Number).filter((n) => Date.now() - n < windowMs) : [];
+      } catch (_) {
+        return [];
+      }
+    };
+    const hits = loadHits();
+    if (hits.length >= limit) {
+      setStatus("error", t("get.formLimit", "Too many license requests. Try again in 10 minutes."));
+      return;
+    }
+    const url = requestUrl();
+    if (!url) {
+      setStatus("error", t("get.formMissing", "The license queue is not configured yet."));
+      return;
+    }
     const btn = form.querySelector("[type=submit]");
     if (btn) btn.disabled = true;
-    if (status) status.textContent = t("get.formSending", "Sending to Access…");
-    const body = payload();
-    let lastErr = "";
-    for (const origin of targets) {
+    setStatus("", t("get.formSending", "Sending…"));
+    try {
+      await postJson(url, payload());
+      hits.push(Date.now());
       try {
-        await postJson(origin, body);
-        const thanks = String(cfg.thanksUrl || "thanks.html").trim() || "thanks.html";
-        location.href = thanks;
-        return;
-      } catch (err) {
-        lastErr = err && err.message ? err.message : "request failed";
-      }
+        localStorage.setItem(hitsKey, JSON.stringify(hits.slice(-limit)));
+      } catch (_) {}
+      form.reset();
+      setStatus(
+        "ok",
+        t(
+          "get.formSuccess",
+          "Request received. Watch this inbox — if the Developer approves, you get Access URL and license key from noreply@avestra.online."
+        )
+      );
+    } catch (err) {
+      const lastErr = err && err.message ? err.message : "request failed";
+      setStatus("error", t("get.formError", "Could not reach the license queue.") + (lastErr ? " " + lastErr : ""));
     }
     if (btn) btn.disabled = false;
-    if (status) {
-      status.textContent = t("get.formError", "Could not reach Access.") + (lastErr ? " " + lastErr : "");
-    }
   });
 })();
 })();

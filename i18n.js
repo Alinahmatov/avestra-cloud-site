@@ -310,9 +310,12 @@
         reason: "Why you need a license",
         reasonPh: "Who you are and why you need Avistra Cloud.",
         submit: "Request a license",
-        formNote: "The request goes to Avistra Access. After approval you get email with Access URL and license key, then pick nickname and password in Cloud. Installing the exe does not create an account.",
-        formSending: "Sending to Access…",
-        formError: "Could not reach Access. Try again, or leave accessUrl / workerUrl in license-config.js.",
+        formNote: "The request goes to the Avistra license queue. After the Developer approves it in Access, email arrives with Access URL and license key, then pick nickname and password in Cloud. Installing the exe does not create an account.",
+        formSending: "Sending…",
+        formSuccess: "Request received. Watch this inbox — if the Developer approves, you get Access URL and license key from noreply@avestra.online.",
+        formError: "Could not reach the license server. Try again in a few minutes.",
+        formMissing: "The license server is not configured yet.",
+        formLimit: "Too many license requests. Try again in 10 minutes.",
         accessNote:
           "Licenses and sign-in nicknames are issued in <strong>Avistra Access</strong> by the Developer. This site is Avistra Cloud — the desktop surveillance app. The installer is not a login.",
         company: "Company",
@@ -339,6 +342,26 @@
         h1: "Nothing to watch here.",
         lede: "This path is empty. The Avistra Cloud site is one page.",
         back: "Avistra Cloud",
+      },
+      gate: {
+        pageTitle: "Avistra",
+        kicker: "Restricted",
+        title: "Password required",
+        lead: "This path is not a public download.",
+        password: "Password",
+        submit: "Continue",
+        checking: "Checking…",
+        wrong: "Wrong password.",
+        left: "{n} tries left.",
+        last: "Last try.",
+        ready: "Password accepted.",
+        download: "Download Avistra Access",
+        note: "Portable Avistra Access. Empty copy — import licenses in Access. Not Avistra Cloud.",
+      },
+      lock: {
+        title: "You’ve been kicked.",
+        body: "Too many wrong attempts. This site is locked on this browser for 24 hours.",
+        hint: "Avistra Cloud is unavailable until the lock expires.",
       },
     },
     az: {
@@ -651,9 +674,12 @@
         reason: "Lisenziya niyə lazımdır",
         reasonPh: "Kimsiniz və Avistra Cloud niyə lazımdır.",
         submit: "Lisenziya istə",
-        formNote: "Sorğu Avistra Access-ə düşür. Təsdiqdən sonra Access URL və lisenziya açarı e-poçta gəlir, ləqəb və şifrəni Cloud-da seçirsiniz. Exe quraşdırmaq hesab yaratmır.",
-        formSending: "Access-ə göndərilir…",
-        formError: "Access-ə çatmaq mümkün olmadı. Yenidən cəhd edin və ya license-config.js-də workerUrl / accessUrl yazın.",
+        formNote: "Sorğu Avistra lisenziya növbəsinə düşür. Developer Access-də təsdiq etdikdən sonra Access URL və lisenziya açarı e-poçta gəlir, ləqəb və şifrəni Cloud-da seçirsiniz. Exe quraşdırmaq hesab yaratmır.",
+        formSending: "Göndərilir…",
+        formSuccess: "Sorğu qəbul olundu. Bu e-poçtu izləyin — Developer təsdiqləsə, Access URL və lisenziya açarı noreply@avestra.online ünvanından gələcək.",
+        formError: "Lisenziya serverinə çatmaq mümkün olmadı. Bir neçə dəqiqə sonra yenidən cəhd edin.",
+        formMissing: "Lisenziya serveri hələ konfiqurasiya olunmayıb.",
+        formLimit: "Həddindən artıq lisenziya sorğusu. 10 dəqiqə sonra yenidən cəhd edin.",
         accessNote:
           "Lisenziyalar və giriş ləqəbləri Developer tərəfindən <strong>Avistra Access</strong>-də verilir. Bu sayt Avistra Cloud-dur — masaüstü müşahidə tətbiqi. Quraşdırıcı giriş deyil.",
         company: "Şirkət",
@@ -680,6 +706,26 @@
         h1: "Burada izləyəcək bir şey yoxdur.",
         lede: "Bu yol boşdur. Avistra Cloud saytı bir səhifədir.",
         back: "Avistra Cloud",
+      },
+      gate: {
+        pageTitle: "Avistra",
+        kicker: "Məhdud",
+        title: "Şifrə lazımdır",
+        lead: "Bu yol ictimai yükləmə deyil.",
+        password: "Şifrə",
+        submit: "Davam et",
+        checking: "Yoxlanır…",
+        wrong: "Şifrə səhvdir.",
+        left: "{n} cəhd qalıb.",
+        last: "Son cəhd.",
+        ready: "Şifrə qəbul olundu.",
+        download: "Avistra Access yüklə",
+        note: "Portativ Avistra Access. Boş nüsxə — lisenziyaları Access-də import edin. Avistra Cloud deyil.",
+      },
+      lock: {
+        title: "Saytdan çıxarıldınız.",
+        body: "Həddən çox səhv cəhd. Bu brauzerdə sayt 24 saat kilidlənib.",
+        hint: "Kilid bitənə qədər Avistra Cloud əlçatan deyil.",
       },
     },
     ru: {
@@ -992,9 +1038,12 @@
         reason: "Зачем нужна лицензия",
         reasonPh: "Кто вы и зачем вам Avistra Cloud.",
         submit: "Запросить лицензию",
-        formNote: "Запрос попадает в Avistra Access. После одобрения на почту приходят Access URL и ключ, ник и пароль вы выбираете в Cloud. Установка exe аккаунт не создаёт.",
-        formSending: "Отправка в Access…",
-        formError: "Не удалось достучаться до Access. Повторите попытку или укажите workerUrl / accessUrl в license-config.js.",
+        formNote: "Запрос попадает в очередь лицензий Avistra. После одобрения Developer в Access на почту приходят Access URL и ключ, ник и пароль вы выбираете в Cloud. Установка exe аккаунт не создаёт.",
+        formSending: "Отправка…",
+        formSuccess: "Запрос получен. Следите за этой почтой — если Developer одобрит, Access URL и ключ придут с noreply@avestra.online.",
+        formError: "Не удалось достучаться до сервера лицензий. Повторите через несколько минут.",
+        formMissing: "Сервер лицензий ещё не настроен.",
+        formLimit: "Слишком много запросов лицензии. Попробуйте снова через 10 минут.",
         accessNote:
           "Лицензии и ники для входа выдаёт Developer в <strong>Avistra Access</strong>. Этот сайт — Avistra Cloud, десктопное наблюдение. Установщик — не логин.",
         company: "Компания",
@@ -1021,6 +1070,26 @@
         h1: "Здесь смотреть нечего.",
         lede: "Этот путь пуст. Сайт Avistra Cloud — одна страница.",
         back: "Avistra Cloud",
+      },
+      gate: {
+        pageTitle: "Avistra",
+        kicker: "Ограничено",
+        title: "Нужен пароль",
+        lead: "Это не публичная загрузка.",
+        password: "Пароль",
+        submit: "Продолжить",
+        checking: "Проверка…",
+        wrong: "Неверный пароль.",
+        left: "Осталось попыток: {n}.",
+        last: "Последняя попытка.",
+        ready: "Пароль принят.",
+        download: "Скачать Avistra Access",
+        note: "Портативный Avistra Access. Пустая копия — импортируйте лицензии в Access. Это не Avistra Cloud.",
+      },
+      lock: {
+        title: "Вас выгнали с сайта.",
+        body: "Слишком много неверных попыток. Сайт заблокирован в этом браузере на 24 часа.",
+        hint: "Avistra Cloud недоступен, пока блокировка не истечёт.",
       },
     },
   };
@@ -1060,9 +1129,11 @@
     const path = (location.pathname || "").toLowerCase();
     const titleKey = path.includes("thanks")
       ? "thanks.title"
-      : path.includes("404")
-        ? "notfound.title"
-        : "meta.title";
+      : path.includes("access-install")
+        ? "gate.pageTitle"
+        : path.includes("404")
+          ? "notfound.title"
+          : "meta.title";
     const title = t(titleKey, current);
     if (title) document.title = title;
     const desc = document.querySelector('meta[name="description"]');

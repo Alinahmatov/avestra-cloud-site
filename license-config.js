@@ -1,21 +1,15 @@
 /**
- * Durable license-request endpoints. No secrets.
+ * Durable license-request origin. No secrets.
  *
- * workerUrl: Cloudflare Worker origin after `npx wrangler deploy` in control_plane/
- *            (https://avestra-access.<account>.workers.dev or https://api.avestra.online).
- *            Leave empty until that Worker exists.
- *
- * accessUrl: Optional live Avistra Access origin (https://….trycloudflare.com).
- *            This hostname changes whenever Access restarts the quick tunnel.
- *            Copy it from Access → Copy request URL, then paste the origin only
- *            (no /license-request suffix) if the Worker is not deployed yet.
- *
- * If both are empty, the form falls back to FormSubmit email so the live Pages
- * site still accepts requests. The Developer then still approves in Access after the
- * Worker/Access URL is configured.
+ * The homepage POSTs JSON to workerUrl + /license-request (our Cloudflare Worker).
+ * Stay on this site — success and errors show under the form.
+ * Do not use FormSubmit, Formspree, Google Forms, or trycloudflare hostnames here.
  */
 window.AVESTRA_LICENSE = {
-  workerUrl: "",
-  accessUrl: "",
-  thanksUrl: "https://www.avestra.online/thanks.html",
+  workerUrl: "https://avestra-access.alinahmatov.workers.dev",
+  requestPath: "/license-request",
+  accessInstallUrl:
+    "https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvistraAccess.zip",
+  // SHA-256 of the install-panel password (not the password). Prefer Worker/Access POST /unlock-access.
+  accessInstallSha256: "6a7ae366aa7a9fa65603d1b3e4543cf71a692645436f5a94c50af7490a1390b3",
 };

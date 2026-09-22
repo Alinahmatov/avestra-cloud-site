@@ -64,7 +64,9 @@ Installing the exe does **not** skip the license gate. Sign-in needs a public Ac
 
 Do not commit the Setup.exe into this Pages repo.
 
-The contact form posts into Avistra Access (`POST /license-request`), preferably through the Cloudflare Worker origin in `license-config.js` (`workerUrl`). Until that Worker is deployed, set `accessUrl` to the current Access HTTPS origin (trycloudflare hostnames change). If both are empty, the form still uses FormSubmit as a fallback. A license is emailed only after Access approval. Do not put SMTP passwords or Worker tokens in this repo.
+The contact form stays on this page and POSTs JSON to our Cloudflare Worker (`license-config.js` → `workerUrl`: `https://avestra-access.alinahmatov.workers.dev`). Access polls that queue. A license is emailed from `noreply@avestra.online` only after the Developer clicks Approve in Access. There is no FormSubmit / Formspree / Google Forms. Do not put SMTP passwords or Worker tokens in this repo.
+
+Email Routing for that noreply address: add `avestra.online` to Cloudflare, switch Spaceship nameservers to Cloudflare’s, keep `www` CNAME → `alinahmatov.github.io` (DNS only, not proxied), enable Email Routing (MX `route1/2/3.mx.cloudflare.net`, SPF `include:_spf.mx.cloudflare.net`), custom address `noreply@avestra.online`. Until that is live, Access can fall back to local Gmail SMTP.
 
 The Android app is a **secondary standalone client** (phone camera, on-device detection). It is sideloaded from Avistra Cloud on Windows, not from this Pages site. Do not commit APKs here.
 
