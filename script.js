@@ -1,7 +1,54 @@
 (() => {
+  const pickFirst = (urls, onHit) => {
+    let i = 0;
+    const next = () => {
+      if (i >= urls.length) return;
+      const src = urls[i++];
+      const img = new Image();
+      img.onload = () => onHit(src);
+      img.onerror = next;
+      img.src = src;
+    };
+    next();
+  };
+  const applySrc = (nodes, src, show) => {
+    nodes.forEach((el) => {
+      if (el.tagName === "LINK") el.href = src;
+      else {
+        el.src = src;
+        if (show) {
+          el.hidden = false;
+          el.classList.add("is-on");
+        }
+      }
+    });
+  };
+  pickFirst(
+    ["assets/avistra-icon.png", "assets/avistra-icon.svg", "assets/icon.png", "assets/avestra-icon.png"],
+    (src) => {
+      applySrc([...document.querySelectorAll("[data-brand-icon]")], src, false);
+      const og = document.querySelector('meta[property="og:image"]');
+      if (og && src.indexOf("http") !== 0) {
+        try {
+          og.setAttribute("content", new URL(src, location.href).href);
+        } catch (_) {}
+      }
+    }
+  );
+  pickFirst(
+    ["assets/avistra-logo.png", "assets/avistra-logo.svg", "assets/logo.png", "assets/avestra-logo.png"],
+    (src) => applySrc([...document.querySelectorAll("[data-brand-logo]")], src, false)
+  );
+  pickFirst(
+    ["assets/avistra-banner.png", "assets/avistra-banner.svg", "assets/banner.png", "assets/avestra-banner.png"],
+    (src) => applySrc([...document.querySelectorAll("[data-brand-banner]")], src, true)
+  );
+})();
+
+(() => {
   const nav = document.querySelector(".nav");
   const menu = document.querySelector(".menu");
-  const i18n = window.AvestraI18n;
+  const i18n = window.AvistraI18n;
 
   if (menu && nav) {
     const setOpen = (open) => {
@@ -86,7 +133,7 @@
       const params = new URLSearchParams({
         business: email,
         no_recurring: "0",
-        item_name: donate.itemName || "Avestra Cloud",
+        item_name: donate.itemName || "Avistra Cloud",
         currency_code: donate.currency || "USD",
       });
       return `https://www.paypal.com/donate/?${params.toString()}`;
@@ -140,7 +187,7 @@
   if (!form) return;
   const status = form.querySelector("[data-license-status]");
   const cfg = window.AVESTRA_LICENSE || {};
-  const i18n = () => window.AvestraI18n;
+  const i18n = () => window.AvistraI18n;
   const t = (key, fallback) => {
     const fn = i18n() && i18n().t;
     const value = fn ? fn(key) : "";

@@ -1,6 +1,6 @@
-# Avestra Cloud
+# Avistra Cloud
 
-Public marketing site for **Avestra Cloud** — indie local-AI surveillance for Windows. Faces, objects, action journal, people database.
+Public marketing site for **Avistra Cloud** — indie local-AI surveillance for Windows. Faces, objects, action journal, people database.
 
 **Live site:** [https://www.avestra.online](https://www.avestra.online) (GitHub Pages)
 
@@ -58,15 +58,15 @@ The homepage has a **Download / Install** button for `AvestraCloud-Setup.exe`. T
 
 [https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe](https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe)
 
-Installing the exe does **not** skip the license gate. Sign-in needs a public Access URL **and** a valid unexpired license from Avestra Access. Testers choose their own nickname and password; first use of a license registers that name on Access. Expired licenses cannot sign in.
+Installing the exe does **not** skip the license gate. Sign-in needs a public Access URL **and** a valid unexpired license from Avistra Access. Testers choose their own nickname and password; first use of a license registers that name on Access. Expired licenses cannot sign in.
 
-**Uninstall:** There is no separate uninstall download (do not upload another ~338MB file). After install, people remove it from Windows Settings → Apps → Avestra Cloud, or Start Menu → Avestra Cloud → Uninstall Avestra Cloud, or `Uninstall.exe` in the install folder. Program files go away. Local people/logs stay unless they check “Also remove local data”. Do not put `%USERPROFILE%\.aegis_monitor` on GitHub.
+**Uninstall:** There is no separate uninstall download (do not upload another ~338MB file). After install, people remove it from Windows Settings → Apps → Avistra Cloud, or Start Menu → Avistra Cloud → Uninstall Avistra Cloud, or `Uninstall.exe` in the install folder. Program files go away. Local people/logs stay unless they check “Also remove local data”. Do not put `%USERPROFILE%\.aegis_monitor` on GitHub.
 
 Do not commit the Setup.exe into this Pages repo.
 
-The contact form posts into Avestra Access (`POST /license-request`), preferably through the Cloudflare Worker origin in `license-config.js` (`workerUrl`). Until that Worker is deployed, set `accessUrl` to the current Access HTTPS origin (trycloudflare hostnames change). If both are empty, the form still uses FormSubmit as a fallback. A license is emailed only after Access approval. Do not put SMTP passwords or Worker tokens in this repo.
+The contact form posts into Avistra Access (`POST /license-request`), preferably through the Cloudflare Worker origin in `license-config.js` (`workerUrl`). Until that Worker is deployed, set `accessUrl` to the current Access HTTPS origin (trycloudflare hostnames change). If both are empty, the form still uses FormSubmit as a fallback. A license is emailed only after Access approval. Do not put SMTP passwords or Worker tokens in this repo.
 
-The Android app is a **secondary standalone client** (phone camera, on-device detection). It is sideloaded from Avestra Cloud on Windows, not from this Pages site. Do not commit APKs here.
+The Android app is a **secondary standalone client** (phone camera, on-device detection). It is sideloaded from Avistra Cloud on Windows, not from this Pages site. Do not commit APKs here.
 
 ## Donate
 

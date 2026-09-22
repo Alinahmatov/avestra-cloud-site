@@ -15,6 +15,6 @@ window.AVESTRA_DONATE = {
   paypalHostedButtonId: "",
   paypalMeUrl: "",
   stripePaymentLink: "",
-  itemName: "Avestra Cloud",
+  itemName: "Avistra Cloud",
   currency: "USD",
 };
