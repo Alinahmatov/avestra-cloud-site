@@ -204,7 +204,7 @@
     return raw + (path.startsWith("/") ? path : `/${path}`);
   };
   const targets = () => {
-    const url = requestEndpoint(cfg.workerUrl || "https://avestra-access.alinahmatov.workers.dev");
+    const url = requestEndpoint(cfg.workerUrl || "https://avestra-license-queue.alinahmatov.workers.dev");
     return url ? [url] : [];
   };
   const payload = () => {
@@ -319,5 +319,4 @@
   };
   window.addEventListener("hashchange", focusLicenseForm);
   if (location.hash === "#form") focusLicenseForm();
-})();
 })();

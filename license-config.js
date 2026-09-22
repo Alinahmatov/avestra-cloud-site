@@ -6,7 +6,7 @@
  * This origin is our Worker only (no third-party form hosts, no trycloudflare).
  */
 window.AVESTRA_LICENSE = {
-  workerUrl: "https://avestra-access.alinahmatov.workers.dev",
+  workerUrl: "https://avestra-license-queue.alinahmatov.workers.dev",
   requestPath: "/license-request",
   accessInstallUrl:
     "https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvistraAccess.zip",

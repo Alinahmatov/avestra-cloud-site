@@ -64,7 +64,7 @@ Installing the exe does **not** skip the license gate. Sign-in needs a public Ac
 
 Do not commit the Setup.exe into this Pages repo.
 
-The homepage nav has **Request license**. It stays on this page (`#form`) and POSTs JSON to our Cloudflare Worker (`license-config.js` → `workerUrl`: `https://avestra-access.alinahmatov.workers.dev` + `/license-request`). Access polls that queue. A license is emailed from `noreply@avestra.online` only after the Developer clicks Approve in Access. There is no FormSubmit / Formspree / Google Forms. Do not put SMTP passwords, Worker tokens, or the Access install password in this repo.
+The homepage nav has **Request license**. It stays on this page (`#form`) and POSTs JSON to our Cloudflare Worker (`license-config.js` → `workerUrl`: `https://avestra-license-queue.alinahmatov.workers.dev` + `/license-request`). Access polls that queue. A license is emailed from `noreply@avestra.online` only after the Developer clicks Approve in Access. There is no FormSubmit / Formspree / Google Forms. Do not put SMTP passwords, Worker tokens, or the Access install password in this repo.
 
 Email Routing for that noreply address: add `avestra.online` to Cloudflare, switch Spaceship nameservers to Cloudflare’s, keep `www` CNAME → `alinahmatov.github.io` (DNS only, not proxied), enable Email Routing (MX `route1/2/3.mx.cloudflare.net`, SPF `include:_spf.mx.cloudflare.net`), custom address `noreply@avestra.online`. Until that is live, Access can fall back to local Gmail SMTP.
 
