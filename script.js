@@ -88,15 +88,18 @@
   }
 
   const langRoot = document.querySelector("[data-lang-switch]");
-  if (langRoot && i18n) {
+  if (langRoot) {
     const toggle = langRoot.querySelector("[data-lang-toggle]");
     const flag = langRoot.querySelector("[data-lang-flag]");
+    const code = langRoot.querySelector("[data-lang-code]");
     const setOpen = (open) => {
       langRoot.classList.toggle("open", open);
       if (toggle) toggle.setAttribute("aria-expanded", String(open));
     };
     const syncFlag = () => {
-      if (flag) flag.dataset.flag = i18n.lang;
+      const lang = (i18n && i18n.lang) || document.documentElement.dataset.lang || "en";
+      if (flag) flag.dataset.flag = lang;
+      if (code) code.textContent = String(lang).toUpperCase();
     };
     syncFlag();
     if (toggle) {
@@ -106,8 +109,17 @@
       });
     }
     langRoot.querySelectorAll("[data-set-lang]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        i18n.setLang(btn.getAttribute("data-set-lang"));
+      btn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const next = btn.getAttribute("data-set-lang");
+        if (i18n && i18n.setLang) i18n.setLang(next);
+        else {
+          document.documentElement.lang = next;
+          document.documentElement.dataset.lang = next;
+          try {
+            localStorage.setItem("avestra-lang", next);
+          } catch (_) {}
+        }
         syncFlag();
         setOpen(false);
         if (themeBtn) setTheme(document.documentElement.dataset.theme);
@@ -174,9 +186,11 @@
       { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
     document.querySelectorAll(".reveal").forEach((node) => io.observe(node));
-} else {
+  } else {
+    reveal();
+  }
   reveal();
-}
+})();
 
 (() => {
   const form = document.querySelector("[data-license-form]");

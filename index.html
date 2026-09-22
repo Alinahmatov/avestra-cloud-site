@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260922lic">
+  <link rel="stylesheet" href="styles.css?v=ui-20260922vis">
   <script>
     (function () {
       try {
@@ -468,7 +468,7 @@
         </h2>
         <p class="section-lead reveal" data-i18n="get.needP">Ask below if you need the Developer to issue a license in Avistra Access. The form does not create an account. A license is emailed only after Access approval.</p>
 
-        <form class="request-form reveal" data-license-form method="post" action="https://www.avestra.online/#form">
+        <form class="request-form reveal" data-license-form method="post" action="#form">
           <div class="hp" aria-hidden="true">
             <label for="company" data-i18n="get.company">Company</label>
             <input id="company" type="text" name="_honey" tabindex="-1" autocomplete="off">
@@ -547,11 +547,17 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg>
   </button>
 
+  <script>
+    document.addEventListener("submit", function (event) {
+      if (event.target && event.target.getAttribute("data-license-form") != null) {
+        event.preventDefault();
+      }
+    }, true);
+  </script>
   <script src="donate-config.js?v=ui-20260922lic"></script>
   <script src="license-config.js?v=ui-20260922lic"></script>
   <script src="i18n.js?v=ui-20260922restrict"></script>
-  <script src="script.js?v=ui-20260922lic"></script>
-  <script src="gate.js?v=ui-20260922lic"></script>
+  <script src="script.js?v=ui-20260922vis"></script>
   <script src="demo.js?v=ui-20260922restrict"></script>
 </body>
 </html>

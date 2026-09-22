@@ -52,6 +52,14 @@ body {
   color: var(--text);
   font: 16px/1.6 var(--font);
 }
+main, footer, .hero, .hero-copy, .section {
+  opacity: 1;
+  visibility: visible;
+  color: var(--text);
+}
+html[data-theme="dark"] .hero h1 .accent {
+  color: #8eb0ff;
+}
 a { color: var(--blue); text-decoration: none; }
 img { max-width: 100%; height: auto; }
 button, input, textarea, select { font: inherit; }
@@ -75,10 +83,11 @@ button, input, textarea, select { font: inherit; }
 .nav {
   position: sticky;
   top: 0;
-  z-index: 30;
+  z-index: 50;
   background: var(--nav);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid transparent;
+  pointer-events: auto;
 }
 .nav.scrolled { border-bottom-color: var(--line); }
 .nav-inner {
@@ -135,6 +144,9 @@ button, input, textarea, select { font: inherit; }
   align-items: center;
   gap: 10px;
   flex: none;
+  position: relative;
+  z-index: 60;
+  pointer-events: auto;
 }
 
 .theme-btn,
@@ -200,6 +212,7 @@ html[data-theme="dark"] .icon-moon { display: none; }
   position: absolute;
   right: 0;
   top: calc(100% + 6px);
+  z-index: 80;
   margin: 0;
   padding: 8px;
   list-style: none;
@@ -342,6 +355,7 @@ html[data-theme="dark"] .icon-moon { display: none; }
   height: 110px;
   background: var(--page);
   clip-path: polygon(0 72%, 50% 100%, 100% 72%, 100% 100%, 0 100%);
+  pointer-events: none;
 }
 
 .cta-row {
@@ -989,12 +1003,14 @@ footer a { color: var(--blue); }
   font-size: 13px;
 }
 
-.js .reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+.reveal,
+.js .reveal,
+.js .reveal.in {
+  opacity: 1 !important;
+  transform: none;
+  visibility: visible !important;
+  color: inherit;
 }
-.js .reveal.in { opacity: 1; transform: none; }
 
 @media (max-width: 980px) {
   .grid, .cred-grid { grid-template-columns: 1fr 1fr; }
@@ -1043,7 +1059,7 @@ footer a { color: var(--blue); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .js .reveal, .js .reveal.in {
+  .reveal, .js .reveal, .js .reveal.in {
     opacity: 1;
     transform: none;
     transition: none;
