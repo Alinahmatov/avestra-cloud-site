@@ -288,7 +288,7 @@ html[data-theme="dark"] .icon-moon { display: none; }
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: 78vh;
+  min-height: 0;
   display: grid;
   align-items: center;
   color: var(--text);
@@ -312,22 +312,22 @@ html[data-theme="dark"] .icon-moon { display: none; }
 .hero-copy {
   position: relative;
   z-index: 2;
-  width: min(920px, calc(100% - 48px));
+  width: min(760px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 96px 0 140px;
+  padding: 36px 0 20px;
   text-align: center;
 }
 .hero .kicker {
-  margin: 0 0 18px;
+  margin: 0 0 10px;
   color: var(--blue);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 .hero h1 {
-  margin: 0 0 18px;
-  font-size: clamp(36px, 6vw, 64px);
+  margin: 0 0 10px;
+  font-size: clamp(30px, 5vw, 52px);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.08;
@@ -340,21 +340,27 @@ html[data-theme="dark"] .icon-moon { display: none; }
   text-underline-offset: 8px;
 }
 .hero .lede {
-  margin: 0 auto 28px;
-  max-width: 52ch;
+  margin: 0 auto 16px;
+  max-width: 40ch;
   color: var(--muted);
-  font-size: 18px;
+  font-size: 16px;
 }
 .hero .cta-row { justify-content: center; }
+.hero-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.hero .facts { margin: 16px 0 0; }
 .hero-v {
   position: absolute;
   left: 0;
   right: 0;
   bottom: -1px;
   z-index: 3;
-  height: 110px;
+  height: 48px;
   background: var(--page);
-  clip-path: polygon(0 72%, 50% 100%, 100% 72%, 100% 100%, 0 100%);
+  clip-path: polygon(0 55%, 50% 100%, 100% 55%, 100% 100%, 0 100%);
   pointer-events: none;
 }
 
@@ -376,6 +382,11 @@ html[data-theme="dark"] .hero-v { background: var(--page); }
   padding: 88px 0;
   scroll-margin-top: 84px;
 }
+.section.watch-section {
+  padding-top: 28px;
+  padding-bottom: 56px;
+}
+.section.watch-section .section-lead { margin-bottom: 20px; }
 .section.alt { background: var(--surface); }
 html[data-theme="dark"] .section.alt { background: #101628; }
 .kicker {
@@ -1053,7 +1064,7 @@ footer a { color: var(--blue); }
   .side { width: 100%; }
   .wrap, .hero-copy { width: min(var(--wrap), calc(100% - 32px)); }
   .nav-inner { width: min(var(--wrap), calc(100% - 24px)); }
-  .hero-copy { padding: 72px 0 120px; }
+  .hero-copy { padding: 28px 0 16px; }
   .spec-plate dl div { grid-template-columns: 1fr; gap: 4px; }
 }
 

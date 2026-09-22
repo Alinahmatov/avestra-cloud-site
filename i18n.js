@@ -29,10 +29,11 @@
         kicker: "Avistra Cloud · Windows · local AI",
         titleAccent: "See Everything.",
         titleRest: "Miss Nothing.",
-        lede: "Your cameras, occupancy, and journal — analysed on this PC.",
+        lede: "Cameras, occupancy, and a journal — analysed on this PC.",
         cta: "Download / Install",
         see: "See it in action",
         cta2: "Request a license",
+        license: "Install does not create an account. Sign-in needs a Developer license.",
       },
       intro: {
         titleAccent: "Windows surveillance",
@@ -56,10 +57,10 @@
       },
       demo: {
         kicker: "See it in action",
-        titleAccent: "Live,",
-        titleRest: "as the node names who walked through.",
+        titleAccent: "Live.",
+        titleRest: "Who walked through.",
         lead:
-          "Illustrated clip — invented faces, not a webcam, not anyone in this household. Empty room, lock <strong>Person 1 · Alex</strong>, then a woman in an olive jacket crosses <strong>Restriction area 1</strong>.",
+          "Illustrated clip — <strong>Person 1 · Alex</strong>, then she crosses <strong>Restriction area 1</strong>.",
         app: "Avistra Cloud",
         live: "Live",
         monitoring: "MONITORING",
@@ -135,6 +136,8 @@
         kicker: "How it works",
         titleAccent: "Install it.",
         titleRest: "Point it. Read who walked through.",
+        lead:
+          "USB, CCTV, PTZ, Wi‑Fi, GoPro, or phone. Faces, COCO objects, occupancy, and a weekly report — on this PC.",
         s1t: "Download Setup.exe",
         s1:
           "Get AvistraCloud-Setup.exe from this page (GitHub Releases). Run it. Installing does not create an account and does not include Avistra Access.",
@@ -398,10 +401,11 @@
         kicker: "Avistra Cloud · Windows · lokal AI",
         titleAccent: "Hər şeyi gör.",
         titleRest: "Heç nəyi qaçırma.",
-        lede: "Kameralarınız, doluluq və jurnal — bu PC-də analiz olunur.",
+        lede: "Kameralar, doluluq və jurnal — bu PC-də analiz.",
         cta: "Yüklə / Quraşdır",
         see: "Əməldə görün",
         cta2: "Lisenziya istə",
+        license: "Quraşdırma hesab yaratmır. Giriş üçün Developer lisenziyası lazımdır.",
       },
       intro: {
         titleAccent: "Windows müşahidəsi",
@@ -425,10 +429,10 @@
       },
       demo: {
         kicker: "Əməldə görün",
-        titleAccent: "Live,",
-        titleRest: "kim keçdiyini adlandırır.",
+        titleAccent: "Live.",
+        titleRest: "Kim keçdi.",
         lead:
-          "Illüstrasiya — uydurulmuş üzlər, veb-kamera deyil, bu evdəki heç kim deyil. Boş otaq, <strong>Person 1 · Alex</strong> kilidi, sonra zeytun gödəkçəli qadın <strong>Restriction area 1</strong>-i keçir.",
+          "Illüstrasiya — <strong>Person 1 · Alex</strong>, sonra <strong>Restriction area 1</strong>-i keçir.",
         app: "Avistra Cloud",
         live: "Live",
         monitoring: "MONITORING",
@@ -504,6 +508,8 @@
         kicker: "Necə işləyir",
         titleAccent: "Quraşdırın.",
         titleRest: "Yönəldin. Kim keçdiyini oxuyun.",
+        lead:
+          "USB, CCTV, PTZ, Wi‑Fi, GoPro və ya telefon. Üzlər, COCO obyektləri, doluluq və həftəlik hesabat — bu PC-də.",
         s1t: "Setup.exe yükləyin",
         s1:
           "AvistraCloud-Setup.exe bu səhifədən (GitHub Releases). İşə salın. Quraşdırma hesab yaratmır və Avistra Access daxil deyil.",
@@ -771,6 +777,7 @@
         cta: "Скачать / Установить",
         see: "Смотреть в деле",
         cta2: "Запросить лицензию",
+        license: "Установка не создаёт аккаунт. Для входа нужна лицензия Developer.",
       },
       intro: {
         titleAccent: "Наблюдение на Windows",
@@ -794,10 +801,10 @@
       },
       demo: {
         kicker: "Смотреть в деле",
-        titleAccent: "Live,",
-        titleRest: "узел называет, кто прошёл.",
+        titleAccent: "Live.",
+        titleRest: "Кто прошёл.",
         lead:
-          "Иллюстрация — выдуманные лица, не веб-камера и не кто-то из этого дома. Пустая комната, захват <strong>Person 1 · Alex</strong>, затем женщина в оливковой куртке пересекает <strong>Restriction area 1</strong>.",
+          "Иллюстрация — <strong>Person 1 · Alex</strong>, затем она пересекает <strong>Restriction area 1</strong>.",
         app: "Avistra Cloud",
         live: "Live",
         monitoring: "MONITORING",
@@ -873,6 +880,8 @@
         kicker: "Как это работает",
         titleAccent: "Установите.",
         titleRest: "Направьте. Прочитайте, кто прошёл.",
+        lead:
+          "USB, CCTV, PTZ, Wi‑Fi, GoPro или телефон. Лица, объекты COCO, заполняемость и еженедельный отчёт — на этом ПК.",
         s1t: "Скачайте Setup.exe",
         s1:
           "AvistraCloud-Setup.exe с этой страницы (GitHub Releases). Запустите. Установка не создаёт аккаунт и не включает Avistra Access.",
