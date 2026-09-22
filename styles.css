@@ -288,17 +288,11 @@ html[data-theme="dark"] .icon-moon { display: none; }
   inset: 0;
   z-index: 0;
   background-image:
-    linear-gradient(rgba(247, 249, 255, 0.55), rgba(247, 249, 255, 0.78)),
-    url("assets/avistra-banner.png"),
     linear-gradient(rgba(47, 91, 255, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(47, 91, 255, 0.07) 1px, transparent 1px);
-  background-size: cover, cover, 140px 90px, 140px 90px;
-  background-position: center, center, 0 0, 0 0;
-  opacity: 0.9;
+  background-size: 140px 90px, 140px 90px;
+  opacity: 0.55;
   pointer-events: none;
-}
-.hero-dim {
-  display: none;
 }
 .hero-copy {
   position: relative;
@@ -308,16 +302,6 @@ html[data-theme="dark"] .icon-moon { display: none; }
   padding: 96px 0 140px;
   text-align: center;
 }
-.hero-banner {
-  display: block;
-  width: min(680px, 100%);
-  max-height: none;
-  height: auto;
-  margin: 0 auto 28px;
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-}
-.hero-banner.is-on { display: block; }
 .hero .kicker {
   margin: 0 0 18px;
   color: var(--blue);

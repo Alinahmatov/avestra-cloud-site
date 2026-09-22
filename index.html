@@ -10,11 +10,11 @@
   <meta property="og:title" content="Avistra Cloud — See Everything. Miss Nothing.">
   <meta property="og:description" content="One system. Every camera. Every movement. Every detail. PTZ, Wi‑Fi, GoPro, phone, CCTV, this PC’s camera — analysed on the PC, not a public SaaS webcam.">
   <meta property="og:url" content="https://www.avestra.online/">
-  <meta property="og:image" content="https://www.avestra.online/assets/avistra-banner.png">
+  <meta property="og:image" content="https://www.avestra.online/assets/avistra-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Avistra Cloud">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://www.avestra.online/assets/avistra-banner.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://www.avestra.online/assets/avistra-icon.png">
   <meta name="twitter:title" content="Avistra Cloud — See Everything. Miss Nothing.">
   <meta name="twitter:description" content="What it sees, it remembers. Switch cameras. Analyse on the PC. Weekly behavioral report. License from the Developer.">
   <link rel="icon" href="assets/favicon.ico">
@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260922faces">
+  <link rel="stylesheet" href="styles.css?v=ui-20260922plain">
   <script>
     (function () {
       try {
@@ -50,6 +50,7 @@
         <span>Avistra <em>Cloud</em></span>
       </a>
       <nav class="links">
+        <a href="#watch" data-i18n="nav.see">See it</a>
         <a href="#how" data-i18n="nav.how">How it works</a>
         <a href="#uses" data-i18n="nav.uses">Where it’s used</a>
         <a href="#access" data-i18n="nav.access">Access</a>
@@ -85,9 +86,7 @@
   <main id="main">
     <section class="hero" id="top">
       <div class="hero-wall" aria-hidden="true"></div>
-      <div class="hero-dim" aria-hidden="true"></div>
       <div class="hero-copy">
-        <img class="hero-banner is-on" data-brand-banner src="assets/avistra-banner.png" alt="">
         <p class="kicker" data-i18n="hero.kicker">Avistra Cloud · Windows · local AI</p>
         <h1>
           <span class="accent" data-i18n="hero.titleAccent">See Everything.</span>
@@ -96,6 +95,7 @@
         <p class="lede" data-i18n="hero.lede">Your cameras, occupancy, and journal — analysed on this PC.</p>
         <div class="cta-row">
           <a class="btn primary" href="#get" data-i18n="hero.cta">Download / Install</a>
+          <a class="btn" href="#watch" data-i18n="hero.see">See it in action</a>
           <a class="btn" href="#form" data-i18n="hero.cta2">Request a license</a>
         </div>
       </div>
@@ -131,6 +131,53 @@
           <li data-i18n="facts.idle">Camera off when idle</li>
           <li data-i18n="facts.weekly">Weekly analysis on this PC</li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section" id="watch">
+      <div class="wrap">
+        <p class="kicker reveal" data-i18n="demo.kicker">See it in action</p>
+        <h2 class="reveal">
+          <span class="accent" data-i18n="demo.titleAccent">Live,</span>
+          <span data-i18n="demo.titleRest">as the node names who walked through.</span>
+        </h2>
+        <p class="section-lead reveal" data-i18n="demo.lead">
+          Illustrated clip — invented faces, not a webcam, not anyone in this household. Hunt, lock <strong>Person 1 · Alex</strong>, then Person 2 walks through. Occupancy 0 → 1 → 2.
+        </p>
+        <div class="player reveal" data-demo>
+          <div class="monitor">
+            <div class="monitor-bar">
+              <img data-brand-icon src="assets/avistra-icon.png" width="16" height="16" alt="">
+              <strong data-i18n="demo.app">Avistra Cloud</strong>
+              <span class="live-dot" data-i18n="demo.live">Live</span>
+              <span class="rec" data-demo-rec data-on="1">REC</span>
+            </div>
+            <div class="player-body">
+              <div class="player-feed">
+                <canvas data-demo-canvas width="960" height="600" aria-label="Illustrated Avistra Live demo"></canvas>
+              </div>
+              <aside class="side">
+                <span class="pill on" data-i18n="demo.monitoring">MONITORING</span>
+                <p class="occ-line"><span data-i18n="demo.occupancy">Occupancy</span> <strong data-demo-occ>0</strong></p>
+                <p class="ticker" data-demo-ticker></p>
+                <h3 data-i18n="demo.journal">ACTION JOURNAL</h3>
+                <ul data-demo-journal></ul>
+                <p class="cam-line" data-i18n="demo.cam">Cam 0 · this PC · local store</p>
+              </aside>
+            </div>
+            <div class="player-controls">
+              <button type="button" class="play" data-demo-play data-playing="1" data-i18n-aria="demo.pause" aria-label="Pause demo">
+                <svg class="ico-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+                <svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l12-7z"/></svg>
+              </button>
+              <button type="button" class="scrub" data-demo-scrub aria-label="Scrub demo">
+                <span></span>
+              </button>
+              <span class="clock" data-demo-time>0:00 / 0:12</span>
+            </div>
+          </div>
+        </div>
+        <p class="demo-note reveal" data-i18n="demo.note">Fictional generated people. Not a live camera. Not stock photos of real individuals.</p>
       </div>
     </section>
 
@@ -500,9 +547,10 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg>
   </button>
 
-  <script src="donate-config.js?v=ui-20260922avistra4"></script>
-  <script src="license-config.js?v=ui-20260922avistra4"></script>
-  <script src="i18n.js?v=ui-20260922avistra4"></script>
-  <script src="script.js?v=ui-20260922avistra4"></script>
+  <script src="donate-config.js?v=ui-20260922plain"></script>
+  <script src="license-config.js?v=ui-20260922plain"></script>
+  <script src="i18n.js?v=ui-20260922plain"></script>
+  <script src="script.js?v=ui-20260922plain"></script>
+  <script src="demo.js?v=ui-20260922plain"></script>
 </body>
 </html>

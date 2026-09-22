@@ -29,6 +29,12 @@
   const load = (src) => {
     const img = new Image();
     img.decoding = "async";
+    img.addEventListener("error", () => {
+      if (src.endsWith(".jpg") && !img.dataset.triedPng) {
+        img.dataset.triedPng = "1";
+        img.src = src.replace(/\.jpg$/i, ".png");
+      }
+    });
     img.src = src;
     return img;
   };
@@ -204,23 +210,23 @@
 
     let frame = cover(room, w, h, sway);
     const mix = state.mix;
-    if (state.frame === "alex" && alex.complete) {
-      if (mix >= 1) frame = cover(alex, w, h, sway) || frame;
-      else {
+    if (state.frame === "alex") {
+      if (alex.complete && mix > 0.01) {
         ctx.globalAlpha = mix;
         frame = cover(alex, w, h, sway) || frame;
         ctx.globalAlpha = 1;
       }
-    } else if (state.frame === "enter" && enter.complete) {
-      ctx.globalAlpha = mix;
-      frame = cover(enter, w, h, sway) || frame;
-      ctx.globalAlpha = 1;
-    } else if (state.frame === "both") {
-      if (enter.complete && mix < 1) {
+    } else if (state.frame === "enter") {
+      if (alex.complete) frame = cover(alex, w, h, sway) || frame;
+      if (enter.complete && mix > 0.01) {
+        ctx.globalAlpha = mix;
+        frame = cover(enter, w, h, sway) || frame;
         ctx.globalAlpha = 1;
-        cover(enter, w, h, sway);
       }
-      if (both.complete) {
+    } else if (state.frame === "both") {
+      if (enter.complete) frame = cover(enter, w, h, sway) || frame;
+      else if (alex.complete) frame = cover(alex, w, h, sway) || frame;
+      if (both.complete && mix > 0.01) {
         ctx.globalAlpha = mix;
         frame = cover(both, w, h, sway) || frame;
         ctx.globalAlpha = 1;

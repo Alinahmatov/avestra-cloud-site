@@ -39,10 +39,6 @@
     ["assets/avistra-logo.png", "assets/avistra-logo.svg", "assets/logo.png", "assets/avestra-logo.png"],
     (src) => applySrc([...document.querySelectorAll("[data-brand-logo]")], src, false)
   );
-  pickFirst(
-    ["assets/avistra-banner.png", "assets/avistra-banner.svg", "assets/banner.png", "assets/avestra-banner.png"],
-    (src) => applySrc([...document.querySelectorAll("[data-brand-banner]")], src, true)
-  );
 })();
 
 (() => {

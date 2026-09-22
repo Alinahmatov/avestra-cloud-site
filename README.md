@@ -54,9 +54,9 @@ Wait for DNS (often minutes; TTL was 1800s). `nslookup avestra.online` should sh
 
 ## Download / Install
 
-The homepage has a **Download / Install** button for `AvestraCloud-Setup.exe`. The binary is a GitHub Release asset (too large for Pages). Latest:
+The homepage has a **Download / Install** button for `AvistraCloud-Setup.exe`. The binary is a GitHub Release asset (too large for Pages). Latest:
 
-[https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe](https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvestraCloud-Setup.exe)
+[https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvistraCloud-Setup.exe](https://github.com/Alinahmatov/avestra-cloud-site/releases/latest/download/AvistraCloud-Setup.exe)
 
 Installing the exe does **not** skip the license gate. Sign-in needs a public Access URL **and** a valid unexpired license from Avistra Access. Testers choose their own nickname and password; first use of a license registers that name on Access. Expired licenses cannot sign in.
 
