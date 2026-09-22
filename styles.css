@@ -126,8 +126,10 @@ button, input, textarea, select { font: inherit; }
   color: var(--muted);
   font-size: 14.5px;
   font-weight: 600;
+  white-space: nowrap;
 }
 .links a:hover { color: var(--text); }
+.links a[href="#form"] { color: var(--blue); }
 .nav-tools {
   display: flex;
   align-items: center;
@@ -676,6 +678,7 @@ html[data-theme="dark"] .card { box-shadow: none; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+#form { scroll-margin-top: 88px; }
 .access-note {
   max-width: 560px;
   margin: 20px auto 0;
@@ -998,7 +1001,7 @@ footer a { color: var(--blue); }
   .steps { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1080px) {
   .links { display: none; }
   .nav.open .links {
     display: flex;

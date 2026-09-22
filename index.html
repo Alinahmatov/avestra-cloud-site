@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=ui-20260922req">
+  <link rel="stylesheet" href="styles.css?v=ui-20260922lic">
   <script>
     (function () {
       try {
@@ -57,6 +57,7 @@
         <a href="#clients" data-i18n="nav.clients">Windows / Android</a>
         <a href="#faq" data-i18n="nav.faq">FAQ</a>
         <a href="#uninstall" data-i18n="nav.uninstall">Uninstall</a>
+        <a href="#form" data-i18n="nav.license">Request license</a>
         <a href="#donate" data-i18n="nav.donate">Donate</a>
         <a class="btn small primary" href="#get" data-i18n="nav.download">Download / Install</a>
       </nav>
@@ -460,6 +461,41 @@
       </div>
     </section>
 
+    <section id="form" class="section cta-block">
+      <div class="wrap">
+        <h2 class="reveal">
+          <span class="accent" data-i18n="get.need">Request license</span>
+        </h2>
+        <p class="section-lead reveal" data-i18n="get.needP">Ask below if you need the Developer to issue a license in Avistra Access. The form does not create an account. A license is emailed only after Access approval.</p>
+
+        <form class="request-form reveal" data-license-form method="post" action="https://www.avestra.online/#form">
+          <div class="hp" aria-hidden="true">
+            <label for="company" data-i18n="get.company">Company</label>
+            <input id="company" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="form-kicker" data-i18n="get.formKicker">License request</p>
+          <div class="field">
+            <label for="name" data-i18n="get.name">Name</label>
+            <input id="name" type="text" name="name" autocomplete="name" maxlength="120">
+          </div>
+          <div class="field">
+            <label for="email"><span data-i18n="get.email">Email</span> <span data-i18n="get.required">(required)</span></label>
+            <input id="email" type="email" name="email" autocomplete="email" required maxlength="120">
+          </div>
+          <div class="field">
+            <label for="reason"><span data-i18n="get.note">Note</span> <span data-i18n="get.optional">(optional)</span></label>
+            <textarea id="reason" name="note" rows="4" maxlength="2000" data-i18n-placeholder="get.notePh" placeholder="Anything Access should see (optional)."></textarea>
+          </div>
+          <button class="btn primary request-submit" type="submit" data-i18n="get.submit">Request a license</button>
+          <p class="form-note" data-form-help data-i18n="get.formNote">The request goes to the Avistra license queue. After the Developer approves it in Access, email arrives with Access URL and license key, then pick nickname and password in Cloud. Installing the exe does not create an account.</p>
+          <p class="form-status" data-license-status role="status" aria-live="polite"></p>
+        </form>
+        <p class="access-note reveal" data-i18n="get.accessNote">
+          Licenses and sign-in nicknames are issued in <strong>Avistra Access</strong> by the Developer. This site is Avistra Cloud — the desktop surveillance app. The installer is not a login.
+        </p>
+      </div>
+    </section>
+
     <section id="get" class="section cta-block">
       <div class="wrap">
         <img class="cta-icon reveal" data-brand-icon src="assets/avistra-icon.png" width="64" height="64" alt="">
@@ -495,39 +531,6 @@
             Avistra on the phone is its own monitor: the phone camera, on-device faces and COCO objects, people and a journal for that license. Sign in with the same Access URL, nickname, password, and license as Windows. It does not connect to the PC as a webcam, and the Windows Cloud app does not need to stay running. Avistra Access must be reachable to sign in. Sideload the APK from Avistra Cloud on Windows (Settings → Create Android app). The APK is not published on this site.
           </p>
         </div>
-
-        <p class="form-split" id="form" data-i18n="get.need">Need a license?</p>
-        <p data-i18n="get.needP">Ask below if you need the Developer to issue a license in Avistra Access. The form does not create an account. A license is emailed only after Access approval.</p>
-
-        <form class="request-form reveal" data-license-form method="post" action="https://www.avestra.online/#form">
-          <div class="hp" aria-hidden="true">
-            <label for="company" data-i18n="get.company">Company</label>
-            <input id="company" type="text" name="_honey" tabindex="-1" autocomplete="off">
-          </div>
-          <p class="form-kicker" data-i18n="get.formKicker">Access request</p>
-          <div class="field">
-            <label for="name" data-i18n="get.name">Name</label>
-            <input id="name" type="text" name="name" autocomplete="name" maxlength="120">
-          </div>
-          <div class="field">
-            <label for="email"><span data-i18n="get.email">Email</span> <span data-i18n="get.required">(required)</span></label>
-            <input id="email" type="email" name="email" autocomplete="email" required maxlength="120">
-          </div>
-          <div class="field">
-            <label for="phone"><span data-i18n="get.phone">Phone / other contact</span> <span data-i18n="get.optional">(optional)</span></label>
-            <input id="phone" type="text" name="contact" autocomplete="tel" maxlength="120" data-i18n-placeholder="get.phonePh" placeholder="Phone, Telegram, etc.">
-          </div>
-          <div class="field">
-            <label for="reason"><span data-i18n="get.reason">Why you need a license</span> <span data-i18n="get.required">(required)</span></label>
-            <textarea id="reason" name="reason" required rows="5" maxlength="2000" data-i18n-placeholder="get.reasonPh" placeholder="Who you are and why you need Avistra Cloud."></textarea>
-          </div>
-          <button class="btn primary request-submit" type="submit" data-i18n="get.submit">Request a license</button>
-          <p class="form-note" data-form-help data-i18n="get.formNote">The request goes to the Avistra license queue. After the Developer approves it in Access, email arrives with Access URL and license key, then pick nickname and password in Cloud. Installing the exe does not create an account.</p>
-          <p class="form-status" data-license-status role="status" aria-live="polite"></p>
-        </form>
-        <p class="access-note reveal" data-i18n="get.accessNote">
-          Licenses and sign-in nicknames are issued in <strong>Avistra Access</strong> by the Developer. This site is Avistra Cloud — the desktop surveillance app. The installer is not a login.
-        </p>
       </div>
     </section>
   </main>
@@ -535,7 +538,7 @@
   <footer>
     <div class="wrap">
       <img data-brand-logo src="assets/avistra-logo.png" alt="Avistra Cloud" height="32">
-      <p><span data-i18n="footer.line">Avistra Cloud · Indie local-AI surveillance for Windows · USB · CCTV · PTZ · GoPro · phone · camera off when idle</span> · <a href="#donate" data-i18n="nav.donate">Donate</a></p>
+      <p><span data-i18n="footer.line">Avistra Cloud · Indie local-AI surveillance for Windows · USB · CCTV · PTZ · GoPro · phone · camera off when idle</span> · <a href="#form" data-i18n="nav.license">Request license</a> · <a href="#donate" data-i18n="nav.donate">Donate</a></p>
       <p class="foot-meta" data-i18n="footer.meta">Avistra Cloud · website www.avestra.online · local node · no self-signup</p>
     </div>
   </footer>
@@ -544,11 +547,11 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg>
   </button>
 
-  <script src="donate-config.js?v=ui-20260922cfw"></script>
-  <script src="license-config.js?v=ui-20260922cfw"></script>
-  <script src="i18n.js?v=ui-20260922cfw"></script>
-  <script src="script.js?v=ui-20260922cfw"></script>
-  <script src="gate.js?v=ui-20260922cfw"></script>
+  <script src="donate-config.js?v=ui-20260922lic"></script>
+  <script src="license-config.js?v=ui-20260922lic"></script>
+  <script src="i18n.js?v=ui-20260922lic"></script>
+  <script src="script.js?v=ui-20260922lic"></script>
+  <script src="gate.js?v=ui-20260922lic"></script>
   <script src="demo.js?v=ui-20260922feed"></script>
 </body>
 </html>

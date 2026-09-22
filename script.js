@@ -208,14 +208,17 @@
     return url ? [url] : [];
   };
   const payload = () => {
-    const reason = (form.querySelector("[name=reason]") || {}).value || "";
+    const note = String(
+      (form.querySelector("[name=note]") || form.querySelector("[name=reason]") || {}).value || ""
+    ).trim();
+    const queuedNote = note || "License request from www.avestra.online";
     return {
       name: (form.querySelector("[name=name]") || {}).value || "",
       email: (form.querySelector("[name=email]") || {}).value || "",
       contact: (form.querySelector("[name=contact]") || {}).value || "",
-      reason,
-      note: reason,
-      message: reason,
+      reason: queuedNote,
+      note: queuedNote,
+      message: queuedNote,
       timestamp: new Date().toISOString(),
       origin: location.origin,
       _honey: (form.querySelector("[name=_honey]") || {}).value || "",
@@ -300,5 +303,21 @@
     }
     if (btn) btn.disabled = false;
   });
+
+  const focusLicenseForm = () => {
+    if (location.hash !== "#form") return;
+    const name = form.querySelector("[name=name]");
+    if (name) {
+      window.setTimeout(() => {
+        try {
+          name.focus({ preventScroll: true });
+        } catch (_) {
+          name.focus();
+        }
+      }, 80);
+    }
+  };
+  window.addEventListener("hashchange", focusLicenseForm);
+  if (location.hash === "#form") focusLicenseForm();
 })();
 })();
